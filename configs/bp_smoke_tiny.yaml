@@ -1,0 +1,9 @@
+# Tiny pipeline-smoke configuration. Mirrors the defaults of
+# `python -m qlo.experiments.bp_smoke`. NOT a scientific experiment.
+qubits: [2, 4, 6]
+depth: 2
+n_init: 3
+cost: global        # or: local
+seed: 0
+entangler: ring     # or: chain
+gradient: autograd  # or: parameter-shift

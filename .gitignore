@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+*.egg-info/
+build/
+dist/
+.DS_Store
+# bulky generated outputs (covariance .npy etc.); CSV summaries and PNG figures are kept
+results/**/*.npy
+results/**/*.npz
