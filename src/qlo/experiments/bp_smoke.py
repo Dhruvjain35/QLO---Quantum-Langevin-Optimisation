@@ -9,11 +9,16 @@ of the flattened gradient vector g ∈ R^p:
 
     mean_grad         = mean(g)
     mean_abs_grad     = mean(|g|)
-    var_grad          = var(g)            (population variance over the p entries)
+    within_gradient_entry_var = var(g)   (population variance over the p entries
+                                          of ONE gradient vector at ONE theta —
+                                          NOT a barren-plateau diagnostic; see
+                                          ``qlo.analysis.bp_variance`` for
+                                          Var_theta[dC/dtheta_k] across inits)
     grad_norm         = ||g||_2
     max_abs_grad      = max(|g|)
-    var_first_partial = value of g[0]     (the per-init sample; variance across
-                                           inits is computed in ``aggregate``)
+    first_partial     = value of g[0]     (per-init sample; its variance across
+                                           inits, ``bp_var_first_partial_across_inits``,
+                                           is computed in ``aggregate``)
 
 Usage (defaults are the tiny smoke configuration):
 
@@ -66,7 +71,7 @@ def summarize_gradient(grad: np.ndarray) -> dict[str, float]:
         "n_params": int(g.size),
         "mean_grad": float(np.mean(g)),
         "mean_abs_grad": float(np.mean(np.abs(g))),
-        "var_grad": float(np.var(g)),
+        "within_gradient_entry_var": float(np.var(g)),
         "grad_norm": float(np.linalg.norm(g)),
         "max_abs_grad": float(np.max(np.abs(g))),
         "first_partial": float(g[0]),
@@ -103,7 +108,7 @@ def run_bp_smoke(config: SmokeConfig) -> pd.DataFrame:
 
 
 def aggregate(df: pd.DataFrame) -> pd.DataFrame:
-    """Per-qubit-count aggregate across inits (mean of per-init stats + variance of g[0])."""
+    """Per-qubit-count aggregate across inits (mean of per-init stats + Var across inits of g[0], ddof=1)."""
     return (
         df.groupby(["n_qubits", "depth", "cost"], as_index=False)
         .agg(
@@ -111,10 +116,10 @@ def aggregate(df: pd.DataFrame) -> pd.DataFrame:
             n_params=("n_params", "first"),
             mean_grad=("mean_grad", "mean"),
             mean_abs_grad=("mean_abs_grad", "mean"),
-            var_grad=("var_grad", "mean"),
+            within_gradient_entry_var_mean=("within_gradient_entry_var", "mean"),
             grad_norm_mean=("grad_norm", "mean"),
             grad_norm_std=("grad_norm", "std"),
-            var_first_partial=("first_partial", lambda s: float(np.var(s, ddof=0))),
+            bp_var_first_partial_across_inits=("first_partial", lambda s: float(np.var(s, ddof=1)) if len(s) > 1 else float("nan")),
         )
     )
 

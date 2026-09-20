@@ -41,12 +41,18 @@ src/qlo/
   circuits/hardware_efficient.py   HardwareEfficientAnsatz, param_shape, n_params
   costs/observables.py             global Z⊗…⊗Z and local (1/n)ΣZ_i observables
   gradients/exact.py               analytic cost + autograd / parameter-shift / finite-diff gradients
+  gradients/finite_shot.py         finite-shot parameter-shift estimator (Stage 2)
+  analysis/bp_variance.py          Var_theta[dC/dtheta_k] across initializations (the real BP statistic)
+  analysis/shot_theory.py          analytic shot variance for the ±1 global observable (validation only)
+  analysis/statistics.py           replicate summaries, log-log slope fit
   experiments/bp_smoke.py          tiny pipeline smoke experiment -> results/*.csv
+  experiments/shot_noise.py        Stage 2 shot-noise characterization -> results/stage2/
   utils/seeding.py                 make_rng / random_params (explicit RNG, no global state)
-tests/                             47 pytest tests
+tests/                             71 pytest tests
 configs/bp_smoke_tiny.yaml         the smoke configuration, for reference
 results/                           CSV outputs (smoke only)
 STATUS.md                          Stage 1 status report
+STAGE2.md                          Stage 2 report (finite-shot noise characterization)
 ```
 
 ## Circuit
@@ -99,7 +105,11 @@ uv pip install --python .venv/bin/python -e ".[dev]"
 .venv/bin/python -m pytest -v
 .venv/bin/python -m qlo.experiments.bp_smoke                 # global cost, tiny config
 .venv/bin/python -m qlo.experiments.bp_smoke --cost local
+
+.venv/bin/python -m qlo.experiments.shot_noise                # Stage 2, ~25 s
+.venv/bin/python -m qlo.experiments.shot_noise --k 2 3 8 --out-dir results/stage2_nonzero_k
 ```
 
 The smoke experiment is a pipeline test only. Its numbers are not evidence
-about barren plateaus.
+about barren plateaus. Stage 2 (see `STAGE2.md`) characterizes finite-shot
+*estimator noise* only.

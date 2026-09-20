@@ -1,5 +1,7 @@
 # Stage 1 Status
 
+> Stage 2 (finite-shot noise characterization) is complete — see `STAGE2.md`.
+
 ## Environment
 
 | component  | version                                  |
@@ -57,7 +59,7 @@ Per-qubit aggregates (mean over 3 inits). Full per-init rows in `results/`.
 
 **global cost** (`results/bp_smoke_global_seed0.csv`)
 
-| n | p  | mean_grad | mean_abs_grad | var_grad | ‖g‖ mean | ‖g‖ std |
+| n | p  | mean_grad | mean_abs_grad | within_gradient_entry_var | ‖g‖ mean | ‖g‖ std |
 |---|----|-----------|---------------|----------|----------|---------|
 | 2 |  8 | -0.0581   | 0.1374        | 0.0521   | 0.717    | 0.125   |
 | 4 | 16 |  0.0032   | 0.0745        | 0.0316   | 0.684    | 0.321   |
@@ -65,7 +67,7 @@ Per-qubit aggregates (mean over 3 inits). Full per-init rows in `results/`.
 
 **local cost** (`results/bp_smoke_local_seed0.csv`)
 
-| n | p  | mean_grad | mean_abs_grad | var_grad | ‖g‖ mean | ‖g‖ std |
+| n | p  | mean_grad | mean_abs_grad | within_gradient_entry_var | ‖g‖ mean | ‖g‖ std |
 |---|----|-----------|---------------|----------|----------|---------|
 | 2 |  8 |  0.0004   | 0.1132        | 0.0248   | 0.458    | 0.126   |
 | 4 | 16 | -0.0012   | 0.0534        | 0.0064   | 0.317    | 0.054   |
@@ -81,10 +83,10 @@ either cost.
 - Analytic simulation only; no finite-shot path yet (by design for Stage 1).
 - Smoke sample sizes are tiny; `var_first_partial` over 3 inits is essentially
   noise.
-- `var_grad` is the variance over the *entries of one gradient vector*, not the
-  literature's Var_θ[∂_k C] over initializations; the latter is what a real BP
-  study needs and is only crudely approximated by `var_first_partial` in the
-  aggregate CSV.
+- (Fixed in Stage 2) the smoke statistic formerly named `var_grad` is the
+  variance over the *entries of one gradient vector*; it is now named
+  `within_gradient_entry_var`, and the real Var_θ[∂_k C] across initializations
+  lives in `qlo.analysis.bp_variance`.
 - Only one ansatz family (RY·RZ + CNOT ring/chain); no claim it is representative.
 - Parameter-shift is evaluated on an analytic device, so its agreement with
   backprop tests correctness of the estimator, not its finite-shot variance.

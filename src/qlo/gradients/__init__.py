@@ -5,6 +5,7 @@ from qlo.gradients.exact import (
     gradient_parameter_shift,
     make_cost,
 )
+from qlo.gradients.finite_shot import SHIFT, FiniteShotParameterShift
 
 __all__ = [
     "make_cost",
@@ -12,4 +13,6 @@ __all__ = [
     "gradient_autograd",
     "gradient_parameter_shift",
     "gradient_finite_difference",
+    "FiniteShotParameterShift",
+    "SHIFT",
 ]
