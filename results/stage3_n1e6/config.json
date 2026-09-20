@@ -1,0 +1,36 @@
+{
+  "n_values": [
+    2,
+    4,
+    6,
+    8,
+    10,
+    12,
+    14,
+    16,
+    18,
+    20,
+    22,
+    24
+  ],
+  "n_init": 1000000,
+  "master_seed": 3,
+  "parameter_index": 0,
+  "symmetry_n": [
+    4,
+    12,
+    24
+  ],
+  "symmetry_n_init": 10000,
+  "pennylane_n": [
+    2,
+    4,
+    6,
+    8,
+    10
+  ],
+  "pennylane_n_init_grad": 1000,
+  "pennylane_n_init_batched": 10000,
+  "save_raw": false,
+  "resolved_rel_se_max": 0.5
+}

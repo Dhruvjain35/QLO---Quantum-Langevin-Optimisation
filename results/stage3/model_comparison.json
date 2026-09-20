@@ -1,0 +1,43 @@
+{
+  "global": {
+    "exponential": {
+      "slope": -1.1418201013690235,
+      "intercept": 0.02747449368089548,
+      "r2": 0.9863889436957548,
+      "rss": 10.290465769428526,
+      "aic": 2.1557339597479555,
+      "n_points": 12
+    },
+    "power_law": {
+      "slope": -10.09615148899626,
+      "intercept": 8.998094230926142,
+      "r2": 0.8472605643159686,
+      "rss": 115.47670507087149,
+      "aic": 31.1699460656088,
+      "n_points": 12
+    },
+    "delta_aic_power_minus_exp": 29.014212105860846,
+    "preferred": "exponential"
+  },
+  "local": {
+    "exponential": {
+      "slope": -0.19832395765971994,
+      "intercept": -4.219186573236807,
+      "r2": 0.8947088703071501,
+      "rss": 2.647624748390371,
+      "aic": -14.134924797058154,
+      "n_points": 12
+    },
+    "power_law": {
+      "slope": -2.0003470312525913,
+      "intercept": -2.079082686341808,
+      "r2": 0.9999873891883195,
+      "rss": 0.00031710835660897886,
+      "aic": -122.49408407991217,
+      "n_points": 12
+    },
+    "delta_aic_exp_minus_power": 108.35915928285402,
+    "preferred": "power_law"
+  },
+  "note": "AIC = N ln(RSS/N) + 2K (K=2), additive constant dropped; 12 points over n=2..24. Exact theoretical formulas are the primary validation, not this comparison."
+}

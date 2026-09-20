@@ -17,6 +17,13 @@ Entangling topology:
 
 This is *one* simple HEA. Nothing here asserts that it exhibits a barren plateau
 for any particular (n, depth); that is an empirical question for later stages.
+
+NOTE (Stage 2/3 finding): with the global cost ``Z⊗...⊗Z`` some parameters have an
+identically-zero gradient for *all* theta — every last-layer RZ (it commutes with any
+Z-product) and last-layer RYs on qubits dropped when the observable is pushed back
+through the final CNOT ring. These are structural zeros, not gradient concentration,
+so this ansatz is NOT used as the controlled barren-plateau benchmark; see
+``qlo.benchmarks.cerezo2021`` and STAGE3.md.
 The class holds only immutable configuration — it has no mutable state, and all
 randomness for parameter initialization comes from an explicitly passed RNG.
 """
