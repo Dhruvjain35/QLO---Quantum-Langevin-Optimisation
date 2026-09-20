@@ -1,0 +1,94 @@
+{
+  "n_iters": 2000,
+  "crosscheck_n": [
+    3,
+    4,
+    6
+  ],
+  "crosscheck_shots": [
+    64,
+    256,
+    1024
+  ],
+  "crosscheck_theta_seeds": [
+    11,
+    12
+  ],
+  "crosscheck_theta_scales": [
+    1.0,
+    0.4
+  ],
+  "crosscheck_reps": 400,
+  "snr_n": [
+    4,
+    6,
+    8,
+    10,
+    12
+  ],
+  "snr_shots": [
+    16,
+    64,
+    256,
+    1024
+  ],
+  "snr_samples": 5000,
+  "snr_eta_ref": 0.1,
+  "tune_n": [
+    6,
+    8,
+    10
+  ],
+  "gd_etas": [
+    0.01,
+    0.03,
+    0.1,
+    0.3,
+    1.0
+  ],
+  "sgd_etas": [
+    0.01,
+    0.03,
+    0.1,
+    0.3
+  ],
+  "sgd_shots": [
+    16,
+    64,
+    256,
+    1024
+  ],
+  "langevin_etas": [
+    0.03,
+    0.1,
+    0.3
+  ],
+  "langevin_sigmas": [
+    0.01,
+    0.03,
+    0.1,
+    0.3
+  ],
+  "tune_replicates": 1,
+  "eval_n": [
+    6,
+    8,
+    10,
+    12
+  ],
+  "eval_replicates": 5,
+  "workers": 9,
+  "tuning_start_seeds": [
+    0,
+    39
+  ],
+  "evaluation_start_seeds": [
+    1000,
+    1099
+  ],
+  "representative_start_seeds": [
+    1000,
+    1001,
+    1002
+  ]
+}

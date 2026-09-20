@@ -49,13 +49,16 @@ src/qlo/
   experiments/bp_smoke.py          tiny pipeline smoke experiment -> results/*.csv
   experiments/shot_noise.py        Stage 2 shot-noise characterization -> results/stage2/
   experiments/controlled_bp.py     Stage 3 controlled barren-plateau scaling -> results/stage3/
+  stage4/                          Stage 4: binomial projector shots, update rules A-E, harness, seeds, stats, figures
+  experiments/stage4.py            Stage 4 driver (crosscheck | snr | tune | evaluate | analyze | figures | all) -> results/stage4/
   utils/seeding.py                 make_rng / random_params (explicit RNG, no global state)
-tests/                             115 pytest tests
+tests/                             133 pytest tests
 configs/bp_smoke_tiny.yaml         the smoke configuration, for reference
 results/                           CSV outputs (smoke only)
 STATUS.md                          Stage 1 status report
 STAGE2.md                          Stage 2 report (finite-shot noise characterization)
 STAGE3.md                          Stage 3 report (controlled barren-plateau benchmark)
+STAGE4.md                          Stage 4 report (finite-shot stochastic escape test — negative for shot noise)
 ```
 
 ## Circuit
@@ -113,6 +116,7 @@ uv pip install --python .venv/bin/python -e ".[dev]"
 .venv/bin/python -m qlo.experiments.shot_noise --k 2 3 8 --out-dir results/stage2_nonzero_k
 .venv/bin/python -m qlo.experiments.controlled_bp             # Stage 3, ~60 s
 .venv/bin/python -m qlo.experiments.controlled_bp --n-init 1000000 --no-pennylane --out-dir results/stage3_n1e6
+.venv/bin/python -m qlo.experiments.stage4 all                   # Stage 4, ~15 min on 9 cores
 ```
 
 The smoke experiment is a pipeline test only. Its numbers are not evidence
@@ -120,3 +124,6 @@ about barren plateaus. Stage 2 (see `STAGE2.md`) characterizes finite-shot
 *estimator noise* only. Stage 3 (see `STAGE3.md`) reproduces a controlled
 literature barren plateau on a separate benchmark; the hardware-efficient ansatz
 has structural zero gradients with the global cost and is not that benchmark.
+Stage 4 (see `STAGE4.md`) tests whether finite-shot stochasticity helps escape that
+verified plateau: it does not (null at matched learning rate; indistinguishable from
+covariance-matched Gaussian noise; large classical diffusion helps only for n ≤ 8).
