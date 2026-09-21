@@ -1,0 +1,70 @@
+{
+  "E_log_cos2_half_quadrature": -1.386294361119894,
+  "E_log_cos2_half_theory": -1.3862943611198906,
+  "abs_err": 3.3306690738754696e-15,
+  "E_cos2_half_quadrature": 0.5,
+  "Var_log_cos2_half_quadrature": 3.2898681336960522,
+  "Var_log_cos2_half_theory": 3.289868133696453,
+  "identities_max_abs_err": {
+    "max_abs_err_F_plus": 2.220446049250313e-16,
+    "max_abs_err_F_minus": 1.1102230246251565e-16,
+    "max_abs_err_sum_A": 3.3306690738754696e-16,
+    "max_abs_err_gradient": 2.7755575615628914e-17,
+    "max_abs_err_F2_sum": 2.220446049250313e-16,
+    "max_abs_err_variance_simplification": 4.0540501194580364e-15,
+    "max_abs_err_snr_formula": 4.006699052448525e-15,
+    "max_abs_err_local_variance": 2.1225555611889354e-13,
+    "max_abs_err_local_snr": 2.1248943241951533e-13
+  },
+  "approximation_accuracy_by_A": [
+    {
+      "A": 1e-06,
+      "max_abs_err_poisson": 1.8118652139742508e-07,
+      "max_abs_err_rare_event": 0.17680289867502946,
+      "max_gap_to_both_zero_bound": 0.17680290709746077
+    },
+    {
+      "A": 0.0001,
+      "max_abs_err_poisson": 1.8119396501647955e-05,
+      "max_abs_err_rare_event": 0.1768061722529998,
+      "max_gap_to_both_zero_bound": 0.176807014471809
+    },
+    {
+      "A": 0.001,
+      "max_abs_err_poisson": 0.0001812616677043244,
+      "max_abs_err_rare_event": 0.17683594696819344,
+      "max_gap_to_both_zero_bound": 0.17684436694513594
+    },
+    {
+      "A": 0.01,
+      "max_abs_err_poisson": 0.0018194205124518747,
+      "max_abs_err_rare_event": 0.1771351783105657,
+      "max_gap_to_both_zero_bound": 0.17721915673081917
+    },
+    {
+      "A": 0.03,
+      "max_abs_err_poisson": 0.005504287123091589,
+      "max_abs_err_rare_event": 0.1778099182990882,
+      "max_gap_to_both_zero_bound": 0.17806037333959315
+    },
+    {
+      "A": 0.1,
+      "max_abs_err_poisson": 0.01891015387672418,
+      "max_abs_err_rare_event": 0.18028228333171406,
+      "max_gap_to_both_zero_bound": 0.18172746019579195
+    },
+    {
+      "A": 0.3,
+      "max_abs_err_poisson": 0.06234140909810565,
+      "max_abs_err_rare_event": 0.18842787605561284,
+      "max_gap_to_both_zero_bound": 0.2012138375223375
+    },
+    {
+      "A": 1.0,
+      "max_abs_err_poisson": 0.3597619189614794,
+      "max_abs_err_rare_event": 0.3579294411714423,
+      "max_gap_to_both_zero_bound": 0.3125
+    }
+  ],
+  "approximation_note": "Poisson limit exp(-MA) I0(MA|cos|) error is O(A); rare-event exp(-MA) additionally ignores equal non-zero counts and is poor when |sin theta_k| is small."
+}

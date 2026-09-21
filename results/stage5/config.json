@@ -1,0 +1,81 @@
+{
+  "n_values": [
+    2,
+    4,
+    6,
+    8,
+    10,
+    12,
+    14,
+    16,
+    18,
+    20
+  ],
+  "n_samples": 100000,
+  "sample_seed": 0,
+  "q_targets": [
+    0.5,
+    0.9
+  ],
+  "rho_targets": [
+    1.0,
+    2.0
+  ],
+  "q_targets_representative": [
+    0.5,
+    0.9,
+    0.95,
+    0.99
+  ],
+  "rho_targets_representative": [
+    0.5,
+    1.0,
+    2.0,
+    5.0
+  ],
+  "deadzone_n": [
+    4,
+    6,
+    8,
+    10,
+    12,
+    14,
+    16
+  ],
+  "deadzone_shots": [
+    16,
+    64,
+    256,
+    1024,
+    4096,
+    16384
+  ],
+  "deadzone_samples": 100000,
+  "deadzone_full_samples": 5000,
+  "mc_n": [
+    4,
+    6,
+    8,
+    10,
+    12
+  ],
+  "mc_replicates": 20000,
+  "pl_n": [
+    3,
+    4,
+    6
+  ],
+  "pl_shots": [
+    16,
+    64,
+    256
+  ],
+  "pl_reps": 400,
+  "stage4_shots": [
+    16,
+    64,
+    256,
+    1024
+  ],
+  "stage4_iters": 2000
+}

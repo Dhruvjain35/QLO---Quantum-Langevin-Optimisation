@@ -142,7 +142,10 @@ trajectories overlay (figure 2). The only reproducible difference is at n = 12:
 Δ = −0.023 [−0.042, −0.006] against B, tiny in effect but real in mechanism — with F± ≈ 1e-7
 and M = 64, every shot batch usually returns K = 0, so ĝ is *exactly zero* and the
 optimizer does not move at all in 44 % of runs (54 % at M = 16, 29 % at M = 1024), versus
-0.6 % for the Gaussian surrogate. Binomial shot noise is quantized to zero on a deep
+0.6 % for the Gaussian surrogate. *(Erratum, Stage 5: these fractions used
+`log10(F_best/F0) < 1e-12` and so also counted runs that moved only downhill; the exact
+never-moved fractions are 50.0 / 39.8 / 29.8 / 24.2 % at M = 16 / 64 / 256 / 1024, and
+STAGE5.md §12 retrodicts them from the exact zero-gradient probability with no free parameter.)* Binomial shot noise is quantized to zero on a deep
 plateau; Gaussian noise of the same variance is not. Neither produces escape.
 
 ## 11. Constant Langevin control
