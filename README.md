@@ -53,8 +53,10 @@ src/qlo/
   experiments/stage4.py            Stage 4 driver (crosscheck | snr | tune | evaluate | analyze | figures | all) -> results/stage4/
   stage5/                          Stage 5: exact finite-shot estimator distribution, P(ĝ=0), SNR, dead zones, local control
   experiments/stage5.py            Stage 5 driver -> results/stage5/
+  stage6/                          Stage 6: global parity benchmark, exact difference-of-binomials P_zero/P_correct/P_wrong, required shots, matched-signal
+  experiments/stage6.py            Stage 6 driver -> results/stage6/
   utils/seeding.py                 make_rng / random_params (explicit RNG, no global state)
-tests/                             146 pytest tests
+tests/                             166 pytest tests
 configs/bp_smoke_tiny.yaml         the smoke configuration, for reference
 results/                           CSV outputs (smoke only)
 STATUS.md                          Stage 1 status report
@@ -62,6 +64,7 @@ STAGE2.md                          Stage 2 report (finite-shot noise characteriz
 STAGE3.md                          Stage 3 report (controlled barren-plateau benchmark)
 STAGE4.md                          Stage 4 report (finite-shot stochastic escape test — negative for shot noise)
 STAGE5.md                          Stage 5 theory note (exact finite-shot gradient dead-zone analysis)
+STAGE6.md                          Stage 6 report (projector vs parity: two finite-shot failure modes)
 ```
 
 ## Circuit
@@ -121,6 +124,7 @@ uv pip install --python .venv/bin/python -e ".[dev]"
 .venv/bin/python -m qlo.experiments.controlled_bp --n-init 1000000 --no-pennylane --out-dir results/stage3_n1e6
 .venv/bin/python -m qlo.experiments.stage4 all                   # Stage 4, ~15 min on 9 cores
 .venv/bin/python -m qlo.experiments.stage5                       # Stage 5, ~20 min single core (--fast for a smoke run)
+.venv/bin/python -m qlo.experiments.stage6 --workers 5           # Stage 6, ~7 min on 5 cores, ~2.2 GB peak (--fast for a smoke run)
 ```
 
 The smoke experiment is a pipeline test only. Its numbers are not evidence
@@ -134,3 +138,9 @@ covariance-matched Gaussian noise; large classical diffusion helps only for n �
 Stage 5 (see `STAGE5.md`) explains that result exactly: the finite-shot estimator is
 `(K₋ − K₊)/(2M)` with binomial counts whose success probabilities sum to `A_k`, so the
 shots needed for a non-zero estimate or unit SNR grow like `1/A_k` — typically `4^{n−1}`.
+
+Stage 6 (see `STAGE6.md`) asks whether every finite-shot barren plateau fails that way. A global
+Pauli-parity cost on the same circuit needs the same ≈ `4^n` shots, but its shifted outcome
+probabilities sit near ½ instead of near 0. So `P(ĝ=0)` stays at `≈ 1/√(πM)` for every n, and the
+estimator fails by random signs instead of by exact zeros. The difference persists at matched |g|.
+Novelty is unconfirmed (see the Aghaei Saem et al. 2026 note in `STAGE6.md`).
