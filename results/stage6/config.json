@@ -1,0 +1,114 @@
+{
+  "n_values": [
+    2,
+    4,
+    6,
+    8,
+    10,
+    12,
+    14,
+    16,
+    18,
+    20
+  ],
+  "n_samples": 100000,
+  "sample_seed": 0,
+  "rho_targets": [
+    1.0,
+    2.0
+  ],
+  "q_targets": [
+    0.75,
+    0.9
+  ],
+  "failure_n": [
+    4,
+    6,
+    8,
+    10,
+    12,
+    14,
+    16
+  ],
+  "failure_shots": [
+    16,
+    64,
+    256,
+    1024,
+    4096,
+    16384
+  ],
+  "failure_samples": 20000,
+  "matched_n": [
+    4,
+    6,
+    8,
+    10,
+    12,
+    14,
+    16
+  ],
+  "matched_samples": 20000,
+  "matched_shots": [
+    64,
+    1024,
+    16384
+  ],
+  "info_n": [
+    2,
+    4,
+    6,
+    8,
+    10,
+    12,
+    14,
+    16,
+    18,
+    20
+  ],
+  "info_samples": 20000,
+  "vector_n": [
+    4,
+    6,
+    8,
+    10,
+    12
+  ],
+  "vector_shots": [
+    64,
+    1024,
+    16384
+  ],
+  "vector_theta": 300,
+  "vector_replicates": 20,
+  "mc_n": [
+    4,
+    6,
+    8,
+    10,
+    12
+  ],
+  "mc_replicates": 20000,
+  "pl_n": [
+    3,
+    4,
+    6
+  ],
+  "pl_shots": [
+    16,
+    64,
+    256
+  ],
+  "pl_reps": 400,
+  "retro_n": [
+    6,
+    10
+  ],
+  "retro_shots": [
+    64,
+    1024
+  ],
+  "retro_seeds": 20,
+  "retro_iters": 300,
+  "retro_eta": 0.3
+}

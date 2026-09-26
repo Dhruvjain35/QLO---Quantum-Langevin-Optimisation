@@ -1,0 +1,164 @@
+{
+  "exact_gd": {
+    "hyperparameters": {
+      "eta": 1.0
+    },
+    "median_log10_gain_best": 2.4666452517019164,
+    "success_rate_F_best_ge_0.1": 0.7166666666666667,
+    "n_tuning_runs": 120,
+    "ranking_top5": [
+      {
+        "eta": 1.0,
+        "median_gain": 2.4666452517019164,
+        "success_rate_F0p1": 0.7166666666666667,
+        "n_runs": 120,
+        "total_shots_per_run": 0.0
+      },
+      {
+        "eta": 0.3,
+        "median_gain": 2.178120689990294,
+        "success_rate_F0p1": 0.6666666666666666,
+        "n_runs": 120,
+        "total_shots_per_run": 0.0
+      },
+      {
+        "eta": 0.1,
+        "median_gain": 1.6235431106255804,
+        "success_rate_F0p1": 0.5583333333333333,
+        "n_runs": 120,
+        "total_shots_per_run": 0.0
+      },
+      {
+        "eta": 0.03,
+        "median_gain": 0.5175495662448242,
+        "success_rate_F0p1": 0.4,
+        "n_runs": 120,
+        "total_shots_per_run": 0.0
+      },
+      {
+        "eta": 0.01,
+        "median_gain": 0.14151812533631652,
+        "success_rate_F0p1": 0.18333333333333332,
+        "n_runs": 120,
+        "total_shots_per_run": 0.0
+      }
+    ]
+  },
+  "shot_sgd": {
+    "hyperparameters": {
+      "eta": 0.3,
+      "shots": 64
+    },
+    "median_log10_gain_best": 2.251890773725708,
+    "success_rate_F_best_ge_0.1": 0.6666666666666666,
+    "n_tuning_runs": 120,
+    "ranking_top5": [
+      {
+        "eta": 0.3,
+        "shots": 64.0,
+        "median_gain": 2.251890773725708,
+        "success_rate_F0p1": 0.6666666666666666,
+        "n_runs": 120,
+        "total_shots_per_run": 2048000.0
+      },
+      {
+        "eta": 0.3,
+        "shots": 16.0,
+        "median_gain": 2.220215188850629,
+        "success_rate_F0p1": 0.6583333333333333,
+        "n_runs": 120,
+        "total_shots_per_run": 512000.0
+      },
+      {
+        "eta": 0.3,
+        "shots": 1024.0,
+        "median_gain": 2.178119043521631,
+        "success_rate_F0p1": 0.6666666666666666,
+        "n_runs": 120,
+        "total_shots_per_run": 32768000.0
+      },
+      {
+        "eta": 0.3,
+        "shots": 256.0,
+        "median_gain": 2.17811517507175,
+        "success_rate_F0p1": 0.6666666666666666,
+        "n_runs": 120,
+        "total_shots_per_run": 8192000.0
+      },
+      {
+        "eta": 0.1,
+        "shots": 16.0,
+        "median_gain": 1.6318582393444547,
+        "success_rate_F0p1": 0.5666666666666667,
+        "n_runs": 120,
+        "total_shots_per_run": 512000.0
+      }
+    ]
+  },
+  "constant_langevin": {
+    "hyperparameters": {
+      "eta": 0.3,
+      "sigma_step": 0.1
+    },
+    "median_log10_gain_best": 3.2058028583454465,
+    "success_rate_F_best_ge_0.1": 0.7666666666666667,
+    "n_tuning_runs": 120,
+    "ranking_top5": [
+      {
+        "eta": 0.3,
+        "sigma_step": 0.1,
+        "median_gain": 3.2058028583454465,
+        "success_rate_F0p1": 0.7666666666666667,
+        "n_runs": 120,
+        "total_shots_per_run": 0.0
+      },
+      {
+        "eta": 0.3,
+        "sigma_step": 0.3,
+        "median_gain": 3.1895342093584884,
+        "success_rate_F0p1": 0.825,
+        "n_runs": 120,
+        "total_shots_per_run": 0.0
+      },
+      {
+        "eta": 0.1,
+        "sigma_step": 0.1,
+        "median_gain": 3.1252347592668084,
+        "success_rate_F0p1": 0.6833333333333333,
+        "n_runs": 120,
+        "total_shots_per_run": 0.0
+      },
+      {
+        "eta": 0.03,
+        "sigma_step": 0.3,
+        "median_gain": 3.107448688978604,
+        "success_rate_F0p1": 0.8166666666666667,
+        "n_runs": 120,
+        "total_shots_per_run": 0.0
+      },
+      {
+        "eta": 0.1,
+        "sigma_step": 0.3,
+        "median_gain": 3.076877846739314,
+        "success_rate_F0p1": 0.7666666666666667,
+        "n_runs": 120,
+        "total_shots_per_run": 0.0
+      }
+    ]
+  },
+  "matched_gaussian": {
+    "hyperparameters": {
+      "eta": 0.3,
+      "shots": 64
+    },
+    "note": "not tuned: inherits shot_sgd eta and M by protocol"
+  },
+  "noise_only": {
+    "hyperparameters": {
+      "eta": 0.3,
+      "shots": 64
+    },
+    "note": "diagnostic: inherits shot_sgd eta and M"
+  },
+  "selection_rule": "1) highest median log10(F_best/F0) pooled over tuning starts 0-39 and n in {6,8,10}; 2) tie: higher rate of F_best >= 0.1; 3) shot_sgd: fewer total shots; 4) smaller eta. Evaluation seeds never used."
+}
