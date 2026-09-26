@@ -1,0 +1,124 @@
+{
+  "n_values": [
+    2,
+    4,
+    6,
+    8,
+    10,
+    12,
+    14,
+    16,
+    18,
+    20
+  ],
+  "n_samples": 100000,
+  "seed": 0,
+  "paired_n": [
+    2,
+    4,
+    6,
+    8,
+    10,
+    12,
+    14,
+    16,
+    18,
+    20
+  ],
+  "paired_samples": 20000,
+  "paired_shots": [
+    64,
+    1024,
+    16384
+  ],
+  "vector_n": [
+    4,
+    6,
+    8,
+    10,
+    12
+  ],
+  "vector_shots": [
+    16,
+    64,
+    256,
+    1024,
+    4096
+  ],
+  "vector_theta": 400,
+  "vector_replicates": 25,
+  "info_samples": 20000,
+  "replication_shots": [
+    64,
+    1024,
+    16384
+  ],
+  "replication_samples": 20000,
+  "pl_n": [
+    2,
+    3,
+    4
+  ],
+  "pl_shots": [
+    32,
+    128,
+    512
+  ],
+  "pl_reps": 300,
+  "opt_n": [
+    6,
+    8,
+    10,
+    12
+  ],
+  "opt_seeds": 50,
+  "opt_iters": 500,
+  "opt_eta": 0.3,
+  "opt_variants": [
+    [
+      "exact",
+      null,
+      0
+    ],
+    [
+      "LE M=64",
+      "loschmidt",
+      64
+    ],
+    [
+      "SWAP M=64",
+      "swap",
+      64
+    ],
+    [
+      "SWAP M=32 (state-copy matched to LE M=64)",
+      "swap",
+      32
+    ],
+    [
+      "LE M=1024",
+      "loschmidt",
+      1024
+    ],
+    [
+      "SWAP M=1024",
+      "swap",
+      1024
+    ],
+    [
+      "SWAP M=512 (state-copy matched to LE M=1024)",
+      "swap",
+      512
+    ],
+    [
+      "SWAP-noise random walk M=64",
+      "swap_null",
+      64
+    ],
+    [
+      "SWAP-noise random walk M=1024",
+      "swap_null",
+      1024
+    ]
+  ]
+}
