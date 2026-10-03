@@ -1,0 +1,41 @@
+{
+  "percentile_interval_miss_rate_for_one_fresh_replicate": 0.12839,
+  "n_seeds": 20,
+  "stage7_vector_theta_rank": {
+    "4": {
+      "stage7_mean_logF": -5.429483584719641,
+      "seed_min": -5.850577385890922,
+      "seed_max": -5.225238418652952,
+      "rank_of_stage7_among_all": 19,
+      "out_of": 21
+    },
+    "6": {
+      "stage7_mean_logF": -8.499273107384088,
+      "seed_min": -8.773443325786983,
+      "seed_max": -8.070367661190044,
+      "rank_of_stage7_among_all": 8,
+      "out_of": 21
+    },
+    "8": {
+      "stage7_mean_logF": -10.890103425884295,
+      "seed_min": -11.365310881039385,
+      "seed_max": -10.662435981564476,
+      "rank_of_stage7_among_all": 15,
+      "out_of": 21
+    },
+    "10": {
+      "stage7_mean_logF": -13.875088535204018,
+      "seed_min": -14.418707775181666,
+      "seed_max": -13.480769676927984,
+      "rank_of_stage7_among_all": 11,
+      "out_of": 21
+    },
+    "12": {
+      "stage7_mean_logF": -16.68530237045422,
+      "seed_min": -17.359939066870307,
+      "seed_max": -16.112705196619316,
+      "rank_of_stage7_among_all": 11,
+      "out_of": 21
+    }
+  }
+}
