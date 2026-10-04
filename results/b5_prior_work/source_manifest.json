@@ -1,0 +1,90 @@
+{
+  "purpose": "B5 prior-work extraction: reproducible record of the sources reviewed. Local copies live under research_sources/b5/ (git-ignored; copyrighted files are never committed).",
+  "retrieved_utc": "2026-10-04",
+  "papers": [
+    {
+      "paper_id": "thanasilp2024",
+      "evidence_prefix": "A",
+      "title": "Exponential concentration in quantum kernel methods",
+      "authors": ["Supanut Thanasilp", "Samson Wang", "M. Cerezo", "Zoë Holmes"],
+      "journal": "Nature Communications",
+      "volume": "15",
+      "article_number": "5200",
+      "year": 2024,
+      "doi": "10.1038/s41467-024-49287-w",
+      "arxiv_id": "2208.11060",
+      "license": "CC BY 4.0 (Crossref license metadata)",
+      "publication_date": "2024-06-18",
+      "version_reviewed": "Published version (Nat. Commun. 15, 5200; online 2024-06-18) and the published Supplementary Information (41467_2024_49287_MOESM1_ESM.pdf). arXiv versions were not used.",
+      "review_completed": true,
+      "review_scope": "Main text pp. 1-13 and Supplementary Information pp. 1-51 read in full (pages viewed and extracted text searched).",
+      "metadata_sources": ["https://api.crossref.org/works/10.1038/s41467-024-49287-w", "https://api.openalex.org/works/doi:10.1038/s41467-024-49287-w"],
+      "files": [
+        {
+          "role": "published article PDF",
+          "download_source": "https://www.nature.com/articles/s41467-024-49287-w.pdf",
+          "local_filename": "research_sources/b5/thanasilp2024_natcommun.pdf",
+          "sha256": "56116b3f1004709a7ea330e64f89f50f54dc8d1e513ec1ee15f09e56a70dd61c",
+          "bytes": 1841877
+        },
+        {
+          "role": "published Supplementary Information PDF",
+          "download_source": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-024-49287-w/MediaObjects/41467_2024_49287_MOESM1_ESM.pdf",
+          "local_filename": "research_sources/b5/thanasilp2024_SI.pdf",
+          "sha256": "37692256ed1e8b181bd56eefc08d8f716abd52bb059079fe0bcf2b7e0ebf4183",
+          "bytes": 1964687
+        }
+      ]
+    },
+    {
+      "paper_id": "aghaeisaem2026",
+      "evidence_prefix": "B",
+      "title": "Pitfalls when tackling the exponential concentration of parameterized quantum models",
+      "authors": ["Reyhaneh Aghaei Saem", "Behrang Tafreshi", "Zoë Holmes", "Supanut Thanasilp"],
+      "journal": "Quantum Science and Technology",
+      "volume": "11",
+      "article_number": "015049",
+      "year": 2026,
+      "doi": "10.1088/2058-9565/ae2202",
+      "arxiv_id": "2507.22054",
+      "license": "CC BY 4.0 (Crossref license metadata)",
+      "publication_date": "2026-01-30 (online; print issue 2026-03-01 per Crossref)",
+      "version_reviewed": "arXiv:2507.22054v2 (dated 2026-06-04), read in full from the PDF and LaTeX source. Compared against arXiv:2507.22054v1 (2025-07-29). The published IOP version of record was NOT inspected.",
+      "published_version_inspected": false,
+      "published_version_access_note": "All IOP URLs (article page, /pdf, legacy /2058-9565/11/1/015049/pdf, doi.org redirect) returned a Radware bot-manager captcha page to scripted requests on 2026-10-04; the Chrome extension was not connected; OpenAlex lists no repository copy of the published version; no Wayback snapshot.",
+      "review_completed": true,
+      "review_scope": "arXiv v2 main text and Appendices A-D (27 pp.) read in full, including the LaTeX source; v1 compared by paragraph-level diff of the LaTeX sources and by numbering in the PDF.",
+      "metadata_sources": ["https://api.crossref.org/works/10.1088/2058-9565/ae2202", "https://api.openalex.org/works/doi:10.1088/2058-9565/ae2202", "https://arxiv.org/abs/2507.22054"],
+      "files": [
+        {
+          "role": "arXiv v2 PDF (primary reviewed version)",
+          "download_source": "https://arxiv.org/pdf/2507.22054v2",
+          "local_filename": "research_sources/b5/aghaeisaem_arxiv_2507.22054v2.pdf",
+          "sha256": "aaf31f78a0468a4e0badc875d0697231a209d68cb0e92d9b3d04238d379b1d7b",
+          "bytes": 2992929
+        },
+        {
+          "role": "arXiv v2 source tarball",
+          "download_source": "https://arxiv.org/e-print/2507.22054v2",
+          "local_filename": "research_sources/b5/aghaeisaem_arxiv_2507.22054v2_src.tar",
+          "sha256": "340df26dc5a66cf0b06dcc8dc769862047069bd55740ff92354808fda84ec4eb",
+          "bytes": 2151521
+        },
+        {
+          "role": "arXiv v1 PDF (version comparison)",
+          "download_source": "https://arxiv.org/pdf/2507.22054v1",
+          "local_filename": "research_sources/b5/aghaeisaem_arxiv_2507.22054v1.pdf",
+          "sha256": "13f70a7eee465f48a95783ebd7bcc8061f79e433e71b51c7721626c13716d519",
+          "bytes": 2894720
+        },
+        {
+          "role": "arXiv v1 source tarball (version comparison)",
+          "download_source": "https://arxiv.org/e-print/2507.22054v1",
+          "local_filename": "research_sources/b5/aghaeisaem_arxiv_2507.22054v1_src.tar",
+          "sha256": "82ce1592b4121537a42978fef29ec947706ce53ccb9968011b755c12e2c6ea3e",
+          "bytes": 2072047
+        }
+      ]
+    }
+  ]
+}

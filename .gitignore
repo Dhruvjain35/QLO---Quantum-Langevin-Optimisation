@@ -9,3 +9,6 @@ dist/
 # bulky generated outputs (covariance .npy etc.); CSV summaries and PNG figures are kept
 results/**/*.npy
 results/**/*.npz
+
+# B5: local copies of third-party papers (copyrighted; never committed)
+research_sources/
