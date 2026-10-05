@@ -17,6 +17,11 @@ Candidates:
 - C4 vector/trajectory consequences;
 - F-x the "already prior" facts.
 
+**Follow-up status (2026-10-04).** H1 (Arrasmith 2021), H2 (Teo 2023, reviewed as arXiv v3) and H3 (Gentinetta
+2024, published Quantum version) were reviewed in full in the targeted follow-up audit:
+[`B5_FOLLOWUP_AUDIT.md`](B5_FOLLOWUP_AUDIT.md), ledger entries C-xx, D-xx and E-xx. The MEDIUM and BACKGROUND items
+remain unreviewed.
+
 ## HIGH priority — could directly contain one of the candidate results
 
 | # | Citation (as printed in the citing source) | Cited by / where | Why it may matter | Candidates |
@@ -24,6 +29,12 @@ Candidates:
 | H1 | A. Arrasmith, M. Cerezo, P. Czarnik, L. Cincio, P. J. Coles, *Effect of barren plateaus on gradient-free optimization*, Quantum 5, 558 (2021). | B [38], §I p. 2 (named as having mentioned random-walk behaviour "in passing"); B §I p. 1 (exponential resources to resolve flat regions); A ref. 31. | Shot cost of resolving loss differences on barren plateaus, and random-walk remarks. Gradient-free methods rely on finite-shot loss differences. | C3, C4, F-G |
 | H2 | Y. S. Teo, *Optimized numerical gradient and hessian estimation for variational quantum algorithms*, Physical Review A 107, 10.1103/physreva.107.042421 (2023). | B [87]; B App. C Eq. (C11) (rescaled parameter-shift factor λ = dN/(2d² + Nd − 2)). | A finite-shot parameter-shift gradient estimator whose scaling factor minimises mean-squared error, so it contains finite-shot gradient-estimator statistics. Whether it treats different readouts or zero/sign events is unknown. | C1, C3 |
 | H3 | G. Gentinetta, A. Thomsen, D. Sutter, S. Woerner, *The complexity of quantum support vector machines*, arXiv:2203.00031 (2022). | A ref. 16 and SI ref. [10]; A p. 2 ("rigorous study of the number of measurement shots required to successfully train the fidelity kernel"); A SI Note I.D. | Shot-complexity analysis of fidelity-kernel estimation. It may treat estimator variance for specific fidelity measurements. | C3 |
+
+### Added by the follow-up audit (cited by the follow-up sources; not reviewed)
+
+| # | Citation (as printed in the citing source) | Cited by / where | Why it may matter | Candidates |
+|---|---|---|---|---|
+| H4 | A. Mari, T. R. Bromley, and N. Killoran, *Estimating the gradient and higher-order derivatives on quantum hardware*, Phys. Rev. A 103, 012405 (2021). | Teo 2023 (D) ref. [61]: origin of the scaled parameter-shift estimator. Teo says [61]'s expressions are not circuit-averaged (p. 1) and are large-N forms (pp. 6–7). Not cited by A, B, C or E. | May contain fixed-θ finite-shot statistics (variance, MSE) of parameter-shift, finite-difference and scaled estimators, i.e. the per-θ counterpart of Teo's circuit averages. Contents not checked. | C1, C3 |
 
 ## MEDIUM priority — relevant to measurement-dependent finite-shot gradients / estimates
 
