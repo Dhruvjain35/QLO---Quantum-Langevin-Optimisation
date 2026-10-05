@@ -28,6 +28,15 @@ This table records those choices for every prior result relevant to candidates C
 | Gentinetta 2024 | R_tot = O(M^4.67/ε²) for the dual QSVM (Eq. 11; E-03) | Decision-function error max_x \|h_R − h\| | Expected operator-norm error, then a probability > 1/2 (Markov/Chebyshev) | Data size M and accuracy ε (fixed n) | R shots per kernel entry | Fixed ZZ feature map | Training data | Loschmidt-type all-zero frequency | No | Kernel training complexity; no n-scaling; concentration assumed away |
 | Gentinetta 2024 | R_tot = O(1/ε^(2.9±0.3)) for the approximate QSVM (Figs. 10–11; E-05) | Decision-function error after training | Mean over 10 repetitions (percentile bars) | ε (two fixed sizes: 2- and 8-dimensional data) | R shots per expectation value; SPSA steps | ZZFeatureMap + RealAmplitudes | Random initial weights | Global Z^⊗q, ±1 | No | SPSA, not parameter shift; ε-scaling at fixed n |
 
+### Closure-audit additions
+
+| Paper | Result | Random variable | Statistic used | Scaling variable | Shot convention | Circuit ensemble | Parameter ensemble | Measurement scheme | Comparable to Stage 7? | Reason |
+|---|---|---|---|---|---|---|---|---|---|---|
+| Mari 2021 | Var(ĝ) = [σ₀²(θ+s) + σ₀²(θ−s)]/(4N sin² s) (Eq. 45; F-01) | One gradient component at fixed θ | **Per-θ** variance / MSE over measurement outcomes | N (shots) | N shots per shifted circuit | Any rotation-like circuit (numerics: one 5-qubit circuit) | One fixed θ (Eq. A1) | Generic observable; σ₀² unspecified (both fidelity readouts named on p. 3) | Yes, structurally | Same estimator, same per-θ statistic and same shot convention; readout-specific σ₀² must be supplied (F-02) |
+| Mari 2021 | FD/PS crossover at N ≈ 50 (Fig. 6; F-07) | Copy number at equal MSE | Equality of per-θ MSEs, simulated | N | N per expectation value | One 5-qubit circuit | One θ | σ_z on one qubit | No | Estimator crossover at one point, not a resolution threshold or an n-scaling |
+| Zhan 2025 | v_proj = c(1 − c)/N, v_scm = (1 − c²)/N; swap-type less precise at small c (H-01, H-02) | One overlap estimate | MSE averaged over Haar pairs at fixed overlap (per-overlap for these two strategies) | c, N (and d) | N copies (pairs for joint strategies) | Qubit pairs; general d in the SI | Fixed overlap c | Projection onto a known state vs SCM / swap test | Partly | Same two per-copy variances as Stage 7's readouts, at the fidelity level; no gradients or concentration |
+| Miranskyy 2025 | N_swap/N_inverse = ln F / ln[(1 + F)/2] → 2 as F → 1 (G-01) | Number of shots to detect a deviation | Asymptotic quantum-Chernoff detection count at error probability P_e | F (near 1) | N shots per test | Program-testing states | — | Inverse (Loschmidt-type) test vs swap test | No | Detection statistic near F = 1; differs from the estimation ratio (1 + F)/F away from F = 1 (B5_MATH_COMPARISON §9.2) |
+
 ## 2. One per-shot variance, several exponents (worked example on Stage 7's landscape)
 
 *(Our algebra, with Stage 7 notation.)*

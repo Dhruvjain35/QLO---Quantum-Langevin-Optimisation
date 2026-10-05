@@ -1,9 +1,11 @@
 # B5 evidence ledger
 
-This ledger is the evidence packet for the principal novelty audit (A1). It records what five prior papers
+This ledger is the evidence packet for the principal novelty audit (A1). It records what eight prior papers
 explicitly contain, where, and under which assumptions. Papers A and B were reviewed in the initial B5 round
 (commit dfd2c6b). Papers C, D and E, and the entries for matrix rows 29–30, were added in the follow-up audit
-(2026-10-04); see [`B5_FOLLOWUP_AUDIT.md`](B5_FOLLOWUP_AUDIT.md). **It makes no novelty determination.**
+(2026-10-04); see [`B5_FOLLOWUP_AUDIT.md`](B5_FOLLOWUP_AUDIT.md). Papers F, G and H, and the entries for matrix rows
+31–33, were added in the closure audit (2026-10-05); see [`B5_CLOSURE_AUDIT.md`](B5_CLOSURE_AUDIT.md). **It makes no
+novelty determination.**
 
 Papers:
 
@@ -36,9 +38,19 @@ Papers:
   Quantum **8**, 1225 (2024), doi:10.22331/q-2024-01-11-1225. Reviewed: the published Quantum PDF (30 pp.; accepted
   2023-12-25, published 2024-01-11). It is the arXiv:2203.00031v2 file ("v2: published version"); the LaTeX source
   was also read. Locators are the published numbers.
+- **F** — A. Mari, T. R. Bromley, N. Killoran, *Estimating the gradient and higher-order derivatives on quantum
+  hardware*, Phys. Rev. A **103**, 012405 (2021), doi:10.1103/PhysRevA.103.012405. **Reviewed as arXiv:2008.06517v2**
+  (2021-02-26; 17 pp.), which is byte-identical to the open-access post-print in the authors' institutional repository.
+  The APS version of record returned an access challenge (HTTP 403); its numbers are unverified.
+- **G** — A. Miranskyy, *The Cost of Certainty: Shot Budgets in Quantum Program Testing*, arXiv:2510.22418v1
+  (2025-10-25; 30 pp.), a preprint with no journal reference.
+- **H** — H. Zhan, B. Wang, M. Mi, J. Xie, L. Xu, A. Zhang, L. Zhang, *Experimental benchmarking of quantum state
+  overlap estimation strategies with photonic systems*, Light: Science & Applications **14**, 83 (2025),
+  doi:10.1038/s41377-025-01755-8. Reviewed: the published version (12 pp.) and the published Supplementary Information
+  (26 pp.); arXiv:2406.06810v1 (2024-06-10) cross-checked for dating.
 
-Allowed classifications (follow-up vocabulary; every C, D, E entry and every entry added for rows 29–30 uses only
-these four):
+Allowed classifications (follow-up vocabulary; every C–H entry and every entry added for rows 29–33 uses only these
+four):
 
 - `EXPLICIT` — the source states it.
 - `PARTIAL / IMPLIED` — the source's formulas imply the item only after extra algebra and assumptions that the
@@ -2825,6 +2837,929 @@ Paper E was read in full (30 pp., Apps. A–C) and its LaTeX source was searched
 - **Source URL:** https://doi.org/10.22331/q-2024-01-11-1225
 - **Short quote:** —
 - **Source statement (paraphrase):** Not located in the reviewed version after searches for: hypothesis test, distinguish (only in the background sentence of E-01), parameter shift, mean squared error, MSE, critical, crossover, copies, error mitigation, product, single-qubit rotations. Footnote 7 (p. 12) chooses very large R so that ‖K − K_R‖ < μ holds; this is a sufficient-shot condition, not an estimator crossover. The feature map (Fig. 3) is a ZZ-entangling circuit, not a product of rotations. The global Z^⊗q observable of the approximate QSVM is recorded under row 28 (E-05).
+- **Mathematical expression:** —
+- **Assumptions:** —
+- **Scope:** As above.
+- **Relation to Stage 7:** —
+- **Does NOT establish:** Absence from the wider literature.
+
+---
+
+# Closure audit additions (2026-10-05)
+
+Entries below were added by the B5 closure audit ([`B5_CLOSURE_AUDIT.md`](B5_CLOSURE_AUDIT.md)). They use the
+four-label vocabulary only. Matrix rows 31–33 were added for the principal track's candidate statements C5 and the
+general form of C2 (`principal/QLO_Principal_Track.md` §3, upstream commit 8003375). Papers A–E received one or two
+entries each for those rows. Papers F–H were added in this audit. No earlier entry was edited.
+
+## Papers A–E — entries for matrix rows 31–33
+
+<a id="A-19"></a>
+### A-19 · Outcome models of both readouts read against the gradient-level shot-ratio identity and the exponent rule
+- **Paper:** A
+- **Candidate:** C5; C3
+- **Matrix rows:** 31, 32
+- **Claim category:** SWAP/Loschmidt shot-ratio identity for parameter-shift gradients and the exponent rule — matrix rows 31, 32
+- **Classification:** PARTIAL / IMPLIED
+- **Section:** Results; SI Note III
+- **Subsection:** Why exponential concentration is problematic; SI III A 1 (Loschmidt Echo test), SI III A 2 (SWAP test)
+- **Equation:** (12), (14); SI (17), (46)
+- **Figure:** —
+- **Appendix:** SI Note III A
+- **Page:** 4; SI 6, 9
+- **Source version:** Published version (Nat. Commun. 15, 5200; online 2024-06-18) + Supplementary Information (MOESM1)
+- **Source URL:** https://doi.org/10.1038/s41467-024-49287-w
+- **Short quote:** —
+- **Source statement (paraphrase):** Both outcome models are stated for one fidelity (kernel) value κ: the Loschmidt Echo test assigns outcome 1 to the all-zero bitstring, which occurs with probability κ (p. 4; SI Eq. 17), and the SWAP test gives +1 with probability p₊ = 1/2 + κ/2 (p. 4; SI Eq. 46). The source writes no per-shot variance (A-08b), no parameter-shift gradient, no shot ratio and no exponent relation. Searched in the closure audit.
+- **Mathematical expression:** Implied (our algebra): per-shot variances κ(1 − κ) (Loschmidt) and 1 − κ² (SWAP estimate 2K/N − 1); at the two shifts R = [2 − F₊² − F₋²]/[F₊(1 − F₊) + F₋(1 − F₋)] → 2/S as S = F₊ + F₋ → 0; with median log-slopes b_S, b_r, b_SW − b_LE ≈ b_S (to leading order as S → 0)
+- **Assumptions:** Added (ours): the kernel value replaced by a parametrised fidelity F(θ); parameter shift with one independent batch of M shots per shift; for row 32, an ensemble over θ in which S concentrates and the median log-slopes b_S and b_r exist (principal track §3 definitions); the medians of log₁₀S and log₁₀|r| must combine additively (e.g. linear trends in n with O(1) fluctuations), and the rule holds only to leading order as S → 0, so it is approximate.
+- **Scope:** The source is at the kernel (fidelity-estimate) level; no gradients and no landscape slopes.
+- **Relation to Stage 7:** These are the Stage 7 outcome models (B5_POTENTIAL_ISSUES numerical cross-check). The principal track's A2 proof cites the per-shot variances of paper B (B-18); A states the outcome models from which they follow in one line.
+- **Does NOT establish:** The ratio identity, the exponent rule, the quantity r or b_r, or any gradient-level statement.
+
+<a id="A-NL33"></a>
+### A-NL33 · General conditional Loschmidt sign law (1 + |r|)/2
+- **Paper:** A
+- **Candidate:** C2
+- **Matrix rows:** 33
+- **Claim category:** P(correct | ĝ ≠ 0) → (1 + |r|)/2, r = (F₋ − F₊)/(F₊ + F₋), on arbitrary circuits — matrix row 33
+- **Classification:** NOT LOCATED
+- **Section:** Whole article (main text + Supplementary Information)
+- **Subsection:** —
+- **Equation:** —
+- **Figure:** —
+- **Appendix:** —
+- **Page:** main 1–13; SI 1–51
+- **Source version:** Published version (Nat. Commun. 15, 5200; online 2024-06-18) + Supplementary Information (MOESM1)
+- **Source URL:** https://doi.org/10.1038/s41467-024-49287-w
+- **Short quote:** —
+- **Source statement (paraphrase):** Not located in the reviewed version after searches for: conditional, non-zero estimate, single count, relative gradient, sign accuracy, Poisson thinning, (1 + |r|)/2. As for the product-circuit form (A-NL13), the article contains no gradient estimator. Searched in the closure audit.
+- **Mathematical expression:** —
+- **Assumptions:** —
+- **Scope:** As above.
+- **Relation to Stage 7:** —
+- **Does NOT establish:** Absence from the wider literature.
+
+<a id="B-18"></a>
+### B-18 · §IV per-shot variances read against the gradient-level shot-ratio identity and the exponent rule
+- **Paper:** B
+- **Candidate:** C5; C3
+- **Matrix rows:** 31, 32
+- **Claim category:** SWAP/Loschmidt shot-ratio identity for parameter-shift gradients and the exponent rule — matrix rows 31, 32
+- **Classification:** PARTIAL / IMPLIED
+- **Section:** IV. Practical step-by-step guidelines
+- **Subsection:** Subtlety regarding the choice of POVM
+- **Equation:** (12) + inline variances
+- **Figure:** Fig. 5
+- **Appendix:** —
+- **Page:** 9–10 (arXiv v2). Version of record: §4, p. 10
+- **Source version:** arXiv:2507.22054v2 (2026-06-04); the identical passage was verified in the version of record (QST 11, 015049; 2026-01-30)
+- **Source URL:** https://arxiv.org/abs/2507.22054v2
+- **Short quote:** "These distinct forms of variance result in different statistical behaviors"
+- **Source statement (paraphrase):** Per-shot variances Var^(SWAP) = 1 − F² and Var^(LE) = F(1 − F) are stated for the same fidelity, next to the resolution ratio ε_N of Eq. (12). The source forms no shot ratio, does not apply the variances to parameter-shift gradients and states no exponent relation (B-NL14b, B-NL17). The principal track's A2 proof of the ratio identity applies exactly these variances at the two shifts. Searched in the closure audit.
+- **Mathematical expression:** Implied (our algebra): R = [2 − F₊² − F₋²]/[F₊(1 − F₊) + F₋(1 − F₋)] → 2/S; b_SW − b_LE ≈ b_S (to leading order as S → 0) for median log-slopes
+- **Assumptions:** Added (ours): parameter shift with one independent batch per shift; for row 32, an ensemble over θ with median log-slopes b_S and b_r; the medians of log₁₀S and log₁₀|r| must combine additively (e.g. linear trends in n with O(1) fluctuations), and the rule holds only to leading order as S → 0, so it is approximate.
+- **Scope:** Fidelity level under a 2-design in the source; gradient level and slopes only via the added steps.
+- **Relation to Stage 7:** Same implication as B-10c (rows 15, 16, 18), here for the general identity of the principal track rather than for the product-landscape bases.
+- **Does NOT establish:** The identity or the rule as stated results; the quantity r; any conditional sign law.
+
+<a id="B-NL33"></a>
+### B-NL33 · General conditional Loschmidt sign law (1 + |r|)/2
+- **Paper:** B
+- **Candidate:** C2
+- **Matrix rows:** 33
+- **Claim category:** P(correct | ĝ ≠ 0) → (1 + |r|)/2 on arbitrary circuits — matrix row 33
+- **Classification:** NOT LOCATED
+- **Section:** Whole paper (main text + Appendices A–D)
+- **Subsection:** —
+- **Equation:** —
+- **Figure:** —
+- **Appendix:** —
+- **Page:** 1–27 (arXiv v2); 1–24 (version of record)
+- **Source version:** arXiv:2507.22054v2 (2026-06-04); the version of record (QST 11, 015049) was also searched
+- **Source URL:** https://arxiv.org/abs/2507.22054v2
+- **Short quote:** —
+- **Source statement (paraphrase):** Not located in the reviewed versions after searches for: conditional, non-zero, single count, relative gradient, sign accuracy, Poisson thinning, (1 + |r|)/2. The Loschmidt fixed distribution (0, 1) is stated (B-09a); what a non-zero Loschmidt estimate implies about the sign is not discussed. Searched in the closure audit.
+- **Mathematical expression:** —
+- **Assumptions:** —
+- **Scope:** As above.
+- **Relation to Stage 7:** —
+- **Does NOT establish:** Absence from the wider literature.
+
+<a id="C-NL31"></a>
+### C-NL31 · Shot-ratio identity, exponent rule and general conditional sign law
+- **Paper:** C
+- **Candidate:** C5; C2
+- **Matrix rows:** 31, 32, 33
+- **Claim category:** Gradient-level readout shot ratio, exponent rule and general conditional sign law — matrix rows 31–33
+- **Classification:** NOT LOCATED
+- **Section:** Whole paper (main text + App. A)
+- **Subsection:** —
+- **Equation:** —
+- **Figure:** —
+- **Appendix:** —
+- **Page:** 1–12
+- **Source version:** Published version (Quantum 5, 558; 2021-10-05) = arXiv:2011.12245v2 file
+- **Source URL:** https://doi.org/10.22331/q-2021-10-05-558
+- **Short quote:** —
+- **Source statement (paraphrase):** Not located in the reviewed version after searches for: ratio, readout, swap, Loschmidt, per-shot variance, slope, exponent, conditional, sign, relative gradient. The paper has no measurement model for its analytic result (C-02) and one local-cost readout in its numerics (C-04a). Searched in the closure audit.
+- **Mathematical expression:** —
+- **Assumptions:** —
+- **Scope:** As above.
+- **Relation to Stage 7:** —
+- **Does NOT establish:** Absence from the wider literature.
+
+<a id="D-11"></a>
+### D-11 · Teo's per-θ ±1 variance read against the shot-ratio identity and the exponent rule
+- **Paper:** D
+- **Candidate:** C5; C3
+- **Matrix rows:** 31, 32
+- **Claim category:** SWAP/Loschmidt shot-ratio identity for parameter-shift gradients and the exponent rule — matrix rows 31, 32
+- **Classification:** RELATED BUT DIFFERENT
+- **Section:** IV B; V A; App. C
+- **Subsection:** App. C 1 Multinomial sampling distribution; App. C 2 Function estimation
+- **Equation:** (13), (16)–(18), (C1), (C2)
+- **Figure:** —
+- **Appendix:** App. C 1–C 2
+- **Page:** 5–6; 18–19
+- **Source version:** arXiv:2206.12643v3 (2022-11-20; journal-ref Phys. Rev. A 107, 042421); APS version of record not inspected
+- **Source URL:** https://arxiv.org/abs/2206.12643v3
+- **Short quote:** —
+- **Source statement (paraphrase):** Teo's model contains only ±1 (Pauli) per-shot variances, which correspond to the SWAP side of the identity (D-03b); the 0/1 projector readout is absent (D-NL02), so no ratio between two readouts can be formed from the source. Its exponent comparisons concern estimators (FD/GD/SPS vs PS) applied to the same measurements (D-05b), not readouts. Searched in the closure audit.
+- **Mathematical expression:** —
+- **Assumptions:** Two-design (TDS) circuit averages; Pauli observables.
+- **Scope:** Estimator comparison at a fixed readout.
+- **Relation to Stage 7:** Supplies the SWAP-side gradient variance structure only (B5_MATH_COMPARISON §8.2–§8.3).
+- **Does NOT establish:** The ratio identity, the exponent rule or the Loschmidt-side variance.
+
+<a id="D-NL33"></a>
+### D-NL33 · General conditional Loschmidt sign law (1 + |r|)/2
+- **Paper:** D
+- **Candidate:** C2
+- **Matrix rows:** 33
+- **Claim category:** P(correct | ĝ ≠ 0) → (1 + |r|)/2 on arbitrary circuits — matrix row 33
+- **Classification:** NOT LOCATED
+- **Section:** Whole paper (main text + Appendices A–D)
+- **Subsection:** —
+- **Equation:** —
+- **Figure:** —
+- **Appendix:** —
+- **Page:** 1–24 (arXiv v3)
+- **Source version:** arXiv:2206.12643v3 (2022-11-20; journal-ref Phys. Rev. A 107, 042421); APS version of record not inspected
+- **Source URL:** https://arxiv.org/abs/2206.12643v3
+- **Short quote:** —
+- **Source statement (paraphrase):** Not located in the reviewed version after searches for: conditional, non-zero, single count, relative gradient, sign accuracy, Poisson thinning, (1 + |r|)/2. §VII mentions wrong update directions qualitatively (D-08a). Searched in the closure audit.
+- **Mathematical expression:** —
+- **Assumptions:** —
+- **Scope:** As above.
+- **Relation to Stage 7:** —
+- **Does NOT establish:** Absence from the wider literature.
+
+<a id="E-NL31"></a>
+### E-NL31 · Shot-ratio identity, exponent rule and general conditional sign law
+- **Paper:** E
+- **Candidate:** C5; C2
+- **Matrix rows:** 31, 32, 33
+- **Claim category:** Gradient-level readout shot ratio, exponent rule and general conditional sign law — matrix rows 31–33
+- **Classification:** NOT LOCATED
+- **Section:** Whole paper (main text + Appendices A–C)
+- **Subsection:** —
+- **Equation:** —
+- **Figure:** —
+- **Appendix:** —
+- **Page:** 1–30
+- **Source version:** Published version (Quantum 8, 1225; 2024-01-11) = arXiv:2203.00031v2 file
+- **Source URL:** https://doi.org/10.22331/q-2024-01-11-1225
+- **Short quote:** —
+- **Source statement (paraphrase):** Not located in the reviewed version after searches for: ratio, readout, swap, Loschmidt, slope, exponent in n, conditional, sign, relative gradient. The kernel readout is the all-zero frequency only (E-02); the ±1 readout of the approximate QSVM estimates a different quantity and is never compared with it (E-NL02). Searched in the closure audit.
+- **Mathematical expression:** —
+- **Assumptions:** —
+- **Scope:** As above.
+- **Relation to Stage 7:** —
+- **Does NOT establish:** Absence from the wider literature.
+
+---
+
+## Paper F — Mari, Bromley, Killoran, Phys. Rev. A 103, 012405 (2021), reviewed as arXiv:2008.06517v2
+
+All F locators are arXiv v2 locators (17 pp.). The arXiv v2 PDF is byte-identical to the open-access post-print in
+the University of Camerino repository (IRIS, hdl:11581/475358). The APS version of record returned an access
+challenge (HTTP 403) and is not open access; its page and equation numbers are unverified.
+
+<a id="F-01"></a>
+### F-01 · §IV C, Eqs. (43)–(50): finite-shot parameter-shift estimator and its per-θ variance
+- **Paper:** F
+- **Candidate:** C1; C3; C5
+- **Matrix rows:** 7, 29
+- **Claim category:** Finite-shot parameter-shift gradient estimator and its mean-squared error — matrix rows 7, 29
+- **Classification:** EXPLICIT
+- **Section:** IV. Statistical estimation of derivatives
+- **Subsection:** C. Parameter-shift gradient estimators; 1. The parameter-shift rule with maximum shift (s = π/2)
+- **Equation:** (25), (43)–(50)
+- **Figure:** —
+- **Appendix:** —
+- **Page:** 5, 7
+- **Source version:** arXiv:2008.06517v2 (2021-02-26; journal-ref Phys. Rev. A 103, 012405 (2021)); = IRIS post-print; APS version of record not inspected
+- **Source URL:** https://arxiv.org/abs/2008.06517v2
+- **Short quote:** "justified only if Assumption 1 is valid"
+- **Source statement (paraphrase):** Each expectation value is estimated from N shots as f̂ = f + ε̂ with zero-mean noise of variance σ₀²/N, where σ₀² is the single-shot variance (Eq. 25). The parameter-shift estimator ĝ^(s) = [f̂(θ + s) − f̂(θ − s)]/(2 sin s) is unbiased (Eqs. 43–44) with Var = [σ₀²(θ_j + s) + σ₀²(θ_j − s)]/(4N sin² s) (Eq. 45), approximated by σ₀²/(2N sin² s) only under Assumption 1 (Eqs. 46–47). Under Assumption 1, Eq. (47) is minimised at s = π/2, which gives the estimator and MSE of Eqs. (48)–(50). The statistic is the MSE at a fixed parameter point (expectation over measurement outcomes only), not a circuit average.
+- **Mathematical expression:** Var(ĝ_j^(s)) = [σ₀²(θ_j + s) + σ₀²(θ_j − s)]/(4N sin² s) (Eq. 45); ≈ σ₀²/(2N sin² s) under Assumption 1
+- **Assumptions:** Rotation-like gates with involutory generators (Eqs. 3–4); independent shot noise for the two shifted evaluations (implicit in Eq. 45); Assumption 1 only for the approximations (46), (47), (50).
+- **Scope:** Any expectation value; per-θ (fixed parameter) MSE.
+- **Relation to Stage 7:** Eq. (45) at s = π/2, with N = M per shift, is the general form of Stage 7's gradient variances: σ₀² = F(1 − F) gives Var(ĝ_LE) and σ₀² = 1 − F² gives Var(ĝ_SWAP) (our substitution; checked against STAGE7.md §5–§6). As printed, Eq. (49) has denominator 2N where Eqs. (45), (48) and (50) imply 4N (B5_MARI_AUDIT.md §6); Stage 7 uses 4M.
+- **Does NOT establish:** Readout-specific single-shot variances, the estimator's distribution, zero or sign probabilities, or any n-scaling.
+
+<a id="F-02"></a>
+### F-02 · Eq. (45) with shift-dependent single-shot variances, and Assumption 1, read against the shot-ratio identity
+- **Paper:** F
+- **Candidate:** C5
+- **Matrix rows:** 31
+- **Claim category:** SWAP/Loschmidt shot-ratio identity for parameter-shift gradients — matrix row 31
+- **Classification:** RELATED BUT DIFFERENT
+- **Section:** IV. Statistical estimation of derivatives
+- **Subsection:** Assumption 1 (§IV B); C. Parameter-shift gradient estimators
+- **Equation:** (25), (35), (36), (45)
+- **Figure:** —
+- **Appendix:** —
+- **Page:** 5–7
+- **Source version:** arXiv:2008.06517v2 (2021-02-26; journal-ref Phys. Rev. A 103, 012405 (2021)); = IRIS post-print; APS version of record not inspected
+- **Source URL:** https://arxiv.org/abs/2008.06517v2
+- **Short quote:** "depends on the specific details of the circuit and of the observable"
+- **Source statement (paraphrase):** The single-shot variance σ₀² "depends on the specific details of the circuit and of the observable" (p. 5), and Eq. (45) keeps its values at the two shifts separate. Assumption 1 (p. 6) states that σ₀²(θ + x) + σ₀²(θ − x) ≈ 2σ₀² and notes that counter-examples exist for large shifts. No readout-specific σ₀² is given and no ratio between readouts is formed.
+- **Mathematical expression:** Implied only with external input (our algebra): inserting σ₀² = F(1 − F) and σ₀² = 1 − F² (B-10a, H-01) into Eq. (45) at s = π/2 gives the principal track's ratio R
+- **Assumptions:** As F-01.
+- **Scope:** General per-θ variance structure; the readout dependence enters only through σ₀², which the source leaves unspecified.
+- **Relation to Stage 7:** The identity's per-θ variance structure is printed here in general form. Our algebra: Assumption 1 is a sum condition. For the Loschmidt readout at small fidelity, σ₀²(θ_k + x) + σ₀²(θ_k − x) ≈ A(1 + cos θ_k cos x) while 2σ₀²(θ_k) ≈ A(1 + cos θ_k); at the parameter shift x = π/2 the sum is ≈ A, so the assumption fails by the factor (1 + cos θ_k) (a factor 2 at θ_k = 0) and holds only where cos θ_k ≈ 0. For the SWAP readout both sides are ≈ 2 and the assumption holds. Stage 7 uses Eq. (45)'s exact form.
+- **Does NOT establish:** The ratio identity, readout-specific variances or the exponent rule.
+
+<a id="F-03"></a>
+### F-03 · §III C, p. 3: the survival probability can be measured with a swap test or as the all-zero bitstring probability
+- **Paper:** F
+- **Candidate:** C3; C5
+- **Matrix rows:** 14a
+- **Claim category:** Same-objective Loschmidt vs SWAP comparison at the fidelity level — matrix row 14a
+- **Classification:** RELATED BUT DIFFERENT
+- **Section:** III. Parameter-shift rules
+- **Subsection:** C. Fubini-Study metric tensor
+- **Equation:** (14)–(18)
+- **Figure:** —
+- **Appendix:** —
+- **Page:** 3–4
+- **Source version:** arXiv:2008.06517v2 (2021-02-26; journal-ref Phys. Rev. A 103, 012405 (2021)); = IRIS post-print; APS version of record not inspected
+- **Source URL:** https://arxiv.org/abs/2008.06517v2
+- **Short quote:** "either with a swap-test, or more simply"
+- **Source statement (paraphrase):** The metric tensor is written as a Hessian of the survival probability |⟨ψ(θ′)|ψ(θ)⟩|², whose parameter-shift rule is Eq. (16); the survival probability can be estimated either with a swap test or, more simply, as the probability of the 00…0 bitstring after measuring the state printed as U(θ′)U(θ)|0⟩ [sic, no dagger] (p. 3). The two readouts are named as alternatives; their statistics are not compared.
+- **Mathematical expression:** f(θ) = |⟨ψ(θ′)|ψ(θ)⟩|² (Eq. 15); F_{j,j}(θ) = (1/4)[1 − |⟨ψ(θ)|ψ(θ + πe_j)⟩|²] (Eq. 17)
+- **Assumptions:** Pure states; rotation-like gates.
+- **Scope:** Metric-tensor estimation from fidelities at shifted parameters.
+- **Relation to Stage 7:** The same two readouts of a parameter-shifted fidelity that Stage 7 compares, named here as alternatives without statistics.
+- **Does NOT establish:** A comparison of the two readouts' variances, shots or failure modes.
+
+<a id="F-04"></a>
+### F-04 · Eq. (25): additive zero-mean noise model for a finite-shot expectation value
+- **Paper:** F
+- **Candidate:** C1
+- **Matrix rows:** 12
+- **Claim category:** Exact difference-of-binomials law of the finite-shot gradient — matrix row 12
+- **Classification:** RELATED BUT DIFFERENT
+- **Section:** IV. Statistical estimation of derivatives
+- **Subsection:** —
+- **Equation:** (25), (43)
+- **Figure:** —
+- **Appendix:** —
+- **Page:** 5, 7
+- **Source version:** arXiv:2008.06517v2 (2021-02-26; journal-ref Phys. Rev. A 103, 012405 (2021)); = IRIS post-print; APS version of record not inspected
+- **Source URL:** https://arxiv.org/abs/2008.06517v2
+- **Short quote:** —
+- **Source statement (paraphrase):** The finite-shot estimate is modelled as f̂ = f + ε̂ with ε̂ a zero-mean random variable of variance σ₀²/N (Eq. 25), and the gradient estimate as g + (ε̂₊ − ε̂₋)/(2 sin s) (Eq. 43). Only moments up to second order are used.
+- **Mathematical expression:** f̂(θ) = f(θ) + ε̂, E ε̂ = 0, Var ε̂ = σ₀²/N
+- **Assumptions:** —
+- **Scope:** Moments only.
+- **Relation to Stage 7:** Stage 5–7 use the exact law of the same estimator (difference of two binomial counts). F gives its moments only.
+- **Does NOT establish:** The pmf, the tie probability, or zero/sign probabilities.
+
+<a id="F-05"></a>
+### F-05 · §VI C, pp. 12–13: on hardware the gradient direction remains a signal but is prone to error
+- **Paper:** F
+- **Candidate:** C1; C4
+- **Matrix rows:** 10, 11, 23
+- **Claim category:** Exact gradient P_correct, P_wrong and component sign accuracy — matrix rows 10, 11, 23
+- **Classification:** RELATED BUT DIFFERENT
+- **Section:** VI. Numerical and hardware experiments
+- **Subsection:** C. Optimization
+- **Equation:** —
+- **Figure:** Fig. 4
+- **Appendix:** —
+- **Page:** 12–13
+- **Source version:** arXiv:2008.06517v2 (2021-02-26; journal-ref Phys. Rev. A 103, 012405 (2021)); = IRIS post-print; APS version of record not inspected
+- **Source URL:** https://arxiv.org/abs/2008.06517v2
+- **Short quote:** "the gradient direction is clearly still prone to error"
+- **Source statement (paraphrase):** On hardware, the optimiser approaches the expected minimum even though the cost function available on the device is noisy, which the authors read as the gradient direction still being an accessible signal; the hardware paths differ from the ideal simulated path, so the direction is prone to error. The N = 10 run approaches the minimum with far fewer circuit evaluations but oscillates around it. Stated qualitatively; no probability is computed.
+- **Mathematical expression:** —
+- **Assumptions:** 5-qubit circuit (Fig. 1), two trainable parameters, ibmq_burlington and ibmq_valencia hardware, η = 0.4.
+- **Scope:** Qualitative; one small problem with device noise; not a barren plateau.
+- **Relation to Stage 7:** Qualitative counterpart of Stage 7's exact sign probabilities (§9, §14).
+- **Does NOT establish:** Any sign probability, conditional sign law or readout dependence.
+
+<a id="F-06"></a>
+### F-06 · §VI C and Fig. 4: gradient descent with N = 10, 100, 1000 shots from one starting point, against the exact-gradient path
+- **Paper:** F
+- **Candidate:** C4
+- **Matrix rows:** 24
+- **Claim category:** Matched-start finite-shot optimisation trajectories — matrix row 24
+- **Classification:** EXPLICIT
+- **Section:** V. First- and second-order optimization (Eq. 63); VI. Numerical and hardware experiments
+- **Subsection:** V A. Gradient descent optimizer; VI C. Optimization
+- **Equation:** (63)
+- **Figure:** Fig. 4 (A1), (A2)
+- **Appendix:** App. A 4 (Fig. 9, simulator)
+- **Page:** 9 (Eq. 63); 12–13; 15–17
+- **Source version:** arXiv:2008.06517v2 (2021-02-26; journal-ref Phys. Rev. A 103, 012405 (2021)); = IRIS post-print; APS version of record not inspected
+- **Source URL:** https://arxiv.org/abs/2008.06517v2
+- **Short quote:** "The starting point of the optimizer is"
+- **Source statement (paraphrase):** Gradient descent runs with N = 10, 100 and 1000 shots per expectation value on hardware all start from (θ₁, θ₂) = (0.1, 0.15); Fig. 4 (A2) overlays their paths with the path of gradient descent using exact expectation values (dashed line), and (A1) plots cost against total circuit evaluations. The Newton and diagonal-Newton runs (row B) use the same start with N = 1000.
+- **Mathematical expression:** θ^(t) = θ^(t−1) − η∇f(θ^(t−1)) (Eq. 63)
+- **Assumptions:** η = 0.4; two trainable parameters; device noise present.
+- **Scope:** One 2-parameter, 5-qubit problem; no barren plateau; one readout (σ_z on one qubit); no signal-free random-walk control; costs, not fidelity endpoints.
+- **Relation to Stage 7:** Matched starts across shot budgets with an exact-gradient reference, as in Stage 7 §17, but without a signal-free control, a readout comparison or a barren plateau.
+- **Does NOT establish:** Random-walk behaviour, a signal-free control, or barren-plateau trajectory statistics.
+
+<a id="F-07"></a>
+### F-07 · §VI A and App. A, Fig. 6: finite-difference vs parameter-shift crossover at N ≈ 50 shots
+- **Paper:** F
+- **Candidate:** C3
+- **Matrix rows:** 30
+- **Claim category:** Critical copy number (estimator crossover) — matrix row 30
+- **Classification:** EXPLICIT
+- **Section:** VI. Numerical and hardware experiments; App. A
+- **Subsection:** A. Estimating the gradient; App. A 2 Estimating the gradient
+- **Equation:** (38), (39)
+- **Figure:** Fig. 2, Fig. 5, Fig. 6
+- **Appendix:** App. A 2
+- **Page:** 6, 11, 15
+- **Source version:** arXiv:2008.06517v2 (2021-02-26; journal-ref Phys. Rev. A 103, 012405 (2021)); = IRIS post-print; APS version of record not inspected
+- **Source URL:** https://arxiv.org/abs/2008.06517v2
+- **Short quote:** "the parameter-shift method has the lower MSE for N > 50 shots"
+- **Source statement (paraphrase):** With the optimal finite-difference step h* ∝ N^(−1/6) (Eq. 38) the finite-difference MSE scales as N^(−2/3) (Eq. 39); in simulation of the Fig. 1 circuit the parameter-shift estimator has the lower MSE for N > 50 shots, and Fig. 6 marks the crossover point at N ≈ 50. For low shot numbers the scaled parameter-shift estimator can also be used (p. 11).
+- **Mathematical expression:** h* = (9σ₀²/(f₃²N))^(1/6) ∝ N^(−1/6); Δ(ĝ^(h*)) ∝ N^(−2/3)
+- **Assumptions:** Assumption 1; one fixed parameter point (Eq. A1); simulator with 1000 repetitions.
+- **Scope:** One 5-qubit circuit at one θ; no n-dependence.
+- **Relation to Stage 7:** The fixed-θ precursor of Teo's circuit-averaged N_* (D-06; Teo's ref. [61] is this paper). Not a resolution threshold and not readout dependent.
+- **Does NOT establish:** An n-scaling of the crossover, a required-shot exponent or readout dependence.
+
+<a id="F-08"></a>
+### F-08 · §IV C 2, p. 7: the scaled parameter-shift estimator proposed for the noise-dominated barren-plateau regime
+- **Paper:** F
+- **Candidate:** F-H
+- **Matrix rows:** 26
+- **Claim category:** Limits of classical post-processing / mitigation (fact H) — matrix row 26
+- **Classification:** RELATED BUT DIFFERENT
+- **Section:** IV. Statistical estimation of derivatives
+- **Subsection:** C 2. Scaled parameter-shift gradient estimator
+- **Equation:** (51)–(57)
+- **Figure:** —
+- **Appendix:** —
+- **Page:** 7
+- **Source version:** arXiv:2008.06517v2 (2021-02-26; journal-ref Phys. Rev. A 103, 012405 (2021)); = IRIS post-print; APS version of record not inspected
+- **Source URL:** https://arxiv.org/abs/2008.06517v2
+- **Short quote:** "could potentially be helpful when faced with the so-called barren plateau"
+- **Source statement (paraphrase):** When the gradient is much smaller than the statistical error, the optimal scaling λ* = 1/(1 + Var/g²) (Eq. 55) is much smaller than 1, so the scaled estimator can reduce the MSE; the authors envisage that it could help on barren plateaus and note that λ* can be absorbed into the learning rate. It is a proposal, not a limit.
+- **Mathematical expression:** λ* = 1/(1 + Var(ĝ^(s))/g²); Δ(ĝ^(λ*, s)) = (1 − λ*)g² (Eqs. 55, 57)
+- **Assumptions:** λ* known (it depends on the unknown g).
+- **Scope:** Estimator design; MSE only.
+- **Relation to Stage 7:** Background to Teo 2023 (D-05a) and to the rescaled-gradient method that Aghaei Saem et al. examine (B-13, B-17). Stage 7 does not use scaled estimators.
+- **Does NOT establish:** Any limit on post-processing, or that scaling improves trainability (contrast D-08b, B-13).
+
+<a id="F-09"></a>
+### F-09 · §IV C 2, p. 7: barren plateaus make the gradient small compared with the statistical error
+- **Paper:** F
+- **Candidate:** F-A; F-E
+- **Matrix rows:** 1, 5
+- **Claim category:** Fidelity exponential concentration (row 1); exponential finite-shot measurement burden (row 5)
+- **Classification:** RELATED BUT DIFFERENT
+- **Section:** IV. Statistical estimation of derivatives
+- **Subsection:** C 2. Scaled parameter-shift gradient estimator
+- **Equation:** —
+- **Figure:** —
+- **Appendix:** —
+- **Page:** 7
+- **Source version:** arXiv:2008.06517v2 (2021-02-26; journal-ref Phys. Rev. A 103, 012405 (2021)); = IRIS post-print; APS version of record not inspected
+- **Source URL:** https://arxiv.org/abs/2008.06517v2
+- **Short quote:** —
+- **Source statement (paraphrase):** Citing McClean et al. [31], the typical gradient magnitude of a random circuit decays exponentially with the number of qubits; the text then discusses the regime where the gradient is much smaller than the statistical error (Var ≫ g). No shot count, base or fidelity concentration is stated.
+- **Mathematical expression:** —
+- **Assumptions:** —
+- **Scope:** One-sentence background remark.
+- **Relation to Stage 7:** Background only.
+- **Does NOT establish:** Fidelity concentration, an exponential shot requirement or readout dependence.
+
+<a id="F-10"></a>
+### F-10 · §IV B–D, Eqs. (33)–(42), (51)–(62): MSEs of finite-difference and scaled parameter-shift estimators at fixed θ
+- **Paper:** F
+- **Candidate:** C3
+- **Matrix rows:** 29
+- **Claim category:** Gradient-estimator mean-squared error (finite shots) — matrix row 29
+- **Classification:** EXPLICIT
+- **Section:** IV. Statistical estimation of derivatives
+- **Subsection:** B. Finite-difference gradient estimator; C 2. Scaled parameter-shift gradient estimator; D. Comparison between analytic and finite-difference gradient estimators
+- **Equation:** (33)–(42), (51)–(62)
+- **Figure:** Fig. 2, Fig. 6
+- **Appendix:** App. A 2
+- **Page:** 5–9; 11; 15–16
+- **Source version:** arXiv:2008.06517v2 (2021-02-26; journal-ref Phys. Rev. A 103, 012405 (2021)); = IRIS post-print; APS version of record not inspected
+- **Source URL:** https://arxiv.org/abs/2008.06517v2
+- **Short quote:** —
+- **Source statement (paraphrase):** Central-difference MSE σ₀²/(2Nh²) + f₃²h⁴/36 (Eq. 37) with optimal h* and N^(−2/3) error (Eqs. 38–39), forward-difference analogues (Eqs. 40–42), scaled parameter-shift bias/variance/MSE and optimal λ* (Eqs. 51–57). Eqs. (58)–(60) compare the finite-difference and unscaled parameter-shift estimators, and Eqs. (61)–(62) show that the optimally scaled parameter-shift estimator has the smaller MSE of the three. All at a fixed parameter point.
+- **Mathematical expression:** Δ(ĝ^(h)) ≃ σ₀²/(2Nh²) + f₃²h⁴/36 (Eq. 37); Δ(ĝ^(λ, s)) = λ²Var(ĝ^(s)) + (λ − 1)²g² (Eq. 54)
+- **Assumptions:** Assumption 1 for Eqs. (36)–(42); λ* requires the unknown g.
+- **Scope:** Per-θ MSE; estimator comparison at a fixed readout.
+- **Relation to Stage 7:** The fixed-θ counterparts of Teo's circuit-averaged MSEs (D-05a). Stage 7 uses the unscaled estimator at s = π/2 only.
+- **Does NOT establish:** Readout dependence, distributions or n-scaling.
+
+<a id="F-11"></a>
+### F-11 · Eq. (29) with unbiasedness (Eq. 44): mean-square norm of the estimated gradient vector
+- **Paper:** F
+- **Candidate:** C4
+- **Matrix rows:** 21
+- **Claim category:** Gradient norm inflation — matrix row 21
+- **Classification:** RELATED BUT DIFFERENT
+- **Section:** IV. Statistical estimation of derivatives
+- **Subsection:** A. Quantifying the error of a statistical estimator; C. Parameter-shift gradient estimators
+- **Equation:** (29), (44)
+- **Figure:** —
+- **Appendix:** —
+- **Page:** 5, 7
+- **Source version:** arXiv:2008.06517v2 (2021-02-26; journal-ref Phys. Rev. A 103, 012405 (2021)); = IRIS post-print; APS version of record not inspected
+- **Source URL:** https://arxiv.org/abs/2008.06517v2
+- **Short quote:** —
+- **Source statement (paraphrase):** The total error of the full gradient estimate is the sum of the component MSEs, Δ(ĝ) = E‖ĝ − g‖² (Eq. 29), and the parameter-shift estimator is unbiased (Eq. 44). The source states no norm comparison.
+- **Mathematical expression:** Implied (our algebra): E‖ĝ‖² = ‖g‖² + Δ(ĝ)
+- **Assumptions:** Unbiased components.
+- **Scope:** Mean-square (expectation) statement at a fixed θ.
+- **Relation to Stage 7:** A mean-square analogue of Stage 7's SWAP norm inflation (median ‖ĝ‖/‖g‖ ≈ 10^4.5 at n = 12, M = 1024), like Teo's circuit-averaged Eq. (18) (D-04); the source makes no barren-plateau norm statement.
+- **Does NOT establish:** A per-θ median norm ratio, readout dependence or barren-plateau scaling.
+
+### Paper F — not-located search log
+
+Paper F (arXiv v2) was read in full (17 pp. incl. Appendix A) and its LaTeX source was searched.
+
+<a id="F-NL02"></a>
+### F-NL02 · Readout statistics: Loschmidt collapse, SWAP null, readout variances, readout comparisons and exponents
+- **Paper:** F
+- **Candidate:** C3
+- **Matrix rows:** 2, 3, 4, 14b, 15, 16, 17, 18
+- **Claim category:** Readout-specific estimator behaviour and readout-dependent shot exponents
+- **Classification:** NOT LOCATED
+- **Section:** Whole paper (main text + App. A)
+- **Subsection:** —
+- **Equation:** —
+- **Figure:** —
+- **Appendix:** —
+- **Page:** 1–17 (arXiv v2)
+- **Source version:** arXiv:2008.06517v2 (2021-02-26; journal-ref Phys. Rev. A 103, 012405 (2021)); = IRIS post-print; APS version of record not inspected
+- **Source URL:** https://arxiv.org/abs/2008.06517v2
+- **Short quote:** —
+- **Source statement (paraphrase):** Not located in the reviewed version after searches for: Loschmidt, echo, swap test (only the p. 3 alternative, F-03), bit string, zero estimate, coin, readout variance, F(1 − F), 1 − F², exponent, scaling with qubits, 4^n, 16^n. σ₀² is left unspecified (F-02).
+- **Mathematical expression:** —
+- **Assumptions:** —
+- **Scope:** As above.
+- **Relation to Stage 7:** —
+- **Does NOT establish:** Absence from the wider literature.
+
+<a id="F-NL09"></a>
+### F-NL09 · Zero probabilities and conditional sign laws
+- **Paper:** F
+- **Candidate:** C1; C2
+- **Matrix rows:** 9, 13, 19, 33
+- **Claim category:** P(ĝ = 0), full-vector zero probability, and conditional Loschmidt sign laws (product and general form)
+- **Classification:** NOT LOCATED
+- **Section:** Whole paper (main text + App. A)
+- **Subsection:** —
+- **Equation:** —
+- **Figure:** —
+- **Appendix:** —
+- **Page:** 1–17 (arXiv v2)
+- **Source version:** arXiv:2008.06517v2 (2021-02-26; journal-ref Phys. Rev. A 103, 012405 (2021)); = IRIS post-print; APS version of record not inspected
+- **Source URL:** https://arxiv.org/abs/2008.06517v2
+- **Short quote:** —
+- **Source statement (paraphrase):** Not located in the reviewed version after searches for: zero, exactly zero, tie, binomial, Poisson, probability, conditional, non-zero, sign, relative gradient. The analysis uses MSEs (second moments) only. "Exactly zero" occurs only for the fifth gradient component of the fixed example (p. 15), a property of the circuit, not of an estimate.
+- **Mathematical expression:** —
+- **Assumptions:** —
+- **Scope:** As above.
+- **Relation to Stage 7:** —
+- **Does NOT establish:** Absence from the wider literature.
+
+<a id="F-NL20"></a>
+### F-NL20 · Distinguishability framework, random walk, vector metrics, signal-free control
+- **Paper:** F
+- **Candidate:** C4
+- **Matrix rows:** 6, 8, 20, 22, 25
+- **Claim category:** Outcome-level distinguishability, random-walk behaviour, full-vector metrics and signal-free controls
+- **Classification:** NOT LOCATED
+- **Section:** Whole paper (main text + App. A)
+- **Subsection:** —
+- **Equation:** —
+- **Figure:** —
+- **Appendix:** —
+- **Page:** 1–17 (arXiv v2)
+- **Source version:** arXiv:2008.06517v2 (2021-02-26; journal-ref Phys. Rev. A 103, 012405 (2021)); = IRIS post-print; APS version of record not inspected
+- **Source URL:** https://arxiv.org/abs/2008.06517v2
+- **Short quote:** —
+- **Source statement (paraphrase):** Not located in the reviewed version after searches for: hypothesis test, distinguish, random walk, cosine, angle, alignment, norm of the estimate, random baseline, control. Eq. (29) defines the total MSE of the full gradient vector (a sum of component MSEs), not a direction statistic (its norm consequence is recorded in F-11); the N = 10 hardware run is said to oscillate around the minimum, without a random-walk analysis.
+- **Mathematical expression:** —
+- **Assumptions:** —
+- **Scope:** As above.
+- **Relation to Stage 7:** —
+- **Does NOT establish:** Absence from the wider literature.
+
+<a id="F-NL27"></a>
+### F-NL27 · Product-rotation landscape, global-Z parity numerics, exponent rule
+- **Paper:** F
+- **Candidate:** CTX; C5
+- **Matrix rows:** 27, 28, 32
+- **Claim category:** Stage 3–7 landscape family, Stage 6 parity benchmark, and the exponent rule b_SW = b_LE + b_S
+- **Classification:** NOT LOCATED
+- **Section:** Whole paper (main text + App. A)
+- **Subsection:** —
+- **Equation:** —
+- **Figure:** —
+- **Appendix:** —
+- **Page:** 1–17 (arXiv v2)
+- **Source version:** arXiv:2008.06517v2 (2021-02-26; journal-ref Phys. Rev. A 103, 012405 (2021)); = IRIS post-print; APS version of record not inspected
+- **Source URL:** https://arxiv.org/abs/2008.06517v2
+- **Short quote:** —
+- **Source statement (paraphrase):** Not located in the reviewed version after searches for: product state, fidelity landscape, global Z, parity, slope, exponent, scaling with qubits. The Fig. 1 circuit has five R_X rotations, an entangling CNOT block and a σ_z measurement on one qubit; no n-dependence is studied. "Parity" occurs only as the parity of a shift vector in Eq. (21), and exponential scaling with qubits only in the background barren-plateau remark (F-09).
+- **Mathematical expression:** —
+- **Assumptions:** —
+- **Scope:** As above.
+- **Relation to Stage 7:** —
+- **Does NOT establish:** Absence from the wider literature.
+
+---
+
+## Paper G — Miranskyy, arXiv:2510.22418 (2025), *The Cost of Certainty: Shot Budgets in Quantum Program Testing*
+
+Reviewed: arXiv:2510.22418v1 (2025-10-25, 30 pp., single version; no journal reference), read in full; the LaTeX
+source was also downloaded. Locators are arXiv v1 locators. The paper was listed in the principal track's
+"Other papers" table with the note "Read before citing".
+
+<a id="G-01"></a>
+### G-01 · §3.1–§3.4: inverse test vs swap test shot counts for one fidelity target; ratio → 2 as F → 1
+- **Paper:** G
+- **Candidate:** C3; C5
+- **Matrix rows:** 14a
+- **Claim category:** Same-objective Loschmidt vs SWAP comparison at the fidelity level — matrix row 14a
+- **Classification:** EXPLICIT
+- **Section:** Abstract; 3 Practical shot estimates: inverse, swap, and chi-square tests; 4 Impact of noise on shot estimates for inverse and swap tests; 6.1 Summary of results; 7 Conclusions
+- **Subsection:** 3.1.1 Ideal quantum computer (inverse); 3.2.1 Ideal quantum computer (swap); 3.4 Comparison of methods
+- **Equation:** (8), (10), (11)
+- **Figure:** Fig. 2
+- **Appendix:** App. C, App. D
+- **Page:** 1–2, 6–9, 13–15, 21–22, 28–30
+- **Source version:** arXiv:2510.22418v1 (2025-10-25); single version, no journal reference
+- **Source URL:** https://arxiv.org/abs/2510.22418v1
+- **Short quote:** "the swap test requires about twice as many shots"
+- **Source statement (paraphrase):** For distinguishing an actual from an expected pure state at error probability P_e, the inverse test needs N ≲ ln P_e / ln F (Eq. 8) and the swap test N ≲ ln P_e / ln[(1 + F)/2] (Eq. 11), from the quantum Chernoff bound with Q = F and Q = (1 + F)/2 (App. C, App. D). Their ratio ln F / ln[(1 + F)/2] = 2 − (F − 1)/2 + O((F − 1)²) → 2 as F → 1 (p. 9); Examples 3.3–3.4 give 9208 vs 4603 shots at F = 0.999 and 919 vs 458 at F = 0.99 (P_e = 0.01). The factor-of-two overhead is said to persist under noise (§4, p. 15).
+- **Mathematical expression:** N_swap/N_inverse = ln F / ln[(1 + F)/2] ≈ 2 for F → 1
+- **Assumptions:** Pure states; ideal device for §3.1.1/§3.2.1 (κ ∈ [1, 2] for noise); asymptotic QCB estimate; high-fidelity regime (F ∈ [0.9, 0.995] in Fig. 2).
+- **Scope:** Detection (testing) shot counts near F = 1; not estimator variances, not gradients, not concentrated landscapes.
+- **Relation to Stage 7:** The same two readouts compared on one fidelity, at the opposite end of the fidelity range from Stage 7 (F ≈ 1 vs F ≈ 0) and with a different statistic (detection error probability vs estimator variance). Our algebra: the detection ratio and the per-shot variance ratio (1 + F)/F agree at F → 1 (both 2) and differ elsewhere, e.g. 2.41 vs 3 at F = 0.5 and 3.85 vs 11 at F = 0.1 (B5_MATH_COMPARISON §9).
+- **Does NOT establish:** Estimator-variance ratios, gradient-level ratios, exponents in n, or behaviour under concentration.
+
+<a id="G-02"></a>
+### G-02 · Outcome probabilities F (inverse test) and (1 + F)/2 (swap test) read against variances, the ratio identity and the exponent rule
+- **Paper:** G
+- **Candidate:** C5; C3
+- **Matrix rows:** 4, 31, 32
+- **Claim category:** Different Loschmidt / SWAP estimator variances (row 4); SWAP/Loschmidt shot-ratio identity and exponent rule (rows 31, 32)
+- **Classification:** PARTIAL / IMPLIED
+- **Section:** 3 Practical shot estimates: inverse, swap, and chi-square tests; App. C; App. D
+- **Subsection:** 3.1 Inverse test; 3.2 Swap test
+- **Equation:** (10), (30)
+- **Figure:** —
+- **Appendix:** App. C, App. D
+- **Page:** 6, 8, 28–30
+- **Source version:** arXiv:2510.22418v1 (2025-10-25); single version, no journal reference
+- **Source URL:** https://arxiv.org/abs/2510.22418v1
+- **Short quote:** "the probability of measuring the all-zero outcome equals the fidelity"
+- **Source statement (paraphrase):** The inverse test returns the all-zero bitstring with probability equal to the fidelity (p. 6; App. C, Eq. 30) and the swap-test ancilla returns 0 with probability 1/2 + F/2 (Eq. 10; App. D). The source uses these only for detection bounds; it writes no estimator variance, no gradient and no n-scaling.
+- **Mathematical expression:** Implied (our algebra): per-shot variances F(1 − F) and 1 − F² (for F̂ = 2K/N − 1); at the two shifts the ratio R of the principal track; R → 2/S as S → 0; with median log-slopes, b_SW − b_LE ≈ b_S (to leading order as S → 0)
+- **Assumptions:** Added (ours): fidelity estimation (not detection); parameter shift with independent batches; for row 32, a concentrated ensemble over θ with median log-slopes; the medians of log₁₀S and log₁₀|r| must combine additively (e.g. linear trends in n with O(1) fluctuations), and the rule holds only to leading order as S → 0, so it is approximate.
+- **Scope:** Outcome models only; testing context near F = 1.
+- **Relation to Stage 7:** Same outcome models as Stage 7 §5–§6.
+- **Does NOT establish:** The variances, the identity or the rule as stated results.
+
+<a id="G-03"></a>
+### G-03 · Footnotes 2–3: probabilities that all N shots accept, F^N (inverse test) and [(1 + F)/2]^N (swap test)
+- **Paper:** G
+- **Candidate:** C1
+- **Matrix rows:** 9
+- **Claim category:** Exact gradient P_zero — matrix row 9
+- **Classification:** RELATED BUT DIFFERENT
+- **Section:** 3 Practical shot estimates: inverse, swap, and chi-square tests
+- **Subsection:** 3.1.1 (footnote 2); 3.2.1 (footnote 3)
+- **Equation:** —
+- **Figure:** —
+- **Appendix:** —
+- **Page:** 6, 8
+- **Source version:** arXiv:2510.22418v1 (2025-10-25); single version, no journal reference
+- **Source URL:** https://arxiv.org/abs/2510.22418v1
+- **Short quote:** "We accept the test only if every trial yields a zero-string"
+- **Source statement (paraphrase):** The probability that every one of N inverse-test shots returns the all-zero string is F^N, and that every swap-test shot returns ancilla 0 is [(1 + F)/2]^N; requiring these to be at most P_e gives N ≥ ln P_e / ln F and N ≥ ln P_e / ln[(1 + F)/2].
+- **Mathematical expression:** P_accept,inverse = F^N; P_miss,swap = [(1 + F)/2]^N
+- **Assumptions:** Pure states; independent shots.
+- **Scope:** Exact finite-shot event probabilities at the fidelity level, for the event "every shot accepts" (the Loschmidt-estimate-equals-one event).
+- **Relation to Stage 7:** The opposite event to Stage 7's Loschmidt zero estimate, whose probability is (1 − F)^M (Thanasilp A-06a). No gradient-level zero probability.
+- **Does NOT establish:** P(ĝ = 0) or zero-estimate probabilities.
+
+<a id="G-04"></a>
+### G-04 · §2 and App. A–B: quantum Chernoff bound, fidelity and trace-distance bounds for shot counts
+- **Paper:** G
+- **Candidate:** C3
+- **Matrix rows:** 6
+- **Claim category:** Outcome-distribution distinguishability framework — matrix row 6
+- **Classification:** RELATED BUT DIFFERENT
+- **Section:** 2 Theoretical foundations for shot estimation; App. A; App. B
+- **Subsection:** 2.1 Quantum Chernoff bound; 2.2 Fidelity
+- **Equation:** (1)–(7)
+- **Figure:** Fig. 1
+- **Appendix:** App. A, App. B
+- **Page:** 3–5, 27–29
+- **Source version:** arXiv:2510.22418v1 (2025-10-25); single version, no journal reference
+- **Source URL:** https://arxiv.org/abs/2510.22418v1
+- **Short quote:** —
+- **Source statement (paraphrase):** Shot counts for distinguishing two states follow from the quantum Chernoff bound, P_e ∼ exp(−Nξ_QCB) with ξ_QCB = −ln Q(ρ, σ) (Eq. 1), giving N ∼ ln P_e / ln Q (Eq. 2); for pure or pure-mixed pairs Q = F (Eqs. 4–5), with bounds for mixed pairs (Eqs. 6–7).
+- **Mathematical expression:** N ∼ ln P_e / ln Q(ρ, σ) (Eq. 2)
+- **Assumptions:** Asymptotic (N → ∞) QCB estimate.
+- **Scope:** State discrimination (testing), not concentration-induced indistinguishability over a landscape.
+- **Relation to Stage 7:** A different distinguishability framework from A's and B's 1-norm hypothesis tests; Stage 7 §15 uses per-shot TV and Hellinger distances between the two shifted outcome distributions.
+- **Does NOT establish:** Statements about concentration or gradients.
+
+<a id="G-05"></a>
+### G-05 · §3.2, p. 8: the swap test keeps a 0.5 acceptance probability even for orthogonal states
+- **Paper:** G
+- **Candidate:** F-C
+- **Matrix rows:** 3
+- **Claim category:** SWAP estimator random / data-independent limit — matrix row 3
+- **Classification:** RELATED BUT DIFFERENT
+- **Section:** 3 Practical shot estimates: inverse, swap, and chi-square tests
+- **Subsection:** 3.2 Swap test
+- **Equation:** (10)
+- **Figure:** —
+- **Appendix:** —
+- **Page:** 8
+- **Source version:** arXiv:2510.22418v1 (2025-10-25); single version, no journal reference
+- **Source URL:** https://arxiv.org/abs/2510.22418v1
+- **Short quote:** "the swap test always retains a 0.5 baseline acceptance probability"
+- **Source statement (paraphrase):** Unlike the inverse test, which rejects orthogonal states with certainty, the swap test accepts orthogonal states with probability 0.5.
+- **Mathematical expression:** P(M_qa = 0) = 1/2 + F/2 (Eq. 10)
+- **Assumptions:** —
+- **Scope:** The F = 0 endpoint of the swap-test outcome model; no concentration or estimator statement.
+- **Relation to Stage 7:** The ½-centred outcome probability behind Stage 7's SWAP failure mode, stated here for orthogonal states.
+- **Does NOT establish:** Indistinguishability from a null, random signs or random-walk behaviour.
+
+<a id="G-06"></a>
+### G-06 · §2.2.1 and Fig. 1: detection shot counts diverge as F → 1
+- **Paper:** G
+- **Candidate:** F-E
+- **Matrix rows:** 5
+- **Claim category:** Exponential finite-shot measurement burden — matrix row 5
+- **Classification:** RELATED BUT DIFFERENT
+- **Section:** 2 Theoretical foundations for shot estimation
+- **Subsection:** 2.2.1 Comparison of N_pure, N_pure-mixed, and N_mixed
+- **Equation:** (5), (7)
+- **Figure:** Fig. 1
+- **Appendix:** —
+- **Page:** 4–5
+- **Source version:** arXiv:2510.22418v1 (2025-10-25); single version, no journal reference
+- **Source URL:** https://arxiv.org/abs/2510.22418v1
+- **Short quote:** "As F → 1, the required N grows exponentially"
+- **Source statement (paraphrase):** The shot count needed to distinguish two states diverges as the fidelity approaches 1 (described as exponential growth, p. 5 and Fig. 1 caption) and approaches one shot as F → 0.
+- **Mathematical expression:** N_pure ∼ ln P_e / ln F (Eq. 5); our algebra: ≈ ln(1/P_e)/(1 − F) as F → 1, a 1/(1 − F) divergence
+- **Assumptions:** Pure or pure-mixed states; asymptotic QCB estimate.
+- **Scope:** Detection near F = 1 as a function of F; no system-size dependence and no concentration.
+- **Relation to Stage 7:** A different shot burden (resolving a fidelity close to 1) from Stage 7's (resolving exponentially small fidelity differences).
+- **Does NOT establish:** An exponential shot requirement in the number of qubits or under concentration.
+
+### Paper G — not-located search log
+
+Paper G was read in full (30 pp. incl. Appendices A–D).
+
+<a id="G-NL01"></a>
+### G-NL01 · Concentration, gradients, sign laws, trajectories, gradient MSE, crossover, general sign law
+- **Paper:** G
+- **Candidate:** C1; C2; C3; C4; F-A; F-B; CTX
+- **Matrix rows:** 1, 2, 7, 8, 10, 11, 12, 13, 14b, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 33
+- **Claim category:** Remaining matrix items (concentration, gradient-level statistics, exponents, trajectories, context)
+- **Classification:** NOT LOCATED
+- **Section:** Whole paper (main text + Appendices A–D)
+- **Subsection:** —
+- **Equation:** —
+- **Figure:** —
+- **Appendix:** —
+- **Page:** 1–30
+- **Source version:** arXiv:2510.22418v1 (2025-10-25); single version, no journal reference
+- **Source URL:** https://arxiv.org/abs/2510.22418v1
+- **Short quote:** —
+- **Source statement (paraphrase):** Not located in the reviewed version after searches for: barren plateau, concentration, gradient, parameter shift, variance, zero estimate, sign, conditional, random walk, trajectory, exponent in n, qubits scaling, 4^n, 16^n, crossover, mean squared error. Shot counts are functions of F and P_e; their divergence as F → 1 is recorded under row 5 (G-06), the Bures-angle budget N_j = O(θ_j^(−2)) (§5) is not a concentration statement, and the paper studies no landscape or optimisation.
+- **Mathematical expression:** —
+- **Assumptions:** —
+- **Scope:** As above.
+- **Relation to Stage 7:** —
+- **Does NOT establish:** Absence from the wider literature.
+
+---
+
+## Paper H — Zhan, Wang, Mi, Xie, Xu, Zhang, Zhang, Light Sci. Appl. 14, 83 (2025)
+
+Reviewed: the published version (Light: Science & Applications 14, 83; open access, CC BY 4.0; received 2024-04-16,
+accepted 2025-01-10, published 2025-02-12; 12 pp.) and its published Supplementary Information (MOESM1, 26 pp.,
+equations S1–S119), both read in full. arXiv:2406.06810v1 (2024-06-10) was cross-checked for dating: it already
+contains the two variances, the known-state projection law and the precision comparison. Main-text locators are
+published-version numbers; "SI" locators use the published SI's numbering.
+
+<a id="H-01"></a>
+### H-01 · Projection (known target) and swap-type overlap estimators: per-copy variances c(1 − c)/N and (1 − c²)/N
+- **Paper:** H
+- **Candidate:** C3; C5; F-D
+- **Matrix rows:** 4
+- **Claim category:** Different Loschmidt / SWAP estimator variances — matrix row 4
+- **Classification:** EXPLICIT
+- **Section:** Results; Materials and methods; SI II F, III A, IV, V
+- **Subsection:** Overlap-dependent precision of strategies; Precision of joint measurement strategies; SI V Overlap estimation with a known state
+- **Equation:** (3), (9), (10); SI (S72), (S80), (S112)
+- **Figure:** Fig. 2
+- **Appendix:** SI III A, SI V
+- **Page:** 4–5, 9; SI 14, 17, 23
+- **Source version:** Published version (Light Sci. Appl. 14, 83; 2025-02-12) + published Supplementary Information (MOESM1); arXiv:2406.06810v1 cross-checked
+- **Source URL:** https://doi.org/10.1038/s41377-025-01755-8
+- **Short quote:** "The average variance through projection-based overlap estimation with a known state is given by"
+- **Source statement (paraphrase):** With one state known, projecting N copies of the other onto it gives Bin(k, N, c) counts, estimator k/N and variance v_proj = c(1 − c)/N (SI p. 23; the same projection term appears as Eq. 3, p. 5, and SI Eq. S72). The Schur collective measurement (SCM) has p₋ = (1 − c)/2 (Eq. 9), estimator 1 − 2k/N and variance (1 − c²)/N (Eq. 10, p. 9; Table 1, p. 4); the ideal optical swap test has the same law and variance (SI Eq. S80, p. 17; SI p. 23). The paper calls SCM and OST two realisations of the destructive swap test (p. 5).
+- **Mathematical expression:** v_proj(c, N) = c(1 − c)/N; v_scm(c, N) = (1 − c²)/N (ideal OST identical)
+- **Assumptions:** Pure states; independent copies; asymptotic (large-N) unbiased estimators.
+- **Scope:** Overlap (fidelity) estimation between two states; qubits in the experiment, general d in the SI; no gradients and no concentration.
+- **Relation to Stage 7:** These are Stage 7's per-shot variances: the known-target projection is the Loschmidt readout (F(1 − F)) and the SCM/OST is the destructive form of the SWAP test (1 − F²), in a paper published 2025-02-12 (arXiv v1 2024-06-10), earlier than paper B's version of record (2026-01-30), which contains the same pair (B-10a).
+- **Does NOT establish:** Gradient-level variances, shot ratios for gradients, or any statement under concentration.
+
+<a id="H-02"></a>
+### H-02 · Same-overlap comparison of strategies: the swap-type estimators are less precise at small overlap
+- **Paper:** H
+- **Candidate:** C3; C5
+- **Matrix rows:** 14a
+- **Claim category:** Same-objective Loschmidt vs SWAP comparison at the fidelity level — matrix row 14a
+- **Classification:** EXPLICIT
+- **Section:** Results; Discussion
+- **Subsection:** Overlap-dependent precision of strategies; Adaptive overlap estimation strategy
+- **Equation:** (1)–(3), (10)
+- **Figure:** Fig. 2, Fig. 3, Fig. 4
+- **Appendix:** SI II E, SI V
+- **Page:** 1, 4–8; SI 23–24
+- **Source version:** Published version (Light Sci. Appl. 14, 83; 2025-02-12) + published Supplementary Information (MOESM1); arXiv:2406.06810v1 cross-checked
+- **Source URL:** https://doi.org/10.1038/s41377-025-01755-8
+- **Short quote:** "they achieve lower precision for small c but higher precision for large c"
+- **Source statement (paraphrase):** For the same overlap c, the four strategies (tomography–tomography, tomography–projection, SCM, optical swap test) are compared analytically and in a photonic experiment (N = 900 copies, 11 overlaps, Fig. 2). The joint (swap-type) strategies have lower precision at small c and higher precision at large c than the tomography-based ones; TP and SCM cross at c_t = 4/11 (p. 6), which motivates an adaptive TP/SCM strategy (Fig. 4). The TP variance includes a tomography term 2κc(1 − c)/N (Eq. 2) on top of the projection term.
+- **Mathematical expression:** v_tp = (2κ + 1)c(1 − c)/N vs v_scm = (1 − c²)/N; crossover c_t = 4/11 (κ = 11/8, MUB tomography)
+- **Assumptions:** Qubit pairs Haar-sampled at fixed overlap (Eq. 1); MUB tomography for TT/TP; experimental imperfections (Γ = 0.965) for OST.
+- **Scope:** Overlap estimation; fixed c; no gradients, no landscape and no concentration.
+- **Relation to Stage 7:** A fidelity-level comparison of a projection readout and swap-type readouts of the same overlap, with the swap-type variance larger at small overlap. With a known target (no tomography term), the variance ratio is (1 + c)/c ≥ 2 (our algebra).
+- **Does NOT establish:** Gradient-level comparisons, exponents or failure modes under concentration.
+
+<a id="H-03"></a>
+### H-03 · The two per-copy variances read against the gradient-level shot-ratio identity and the exponent rule
+- **Paper:** H
+- **Candidate:** C5; C3
+- **Matrix rows:** 31, 32
+- **Claim category:** SWAP/Loschmidt shot-ratio identity for parameter-shift gradients and the exponent rule — matrix rows 31, 32
+- **Classification:** PARTIAL / IMPLIED
+- **Section:** Results; Materials and methods; SI V
+- **Subsection:** Overlap-dependent precision of strategies; Precision of joint measurement strategies; SI V Overlap estimation with a known state
+- **Equation:** (3), (10)
+- **Figure:** —
+- **Appendix:** SI V
+- **Page:** 5, 9; SI 23
+- **Source version:** Published version (Light Sci. Appl. 14, 83; 2025-02-12) + published Supplementary Information (MOESM1); arXiv:2406.06810v1 cross-checked
+- **Source URL:** https://doi.org/10.1038/s41377-025-01755-8
+- **Short quote:** —
+- **Source statement (paraphrase):** The source gives the per-copy variances of the projection (known target) and swap-type estimators of one overlap (H-01) and compares their precision (H-02). It does not consider parameter shifts, gradients, shot ratios for gradients or scaling with system size under concentration.
+- **Mathematical expression:** Implied (our algebra): at the two shifts, R = [2 − F₊² − F₋²]/[F₊(1 − F₊) + F₋(1 − F₋)] → 2/S; with median log-slopes, b_SW − b_LE ≈ b_S (to leading order as S → 0)
+- **Assumptions:** Added (ours): parametrised fidelity F(θ) with known target; parameter shift with independent batches; for row 32, a concentrated ensemble over θ with median log-slopes; the medians of log₁₀S and log₁₀|r| must combine additively (e.g. linear trends in n with O(1) fluctuations), and the rule holds only to leading order as S → 0, so it is approximate.
+- **Scope:** Overlap level in the source.
+- **Relation to Stage 7:** One of four sources (with A, B and G) whose printed per-shot statistics supply the ingredients of the principal track's identity.
+- **Does NOT establish:** The identity or the rule as stated results.
+
+<a id="H-04"></a>
+### H-04 · SI V and Eq. (S54): binomial law Bin(k, N, c) of the projection count
+- **Paper:** H
+- **Candidate:** C1
+- **Matrix rows:** 12
+- **Claim category:** Exact difference-of-binomials law of the finite-shot gradient — matrix row 12
+- **Classification:** RELATED BUT DIFFERENT
+- **Section:** SI II E; SI V
+- **Subsection:** Numerical results of average variance for TT and TP strategies; Overlap estimation with a known state
+- **Equation:** (S54)
+- **Figure:** —
+- **Appendix:** SI II D, SI V
+- **Page:** SI 11, 23
+- **Source version:** Published version (Light Sci. Appl. 14, 83; 2025-02-12) + published Supplementary Information (MOESM1); arXiv:2406.06810v1 cross-checked
+- **Source URL:** https://doi.org/10.1038/s41377-025-01755-8
+- **Short quote:** "follows a binomial distribution Bin(k, N, c)"
+- **Source statement (paraphrase):** The number of successful projections onto the known state follows Bin(k, N, c) (SI p. 23); with a tomographic estimate the projection count law is Eq. (S54). The law of a single overlap estimate is written; no difference of two counts is considered.
+- **Mathematical expression:** P_proj(k | N) = C(N, k) c^k (1 − c)^(N − k)
+- **Assumptions:** Independent copies.
+- **Scope:** Single overlap estimate.
+- **Relation to Stage 7:** One of the two binomials whose difference is Stage 7's Loschmidt gradient estimator.
+- **Does NOT establish:** The difference-of-binomials law, ties, or zero/sign probabilities.
+
+<a id="H-05"></a>
+### H-05 · Eq. (1) and SI Eqs. (S1), (S5): MSE of overlap estimators averaged over Haar-sampled pairs at fixed overlap
+- **Paper:** H
+- **Candidate:** C3
+- **Matrix rows:** 29
+- **Claim category:** Gradient-estimator mean-squared error (finite shots) — matrix row 29
+- **Classification:** RELATED BUT DIFFERENT
+- **Section:** Results; SI I
+- **Subsection:** Overlap estimation strategy performance assessment
+- **Equation:** (1); SI (S1), (S5)
+- **Figure:** —
+- **Appendix:** SI I
+- **Page:** 2; SI 2
+- **Source version:** Published version (Light Sci. Appl. 14, 83; 2025-02-12) + published Supplementary Information (MOESM1); arXiv:2406.06810v1 cross-checked
+- **Source URL:** https://doi.org/10.1038/s41377-025-01755-8
+- **Short quote:** —
+- **Source statement (paraphrase):** Precision is the mean squared error of the overlap estimate, averaged over Haar-random qubit pairs with fixed overlap c and over the measurement outcomes; it scales as 1/N, so the scaled variance N v_s(c) is the figure of merit.
+- **Mathematical expression:** v_s(c, N) = (1/2π) ∫∫ v_s(c, N | U, φ) dU dφ (Eq. 1)
+- **Assumptions:** —
+- **Scope:** Overlap estimators, not gradient estimators.
+- **Relation to Stage 7:** A different object (overlap, not gradient); for the projection and swap-type strategies the variance depends only on c, so the average is per-overlap.
+- **Does NOT establish:** Any gradient MSE.
+
+<a id="H-06"></a>
+### H-06 · The measurement strategy changes how overlap-estimation precision scales with dimension
+- **Paper:** H
+- **Candidate:** C3
+- **Matrix rows:** 5, 18
+- **Claim category:** Exponential finite-shot measurement burden (row 5); measurement scheme changing the resolution exponent (row 18)
+- **Classification:** RELATED BUT DIFFERENT
+- **Section:** Results; SI II F–G; SI V
+- **Subsection:** Overlap estimation of high-dimensional states; Extending the SCM strategy to qudits
+- **Equation:** (4), (8); SI (S71)–(S75), (S119)
+- **Figure:** —
+- **Appendix:** SI II F–G, SI V
+- **Page:** 6–7, 9; SI 14–15, 25
+- **Source version:** Published version (Light Sci. Appl. 14, 83; 2025-02-12) + published Supplementary Information (MOESM1); arXiv:2406.06810v1 cross-checked
+- **Source URL:** https://doi.org/10.1038/s41377-025-01755-8
+- **Short quote:** "maintaining precision independent of d"
+- **Source statement (paraphrase):** For n-qubit states with only local measurements for tomography, the tomography-based strategies acquire a dimension-dependent average variance, while SCM and OST keep precision independent of d, v_scm = (1 − c²)/N (p. 7; SI p. 25, Eq. S119). The size of the dimension factor is stated inconsistently: SI Eq. (S75) and main-text Eq. (4) with κ_loc = O(4ⁿ n) give O(2ⁿ n c(1 − c)/N), while the main text on p. 7 writes O(4ⁿ n c(1 − c)/N) (our reading; no effect on the comparison).
+- **Mathematical expression:** v_tt, v_tp ∼ O(2ⁿ n c(1 − c)/N) (local tomography, SI Eq. S75); v_scm = (1 − c²)/N independent of d
+- **Assumptions:** Sufficient-copy regime N ≫ d; local-measurement tomography with κ_loc = O(4ⁿ n).
+- **Scope:** The exponential factor comes from tomography of an unknown state, not from concentration; overlap level.
+- **Relation to Stage 7:** A measurement-dependent dimension scaling of overlap precision, by a different mechanism from Stage 7's (tomography cost vs concentrated outcome probabilities).
+- **Does NOT establish:** Shot exponents for gradients, or concentration-driven readout dependence.
+
+<a id="H-07"></a>
+### H-07 · Fisher information and Cramér–Rao bounds per strategy
+- **Paper:** H
+- **Candidate:** C3
+- **Matrix rows:** 6
+- **Claim category:** Outcome-distribution distinguishability framework — matrix row 6
+- **Classification:** RELATED BUT DIFFERENT
+- **Section:** Results; Materials and methods; SI III D
+- **Subsection:** Overlap-dependent precision of strategies; Precision of joint measurement strategies
+- **Equation:** (9)–(12); SI (S97), (S98)
+- **Figure:** Fig. 2 (b)
+- **Appendix:** SI III D
+- **Page:** 5, 9; SI 21
+- **Source version:** Published version (Light Sci. Appl. 14, 83; 2025-02-12) + published Supplementary Information (MOESM1); arXiv:2406.06810v1 cross-checked
+- **Source URL:** https://doi.org/10.1038/s41377-025-01755-8
+- **Short quote:** —
+- **Source statement (paraphrase):** The normalised Fisher information per state pair is computed for each strategy (Fig. 2b); the SCM has I_scm = 1/(1 − c²), its estimator saturates the Cramér–Rao bound, and its Fisher information approaches the quantum Fisher information at large overlap.
+- **Mathematical expression:** I_scm = 1/(1 − c²) (p. 9)
+- **Assumptions:** Large-N (asymptotic) estimation.
+- **Scope:** Local estimation precision of one overlap.
+- **Relation to Stage 7:** Estimation-theoretic counterpart of the information-distance view of Stage 7 §15; not a hypothesis-testing or indistinguishability statement.
+- **Does NOT establish:** Concentration-induced indistinguishability or gradient-level statements.
+
+### Paper H — not-located search log
+
+Paper H was read in full: main text (12 pp.) and published Supplementary Information (26 pp.).
+
+<a id="H-NL01"></a>
+### H-NL01 · Concentration, gradient-level statistics, exponents in n, trajectories, context items
+- **Paper:** H
+- **Candidate:** C1; C2; C3; C4; F-A; F-B; CTX
+- **Matrix rows:** 1, 2, 3, 7, 8, 9, 10, 11, 13, 14b, 15, 16, 17, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 30, 33
+- **Claim category:** Remaining matrix items (concentration, gradient-level statistics, exponents, trajectories, context)
+- **Classification:** NOT LOCATED
+- **Section:** Whole paper (main text + Supplementary Information)
+- **Subsection:** —
+- **Equation:** —
+- **Figure:** —
+- **Appendix:** —
+- **Page:** 1–12; SI 1–26
+- **Source version:** Published version (Light Sci. Appl. 14, 83; 2025-02-12) + published Supplementary Information (MOESM1); arXiv:2406.06810v1 cross-checked
+- **Source URL:** https://doi.org/10.1038/s41377-025-01755-8
+- **Short quote:** —
+- **Source statement (paraphrase):** Not located in the reviewed version after searches for: barren plateau, concentration, gradient, parameter shift, zero estimate, sign, conditional, random walk, trajectory, crossover, exponent, 4^n, 16^n. The swap-type outcome probability p₋ = (1 − c)/2 tends to 1/2 as c → 0 (Eq. 9), but no null-distribution or indistinguishability statement is made; the projection estimate's zero event is not discussed. The terms "exponential", "4ⁿ" and "crossover" do occur in other senses: the exponential tomography cost in d (p. 7; SI p. 15, κ_loc = O(4ⁿ n)) and the TP/SCM crossover c_t = 4/11 (p. 6), recorded in H-06 and H-02; none matches these rows' targets.
 - **Mathematical expression:** —
 - **Assumptions:** —
 - **Scope:** As above.

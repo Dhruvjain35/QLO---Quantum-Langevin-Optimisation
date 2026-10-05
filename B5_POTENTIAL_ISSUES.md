@@ -112,4 +112,22 @@ below. As before, **nothing was fixed** and no Stage 1–7 file was modified. Th
 - **Stage 7 location potentially affected:** `README.md` file map (STAGE7.md line); `STAGE7.md` §23 (prose only).
   No code, no numbers.
 
+## Item added by the closure audit (2026-10-05)
+
+### PI-6 · The per-shot variances are attributed to Aghaei Saem et al. alone
+- **Suspected issue.** STAGE7.md §19 lists among the things Aghaei Saem et al. (2026) "already show" that "different
+  POVMs for the same quantity can have different estimator variances". The same Loschmidt-type and SWAP-type per-copy
+  variances appear in an earlier source:
+  - **Zhan et al.**, Light Sci. Appl. 14, 83 (published 2025-02-12; arXiv v1 2024-06-10). It gives v_proj = c(1 − c)/N
+    for projection onto a known state (SI p. 23; Eq. 3) and v_scm = (1 − c²)/N for the destructive swap test (Eq. 10;
+    SI p. 17).
+  - It also explicitly compares their precision as a function of overlap ("lower precision for small c", p. 5)
+    (H-01, H-02).
+  - Aghaei Saem et al.'s version of record is dated 2026-01-30, and the passage is absent from their arXiv v1.
+- **Source evidence:** H-01, H-02; B-10a; B5_VERSION_GAP.md §1 and §4; B5_PRINCIPAL_LINE_CHECK.md L10, L17.
+- **Why it might matter.** Positioning text that credits the variance pair only to Aghaei Saem et al. would omit the
+  earlier source. The principal track's A2 proof and A4 draft use the same attribution; that document is outside this
+  file's scope, and the point is recorded in the line check.
+- **Stage 7 location potentially affected:** `STAGE7.md` §19 (prose only). No code, no numbers.
+
 This file records observations for the principal audit and does not make the novelty decision.

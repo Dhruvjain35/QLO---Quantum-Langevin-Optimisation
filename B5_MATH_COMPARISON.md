@@ -2,7 +2,8 @@
 
 Purpose: place every Stage 7 formula beside what Thanasilp et al. 2024 (paper **A**) and Aghaei Saem et al. 2026
 (paper **B**, reviewed as arXiv:2507.22054v2) explicitly contain. §8, added in the follow-up audit, does the same for
-Teo 2023 (paper **D**, reviewed as arXiv:2206.12643v3; evidence ids D-xx).
+Teo 2023 (paper **D**, reviewed as arXiv:2206.12643v3; evidence ids D-xx). §9, added in the closure audit, places the
+principal track's shot-ratio identity beside Mari 2021 (**F**), Miranskyy 2025 (**G**) and Zhan et al. 2025 (**H**).
 
 **This document does not decide novelty.** For each Stage 7 expression it records one of:
 - **exact prior-work match located**;
@@ -305,5 +306,63 @@ So Teo supplies the SWAP-type per-shot variance structure, and the 16ⁿ comes f
 - **Implied only:** Stage 7's per-θ SWAP variance and its 16ⁿ median, after steps 1–5 (D-03b).
 - **Not located:** the Loschmidt variance and 4ⁿ, any readout comparison, exact zero/sign probabilities, the conditional
   sign law and the explicit 4ⁿ/16ⁿ pair (D-NL02, D-NL09, D-NL13, D-NL17).
+
+## 9. Closure-audit sources and the principal track's shot-ratio identity
+
+Added in the closure audit ([`B5_CLOSURE_AUDIT.md`](B5_CLOSURE_AUDIT.md)).
+- **Sources:**
+  - Mari, Bromley, Killoran 2021 (paper **F**, arXiv:2008.06517v2);
+  - Miranskyy 2025 (paper **G**, arXiv:2510.22418v1);
+  - Zhan et al. 2025 (paper **H**, Light Sci. Appl. 14, 83).
+- **Identity being compared:** the principal track's A2 ratio identity (`principal/QLO_Principal_Track.md` §3),
+  R = M_SW/M_LE = [2 − F₊² − F₋²]/[F₊(1 − F₊) + F₋(1 − F₋)] → 2/S.
+- Algebra marked *(ours)* is not in any source.
+
+### 9.1 Ingredients of the identity, by source
+
+| Ingredient | Where printed | Status |
+|---|---|---|
+| Per-θ parameter-shift variance with a separate single-shot variance at each shift, [σ₀²(θ + s) + σ₀²(θ − s)]/(4N sin² s) | Mari Eq. (45), p. 7 (F-01) | EXPLICIT (σ₀² unspecified; F-02) |
+| Loschmidt-type per-shot variance F(1 − F) | Aghaei Saem §IV/§4, p. 10 (B-10a); Zhan SI §V, p. 23, v_proj = c(1 − c)/N for projection onto a known state (H-01) | EXPLICIT (fidelity level) |
+| SWAP-type per-shot variance 1 − F² | Aghaei Saem p. 10 (B-10a); Zhan Eq. (10), p. 9 (SCM) and SI p. 17 (ideal swap test) (H-01) | EXPLICIT (fidelity level) |
+| Outcome models only (variances follow in one line) | Thanasilp p. 4, SI Eqs. (17), (46) (A-19); Miranskyy §3.1, Eq. (10), App. C–D (G-02) | PARTIAL / IMPLIED |
+| The ratio for gradients, R | Not printed in A–H | Implied by the variances at the two shifts (A-19, B-18, G-02, H-03) |
+| The exponent rule b_SW − b_LE = b_S | Not printed in A–H | Implied only with a concentrated ensemble and median log-slopes (A-19, B-18, G-02, H-03); the accounting structure (shot exponent = variance exponent − signal exponent) is printed in a different setting by Sulimov & Lehmann 2026, Eq. (2) (screened, not added; `B5_CLOSURE_SEARCH.md` §4) |
+
+*(Ours.)* Mari's Eq. (45) at s = π/2, with N = M per shift, gives:
+- with σ₀² = F(1 − F): Var(ĝ_LE) = [F₊(1 − F₊) + F₋(1 − F₋)]/(4M);
+- with σ₀² = 1 − F²: Var(ĝ_SWAP) = [2 − F₊² − F₋²]/(4M).
+
+Their ratio at equal SNR is R. Mari's own approximation (Assumption 1, Eq. 47) would replace the sum of the two
+shifted single-shot variances by 2σ₀²(θ). *(Ours.)* For the Loschmidt readout at small fidelity that sum is ≈ F₊ + F₋ = A
+at x = π/2, while 2σ₀²(θ) ≈ A(1 + cos θ_k): the assumption fails by the factor (1 + cos θ_k) and holds only where
+cos θ_k ≈ 0. For the SWAP readout both sides are ≈ 2 and it holds. Mari's printed Eq. (49) has a factor-2 typo (2N for
+4N; B5_MARI_AUDIT.md §6).
+
+### 9.2 Fidelity-level comparisons: estimation (Zhan) vs detection (Miranskyy)
+
+*(Ours.)* With equal shifted fidelities, or at the fidelity level, the per-shot variance ratio is
+(1 − F²)/(F(1 − F)) = (1 + F)/F.
+- **Zhan et al. (H-02)** compare estimation precision for one overlap:
+  - The swap-type estimators are less precise at small overlap and more precise at large overlap than the
+    tomography-based ones.
+  - The tomography–projection vs SCM crossover c_t = 4/11 comes from the extra tomography term 2κc(1 − c)/N with
+    κ = 11/8: (2κ + 1)c(1 − c) = 1 − c² gives c = 1/(2κ) = 4/11.
+  - With a **known** target (no tomography; the Loschmidt setting), the ratio (1 + c)/c ≥ 2 holds for every c < 1, and
+    the source calls projection the optimal strategy in that case (SI p. 23).
+- **Miranskyy (G-01)** compares **detection** shot counts from the quantum Chernoff bound, N ∝ 1/(−ln Q) with Q = F or
+  (1 + F)/2, giving ln F / ln[(1 + F)/2]. The two ratios agree only as F → 1:
+
+| F | Detection ratio ln F / ln[(1 + F)/2] (Miranskyy) | Variance ratio (1 + F)/F (estimation) |
+|---|---|---|
+| 0.999 | 2.0005 | 2.0010 |
+| 0.99 | 2.0050 | 2.0101 |
+| 0.9 | 2.0541 | 2.1111 |
+| 0.5 | 2.4094 | 3.0000 |
+| 0.1 | 3.8515 | 11.000 |
+| 0.01 | 6.7406 | 101.00 |
+
+The detection ratio grows like log₂(1/F) and the estimation ratio like 1/F (ours). Miranskyy's factor of two is
+therefore specific to near-identity detection. Stage 7's regime (F ≈ 0, estimation) sits in the right-hand column.
 
 This document is evidence for the principal novelty audit. It does not make the novelty decision.

@@ -1,5 +1,6 @@
 """B5 prior-work evidence files: structural consistency checks (no scientific numerics)."""
 
+import csv
 import hashlib
 import importlib.util
 import json
@@ -17,8 +18,9 @@ B5_DOCS = ("B5_PRIOR_WORK_EXTRACTION.md", "B5_PRIOR_WORK_MATRIX.md", "B5_EVIDENC
            "B5_FOLLOWUP_SOURCES.md", "B5_POTENTIAL_ISSUES.md")
 FOLLOWUP_DOCS = ("B5_FOLLOWUP_AUDIT.md", "B5_TEO_DEEP_AUDIT.md", "B5_ARRASMITH_AUDIT.md", "B5_GENTINETTA_AUDIT.md",
                  "B5_STATISTIC_COMPARISON.md", "B5_SHOT_CONVENTIONS.md", "B5_VERSION_GAP.md")
-# Entries for papers A/B written in the follow-up audit (matrix rows 29-30) use the four-label vocabulary only.
-FOLLOWUP_AB_IDS = {"A-NL29", "A-NL30", "B-17", "B-NL30"}
+CLOSURE_DOCS = ("B5_CLOSURE_AUDIT.md", "B5_MARI_AUDIT.md", "B5_CLOSURE_SEARCH.md", "B5_PRINCIPAL_LINE_CHECK.md")
+# Entries for papers A/B written after the initial round (matrix rows 29-33) use the four-label vocabulary only.
+FOLLOWUP_AB_IDS = {"A-NL29", "A-NL30", "B-17", "B-NL30", "A-19", "A-NL33", "B-18", "B-NL33"}
 FINAL_LINE = "This remains an evidence extraction for A1 and does not make the novelty decision."
 
 
@@ -48,13 +50,20 @@ def test_ledger_entries_complete(ledger):
         if r["Paper"] == "D":                                                                # Teo reviewed as arXiv v3
             assert "arXiv:2206.12643v3" in r["Source version"], eid
             assert "not inspected" in r["Source version"], eid
+        if r["Paper"] == "F":                                                                # Mari reviewed as arXiv v2
+            assert "arXiv:2008.06517v2" in r["Source version"], eid
+            assert "not inspected" in r["Source version"], eid
+        if r["Paper"] == "G":                                                                # preprint only
+            assert "arXiv:2510.22418v1" in r["Source version"], eid
+        if r["Paper"] == "H":                                                                # published version + SI
+            assert "Light Sci. Appl. 14, 83" in r["Source version"], eid
         if r["Classification"] == "NOT LOCATED":
             assert "Not located in the reviewed version" in r["Source statement (paraphrase)"], eid
             assert "searches for:" in r["Source statement (paraphrase)"], eid
 
 
 def test_followup_entries_use_four_label_vocabulary_with_exact_locators(ledger):
-    followup = {e: r for e, r in ledger.items() if r["Paper"] in ("C", "D", "E") or e in FOLLOWUP_AB_IDS}
+    followup = {e: r for e, r in ledger.items() if r["Paper"] not in E.LEGACY_PAPERS or e in FOLLOWUP_AB_IDS}
     assert {r["Paper"] for r in followup.values()} == set(E.PAPERS)
     for eid, r in followup.items():
         assert r["Classification"] in E.CLASSIFICATIONS, (eid, r["Classification"])
@@ -77,13 +86,14 @@ def test_classification_labels_never_claim_novelty(ledger, matrix):
 
 
 def test_matrix_cells_link_to_matching_ledger_entries(matrix, ledger):
-    required = {str(i) for i in range(1, 31) if i != 14} | {"14a", "14b"}
+    required = {str(i) for i in range(1, 34) if i != 14} | {"14a", "14b"}
     assert required <= {row["row"] for row in matrix}
     for row in matrix:
+        assert len(set(row["claims"])) == 1, (row["row"], "claim text differs between matrix parts")
         for paper in E.MATRIX_PAPERS:
             label, ids, cell = row[paper]
             assert label in E.ALLOWED, (row["row"], paper, cell)
-            if paper not in E.LEGACY_PAPERS or row["row"] in ("29", "30"):
+            if paper not in E.LEGACY_PAPERS or row["row"] in ("29", "30", "31", "32", "33"):
                 assert label in E.CLASSIFICATIONS, (row["row"], paper, label)
             assert ids, (row["row"], paper, "cell has no ledger reference")
             for i in ids:
@@ -101,7 +111,7 @@ def test_every_ledger_matrix_row_is_linked_back(matrix, ledger):
 
 
 def test_each_candidate_has_an_evidence_trail(ledger):
-    for cand in ("C1", "C2", "C3", "C4"):
+    for cand in ("C1", "C2", "C3", "C4", "C5"):
         hits = [e for e, r in ledger.items() if cand in E.candidates_of(r)]
         assert {ledger[h]["Paper"] for h in hits} == set(E.PAPERS), cand                      # >= 1 entry per paper
 
@@ -130,10 +140,14 @@ def test_manifest_complete_and_hashes_match():
             if local.exists():                    # local copies are git-ignored; check only where present
                 assert hashlib.sha256(local.read_bytes()).hexdigest() == f["sha256"], f["local_filename"]
     by_id = {p["paper_id"]: p for p in man["papers"]}
-    for pid in ("arrasmith2021", "teo2023", "gentinetta2024"):            # follow-up version metadata
+    for pid in ("arrasmith2021", "teo2023", "gentinetta2024", "mari2021", "miranskyy2025", "zhan2025"):
         for key in ("arxiv_versions_cross_checked", "supplement_reviewed", "review_scope"):
             assert by_id[pid].get(key), (pid, key)
     assert by_id["teo2023"]["published_version_inspected"] is False       # APS version of record not inspected
+    assert by_id["mari2021"]["published_version_inspected"] is False      # APS version of record not inspected
+    assert "arXiv:2008.06517v2" in by_id["mari2021"]["version_reviewed"]
+    assert by_id["zhan2025"]["published_version_inspected"] is True       # LSA version of record + published SI
+    assert any("Supplementary Information" in f["role"] for f in by_id["zhan2025"]["files"])
     assert "arXiv:2206.12643v3" in by_id["teo2023"]["version_reviewed"]
     b = by_id["aghaeisaem2026"]
     assert b["published_version_inspected"] is True                       # follow-up: version of record retrieved
@@ -174,8 +188,27 @@ def test_followup_documents_present_and_structured():
     assert re.search(r"^## \d+\. Comparison with Teo 2023", math, re.M)
 
 
+def test_closure_documents_and_search_record():
+    for name in CLOSURE_DOCS:
+        assert (ROOT / name).exists(), name
+    audit = (ROOT / "B5_CLOSURE_AUDIT.md").read_text(encoding="utf-8")
+    assert audit.rstrip().splitlines()[-1] == FINAL_LINE
+    check = (ROOT / "B5_PRINCIPAL_LINE_CHECK.md").read_text(encoding="utf-8")
+    assert {f"L{i}" for i in range(1, 31)} <= set(re.findall(r"^\| (L\d+) \|", check, re.M))
+    math = (ROOT / "B5_MATH_COMPARISON.md").read_text(encoding="utf-8")
+    assert re.search(r"^## 9\. ", math, re.M)
+    with (ROOT / "results" / "b5_prior_work" / "closure_search_screen.csv").open(encoding="utf-8") as fh:
+        screen = list(csv.DictReader(fh))
+    assert len(screen) > 1000 and {"id", "title", "queries", "decision", "reason"} <= set(screen[0])
+    included = {r["decision"] for r in screen if r["decision"].startswith("included")}
+    assert included == {"included (paper F)", "included (paper G)", "included (paper H)"}
+    queries = json.loads((ROOT / "results" / "b5_prior_work" / "closure_search_queries.json").read_text(encoding="utf-8"))
+    assert queries["unique_records_screened"] == len(screen) and queries["queries"]
+    assert (ROOT / "tools" / "b5_closure_search.py").exists()
+
+
 def test_no_novelty_classification_or_language():
-    for name in B5_DOCS + FOLLOWUP_DOCS + ("results/b5_prior_work/evidence.csv",):
+    for name in B5_DOCS + FOLLOWUP_DOCS + CLOSURE_DOCS + ("results/b5_prior_work/evidence.csv",):
         text = (ROOT / name).read_text(encoding="utf-8")
         assert "NOVEL" not in text.replace("NOVELTY", ""), name
         assert not re.search(r"\bnovel\b", text, re.I), name

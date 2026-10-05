@@ -1,7 +1,7 @@
 # B5 prior-work matrix
 
-Evidence packet for the principal novelty audit (A1). The matrix records what five prior papers **explicitly
-contain**. It does not decide novelty.
+Evidence packet for the principal novelty audit (A1). The matrix records what eight prior papers **explicitly
+contain** (part 1: papers A–E; part 2: papers F–H, added in the closure audit). It does not decide novelty.
 
 - **Thanasilp 2024** = Thanasilp, Wang, Cerezo, Holmes, Nat. Commun. 15, 5200 (2024). Published article + SI.
 - **Aghaei Saem 2026** = Aghaei Saem, Tafreshi, Holmes, Thanasilp, QST 11, 015049 (2026). Reviewed as
@@ -29,11 +29,25 @@ non-identical statement, i.e. the same role as `RELATED BUT DIFFERENT`. No initi
 
 Every cell links to its entries in [`B5_EVIDENCE_LEDGER.md`](B5_EVIDENCE_LEDGER.md). Rows 1–25 are the rows required
 by the initial B5 brief (row 14 is split into 14a/14b). Rows 26–28 are known-territory/context rows. Rows 29–30 were
-added in the follow-up audit. Required follow-up rows map as follows: fidelity concentration = 1; exponential shot
+added in the follow-up audit. Rows 31–33 were added in the closure audit for the principal track's candidate
+statements C5 (shot-ratio identity and exponent rule) and the general form of C2 (`principal/QLO_Principal_Track.md`
+§3, upstream commit 8003375); B5 records evidence only and does not classify candidates. Required follow-up rows map as follows: fidelity concentration = 1; exponential shot
 burden = 5; finite-shot PS analysis = 7; exact gradient distribution = 12; P_zero = 9; P_correct = 10; P_wrong = 11;
 conditional sign law = 13; gradient MSE = 29; critical copy number = 30; readout-dependent gradient exponent = 18
 (with 15–16); explicit 4ⁿ/16ⁿ = 17; vector alignment = 20 (with 22–23); random-walk optimisation = 8; matched starts =
 24; signal-free control = 25.
+
+**Principal-track required rows** (`principal/QLO_Principal_Track.md` §6, "B5" item). The items the principal track
+asks B5 to carry as required rows map onto existing rows and entries:
+
+| Required item | Matrix rows | Ledger entries (locators in the version of record where available) |
+|---|---|---|
+| Aghaei Saem et al., Section IV ("Subtlety regarding the choice of POVM") | 4, 14a, 15, 16, 18, 31, 32 | B-09a, B-09b, B-10a, B-10b, B-10c, B-11, B-18 (version of record §4, pp. 9–10) |
+| Aghaei Saem et al., Fig. 5 (Loschmidt echo vs SWAP test POVMs) | 2, 3, 14a | B-09a (version of record Fig. 5, p. 10) |
+| Thanasilp et al., Proposition 1 (Loschmidt Gram matrix → identity) | 2, 9 | A-05, A-06a, A-06b (Eq. 13, p. 4; SI Supp. Prop. 2, SI pp. 7–8) |
+| Thanasilp et al., Proposition 2 (SWAP Gram matrix ≈ fair coin flips) | 3, 14a | A-08, A-09a (Eq. 14, p. 4; SI pp. 9–13) |
+
+The pointers themselves are line-checked in [`B5_PRINCIPAL_LINE_CHECK.md`](B5_PRINCIPAL_LINE_CHECK.md).
 
 | # | Candidate / claim | Thanasilp 2024 | Aghaei Saem 2026 | Arrasmith 2021 | Teo 2023 | Gentinetta 2024 | Notes |
 |---|---|---|---|---|---|---|---|
@@ -68,6 +82,60 @@ conditional sign law = 13; gradient MSE = 29; critical copy number = 30; readout
 | 28 | Global-Z (parity) parameter-shift training numerics on a single rotation layer (Stage 6 relation) | NOT LOCATED — [A-NL28](B5_EVIDENCE_LEDGER.md#A-NL28) | EXPLICIT — [B-07a](B5_EVIDENCE_LEDGER.md#B-07a), [B-08b](B5_EVIDENCE_LEDGER.md#B-08b) | NOT LOCATED — [C-NL07](B5_EVIDENCE_LEDGER.md#C-NL07) | NOT LOCATED — [D-NL27](B5_EVIDENCE_LEDGER.md#D-NL27) | RELATED BUT DIFFERENT — [E-05](B5_EVIDENCE_LEDGER.md#E-05) | Same setup as Stage 6's parity benchmark (already noted in STAGE6.md §19). **Follow-up:** Not located in C or D. E: a global Z^⊗q observable trained with finite shots, but with SPSA on ZZFeatureMap + RealAmplitudes circuits, not parameter shift on a single rotation layer (E-05). |
 | 29 | Gradient-estimator mean-squared error (finite shots) | NOT LOCATED — [A-NL29](B5_EVIDENCE_LEDGER.md#A-NL29) | RELATED BUT DIFFERENT — [B-17](B5_EVIDENCE_LEDGER.md#B-17) | NOT LOCATED — [C-NL07](B5_EVIDENCE_LEDGER.md#C-NL07) | EXPLICIT — [D-01](B5_EVIDENCE_LEDGER.md#D-01), [D-02](B5_EVIDENCE_LEDGER.md#D-02), [D-05a](B5_EVIDENCE_LEDGER.md#D-05a) | NOT LOCATED — [E-NL06](B5_EVIDENCE_LEDGER.md#E-NL06) | D: MSEs of PS, FD, GD and SPS (circuit-averaged, TDS). B trains with Teo's MSE-optimal scaling factor (Eq. C11) but writes no MSE. |
 | 30 | Critical copy number (estimator crossover) | NOT LOCATED — [A-NL30](B5_EVIDENCE_LEDGER.md#A-NL30) | NOT LOCATED — [B-NL30](B5_EVIDENCE_LEDGER.md#B-NL30) | NOT LOCATED — [C-NL07](B5_EVIDENCE_LEDGER.md#C-NL07) | EXPLICIT — [D-06](B5_EVIDENCE_LEDGER.md#D-06) | NOT LOCATED — [E-NL06](B5_EVIDENCE_LEDGER.md#E-NL06) | D: N_* ≅ 32(d²−1)/(3d) ≈ 10.7·2ⁿ, an estimator crossover rather than a resolution threshold. |
+| 31 | Exact SWAP/Loschmidt shot-ratio identity for parameter-shift gradients, R = [2 − F₊² − F₋²]/[F₊(1−F₊) + F₋(1−F₋)] (C5) | PARTIAL / IMPLIED — [A-19](B5_EVIDENCE_LEDGER.md#A-19) | PARTIAL / IMPLIED — [B-18](B5_EVIDENCE_LEDGER.md#B-18) | NOT LOCATED — [C-NL31](B5_EVIDENCE_LEDGER.md#C-NL31) | RELATED BUT DIFFERENT — [D-11](B5_EVIDENCE_LEDGER.md#D-11) | NOT LOCATED — [E-NL31](B5_EVIDENCE_LEDGER.md#E-NL31) | A, B: the per-shot outcome models (A) or variances (B) imply the identity after they are applied at the two shifts; the principal track's A2 proof uses B's variances. D: SWAP-side (±1) variance only. Not located in C or E. |
+| 32 | Exponent rule b_SWAP = b_LE + b_S; exponent doubles iff b_r = 0 (C5) | PARTIAL / IMPLIED — [A-19](B5_EVIDENCE_LEDGER.md#A-19) | PARTIAL / IMPLIED — [B-18](B5_EVIDENCE_LEDGER.md#B-18) | NOT LOCATED — [C-NL31](B5_EVIDENCE_LEDGER.md#C-NL31) | RELATED BUT DIFFERENT — [D-11](B5_EVIDENCE_LEDGER.md#D-11) | NOT LOCATED — [E-NL31](B5_EVIDENCE_LEDGER.md#E-NL31) | A, B: implied by the identity plus a concentrated ensemble and median log-slopes; no source states the rule or b_r. D: its exponent comparisons concern estimators, not readouts. Not located in C or E. |
+| 33 | General conditional Loschmidt sign law P(correct \| ĝ ≠ 0) → (1 + \|r\|)/2, r = (F₋ − F₊)/(F₊ + F₋), any circuit (C2, general form) | NOT LOCATED — [A-NL33](B5_EVIDENCE_LEDGER.md#A-NL33) | NOT LOCATED — [B-NL33](B5_EVIDENCE_LEDGER.md#B-NL33) | NOT LOCATED — [C-NL31](B5_EVIDENCE_LEDGER.md#C-NL31) | NOT LOCATED — [D-NL33](B5_EVIDENCE_LEDGER.md#D-NL33) | NOT LOCATED — [E-NL31](B5_EVIDENCE_LEDGER.md#E-NL31) | Not located in A–E (general form; the product-circuit form is row 13). |
+
+
+## Matrix part 2 — closure-audit papers
+
+Same rows, three further papers reviewed in the closure audit ([`B5_CLOSURE_AUDIT.md`](B5_CLOSURE_AUDIT.md)):
+
+- **Mari 2021** = Mari, Bromley, Killoran, Phys. Rev. A 103, 012405 (2021). Reviewed as **arXiv:2008.06517v2**
+  (byte-identical to the open-access post-print in the authors' institutional repository); the APS version of record
+  was not retrievable.
+- **Miranskyy 2025** = Miranskyy, *The Cost of Certainty: Shot Budgets in Quantum Program Testing*,
+  arXiv:2510.22418v1 (2025; preprint, no journal reference).
+- **Zhan 2025** = Zhan, Wang, Mi, Xie, Xu, Zhang, Zhang, Light Sci. Appl. 14, 83 (2025). Published version and
+  published Supplementary Information.
+
+| # | Candidate / claim | Mari 2021 | Miranskyy 2025 | Zhan 2025 | Notes |
+|---|---|---|---|---|---|
+| 1 | Fidelity exponential concentration | RELATED BUT DIFFERENT — [F-09](B5_EVIDENCE_LEDGER.md#F-09) | NOT LOCATED — [G-NL01](B5_EVIDENCE_LEDGER.md#G-NL01) | NOT LOCATED — [H-NL01](B5_EVIDENCE_LEDGER.md#H-NL01) | F: background remark that barren-plateau gradients are exponentially small (citing McClean et al.). Not located in G or H. |
+| 2 | Loschmidt estimator collapse toward zero | NOT LOCATED — [F-NL02](B5_EVIDENCE_LEDGER.md#F-NL02) | NOT LOCATED — [G-NL01](B5_EVIDENCE_LEDGER.md#G-NL01) | NOT LOCATED — [H-NL01](B5_EVIDENCE_LEDGER.md#H-NL01) | Not located in F, G or H. |
+| 3 | SWAP estimator random / data-independent limit | NOT LOCATED — [F-NL02](B5_EVIDENCE_LEDGER.md#F-NL02) | RELATED BUT DIFFERENT — [G-05](B5_EVIDENCE_LEDGER.md#G-05) | NOT LOCATED — [H-NL01](B5_EVIDENCE_LEDGER.md#H-NL01) | G: the swap test accepts orthogonal states with probability 0.5. Not located in F or H. |
+| 4 | Different Loschmidt / SWAP estimator variances | NOT LOCATED — [F-NL02](B5_EVIDENCE_LEDGER.md#F-NL02) | PARTIAL / IMPLIED — [G-02](B5_EVIDENCE_LEDGER.md#G-02) | EXPLICIT — [H-01](B5_EVIDENCE_LEDGER.md#H-01) | H: c(1−c)/N (known-target projection) and (1−c²)/N (SCM / ideal swap test) stated for one overlap. G: outcome probabilities only, variances implied. F: σ₀² left unspecified. |
+| 5 | Exponential finite-shot measurement burden | RELATED BUT DIFFERENT — [F-09](B5_EVIDENCE_LEDGER.md#F-09) | RELATED BUT DIFFERENT — [G-06](B5_EVIDENCE_LEDGER.md#G-06) | RELATED BUT DIFFERENT — [H-06](B5_EVIDENCE_LEDGER.md#H-06) | F: noise-dominated regime remark, no shot count. G: detection shot counts diverge as F → 1 (not a system-size or concentration statement). H: dimension-dependent precision of tomography-based strategies (not concentration). |
+| 6 | Outcome-distribution distinguishability framework | NOT LOCATED — [F-NL20](B5_EVIDENCE_LEDGER.md#F-NL20) | RELATED BUT DIFFERENT — [G-04](B5_EVIDENCE_LEDGER.md#G-04) | RELATED BUT DIFFERENT — [H-07](B5_EVIDENCE_LEDGER.md#H-07) | G: quantum Chernoff bound (state discrimination). H: Fisher information / Cramér–Rao per strategy. Not located in F. |
+| 7 | Parameter-shift finite-shot analysis | EXPLICIT — [F-01](B5_EVIDENCE_LEDGER.md#F-01) | NOT LOCATED — [G-NL01](B5_EVIDENCE_LEDGER.md#G-NL01) | NOT LOCATED — [H-NL01](B5_EVIDENCE_LEDGER.md#H-NL01) | F: Eqs. (43)–(50), per-θ variance of the finite-shot parameter-shift estimator. |
+| 8 | Parameter-shift random-walk behaviour | NOT LOCATED — [F-NL20](B5_EVIDENCE_LEDGER.md#F-NL20) | NOT LOCATED — [G-NL01](B5_EVIDENCE_LEDGER.md#G-NL01) | NOT LOCATED — [H-NL01](B5_EVIDENCE_LEDGER.md#H-NL01) | Not located in F, G or H. |
+| 9 | Exact gradient P_zero | NOT LOCATED — [F-NL09](B5_EVIDENCE_LEDGER.md#F-NL09) | RELATED BUT DIFFERENT — [G-03](B5_EVIDENCE_LEDGER.md#G-03) | NOT LOCATED — [H-NL01](B5_EVIDENCE_LEDGER.md#H-NL01) | G: all-accept probabilities F^N and ((1+F)/2)^N (the opposite event to a Loschmidt zero estimate). |
+| 10 | Exact gradient P_correct | RELATED BUT DIFFERENT — [F-05](B5_EVIDENCE_LEDGER.md#F-05) | NOT LOCATED — [G-NL01](B5_EVIDENCE_LEDGER.md#G-NL01) | NOT LOCATED — [H-NL01](B5_EVIDENCE_LEDGER.md#H-NL01) | F: qualitative remark that the hardware gradient direction is prone to error. |
+| 11 | Exact gradient P_wrong | RELATED BUT DIFFERENT — [F-05](B5_EVIDENCE_LEDGER.md#F-05) | NOT LOCATED — [G-NL01](B5_EVIDENCE_LEDGER.md#G-NL01) | NOT LOCATED — [H-NL01](B5_EVIDENCE_LEDGER.md#H-NL01) | As row 10. |
+| 12 | Exact difference-of-binomials gradient law | RELATED BUT DIFFERENT — [F-04](B5_EVIDENCE_LEDGER.md#F-04) | NOT LOCATED — [G-NL01](B5_EVIDENCE_LEDGER.md#G-NL01) | RELATED BUT DIFFERENT — [H-04](B5_EVIDENCE_LEDGER.md#H-04) | F: additive zero-mean noise model (moments only). H: Bin(k, N, c) for a single projection estimate. |
+| 13 | Conditional Loschmidt sign law P(correct \| ĝ ≠ 0) → (1+\|sin θ_k\|)/2 | NOT LOCATED — [F-NL09](B5_EVIDENCE_LEDGER.md#F-NL09) | NOT LOCATED — [G-NL01](B5_EVIDENCE_LEDGER.md#G-NL01) | NOT LOCATED — [H-NL01](B5_EVIDENCE_LEDGER.md#H-NL01) | Not located in F, G or H. |
+| 14a | Same-objective Loschmidt vs SWAP comparison — fidelity / kernel-estimate level | RELATED BUT DIFFERENT — [F-03](B5_EVIDENCE_LEDGER.md#F-03) | EXPLICIT — [G-01](B5_EVIDENCE_LEDGER.md#G-01) | EXPLICIT — [H-02](B5_EVIDENCE_LEDGER.md#H-02) | F: both readouts named for one survival probability, no comparison. G: detection-shot ratio ≈ 2 as F → 1. H: per-copy precision comparison; swap-type worse at small overlap. |
+| 14b | Same-objective Loschmidt vs SWAP comparison — parameter-shift-gradient level, same θ | NOT LOCATED — [F-NL02](B5_EVIDENCE_LEDGER.md#F-NL02) | NOT LOCATED — [G-NL01](B5_EVIDENCE_LEDGER.md#G-NL01) | NOT LOCATED — [H-NL01](B5_EVIDENCE_LEDGER.md#H-NL01) | Not located in F, G or H. |
+| 15 | Gradient shot-complexity exponent — Loschmidt | NOT LOCATED — [F-NL02](B5_EVIDENCE_LEDGER.md#F-NL02) | NOT LOCATED — [G-NL01](B5_EVIDENCE_LEDGER.md#G-NL01) | NOT LOCATED — [H-NL01](B5_EVIDENCE_LEDGER.md#H-NL01) | Not located in F, G or H. |
+| 16 | Gradient shot-complexity exponent — SWAP | NOT LOCATED — [F-NL02](B5_EVIDENCE_LEDGER.md#F-NL02) | NOT LOCATED — [G-NL01](B5_EVIDENCE_LEDGER.md#G-NL01) | NOT LOCATED — [H-NL01](B5_EVIDENCE_LEDGER.md#H-NL01) | Not located in F, G or H. |
+| 17 | Explicit 4ⁿ vs 16ⁿ comparison | NOT LOCATED — [F-NL02](B5_EVIDENCE_LEDGER.md#F-NL02) | NOT LOCATED — [G-NL01](B5_EVIDENCE_LEDGER.md#G-NL01) | NOT LOCATED — [H-NL01](B5_EVIDENCE_LEDGER.md#H-NL01) | Not located in F, G or H. |
+| 18 | Measurement scheme changing the gradient-resolution exponent | NOT LOCATED — [F-NL02](B5_EVIDENCE_LEDGER.md#F-NL02) | NOT LOCATED — [G-NL01](B5_EVIDENCE_LEDGER.md#G-NL01) | RELATED BUT DIFFERENT — [H-06](B5_EVIDENCE_LEDGER.md#H-06) | H: the strategy changes how precision scales with dimension (tomography cost, not concentration). |
+| 19 | Full-gradient vector exactly-zero probability | NOT LOCATED — [F-NL09](B5_EVIDENCE_LEDGER.md#F-NL09) | NOT LOCATED — [G-NL01](B5_EVIDENCE_LEDGER.md#G-NL01) | NOT LOCATED — [H-NL01](B5_EVIDENCE_LEDGER.md#H-NL01) | Not located in F, G or H. |
+| 20 | Estimated/exact gradient cosine similarity | NOT LOCATED — [F-NL20](B5_EVIDENCE_LEDGER.md#F-NL20) | NOT LOCATED — [G-NL01](B5_EVIDENCE_LEDGER.md#G-NL01) | NOT LOCATED — [H-NL01](B5_EVIDENCE_LEDGER.md#H-NL01) | Not located in F, G or H. |
+| 21 | Gradient norm inflation | RELATED BUT DIFFERENT — [F-11](B5_EVIDENCE_LEDGER.md#F-11) | NOT LOCATED — [G-NL01](B5_EVIDENCE_LEDGER.md#G-NL01) | NOT LOCATED — [H-NL01](B5_EVIDENCE_LEDGER.md#H-NL01) | F: E‖ĝ‖² = ‖g‖² + Δ(ĝ) follows from Eqs. (29) and (44) (mean-square, fixed θ; our algebra). Not located in G or H. |
+| 22 | Probability ĝ·g > 0 | NOT LOCATED — [F-NL20](B5_EVIDENCE_LEDGER.md#F-NL20) | NOT LOCATED — [G-NL01](B5_EVIDENCE_LEDGER.md#G-NL01) | NOT LOCATED — [H-NL01](B5_EVIDENCE_LEDGER.md#H-NL01) | Not located in F, G or H. |
+| 23 | Component sign accuracy | RELATED BUT DIFFERENT — [F-05](B5_EVIDENCE_LEDGER.md#F-05) | NOT LOCATED — [G-NL01](B5_EVIDENCE_LEDGER.md#G-NL01) | NOT LOCATED — [H-NL01](B5_EVIDENCE_LEDGER.md#H-NL01) | F: as row 10. |
+| 24 | Matched-start finite-shot optimisation trajectories | EXPLICIT — [F-06](B5_EVIDENCE_LEDGER.md#F-06) | NOT LOCATED — [G-NL01](B5_EVIDENCE_LEDGER.md#G-NL01) | NOT LOCATED — [H-NL01](B5_EVIDENCE_LEDGER.md#H-NL01) | F: GD with N = 10, 100, 1000 shots from one start, overlaid on the exact-gradient path (2 parameters, hardware, no barren plateau, no random-walk control). |
+| 25 | Signal-free random-walk control | NOT LOCATED — [F-NL20](B5_EVIDENCE_LEDGER.md#F-NL20) | NOT LOCATED — [G-NL01](B5_EVIDENCE_LEDGER.md#G-NL01) | NOT LOCATED — [H-NL01](B5_EVIDENCE_LEDGER.md#H-NL01) | Not located in F, G or H. |
+| 26 | Limits of classical post-processing / mitigation (fact H) | RELATED BUT DIFFERENT — [F-08](B5_EVIDENCE_LEDGER.md#F-08) | NOT LOCATED — [G-NL01](B5_EVIDENCE_LEDGER.md#G-NL01) | NOT LOCATED — [H-NL01](B5_EVIDENCE_LEDGER.md#H-NL01) | F: scaled estimator proposed for the noise-dominated barren-plateau regime (a proposal, not a limit). |
+| 27 | Concentration of the product single-qubit-rotation fidelity landscape (Stage 3–7 family) | NOT LOCATED — [F-NL27](B5_EVIDENCE_LEDGER.md#F-NL27) | NOT LOCATED — [G-NL01](B5_EVIDENCE_LEDGER.md#G-NL01) | NOT LOCATED — [H-NL01](B5_EVIDENCE_LEDGER.md#H-NL01) | Not located in F, G or H. |
+| 28 | Global-Z (parity) parameter-shift training numerics on a single rotation layer (Stage 6 relation) | NOT LOCATED — [F-NL27](B5_EVIDENCE_LEDGER.md#F-NL27) | NOT LOCATED — [G-NL01](B5_EVIDENCE_LEDGER.md#G-NL01) | NOT LOCATED — [H-NL01](B5_EVIDENCE_LEDGER.md#H-NL01) | Not located in F, G or H. |
+| 29 | Gradient-estimator mean-squared error (finite shots) | EXPLICIT — [F-01](B5_EVIDENCE_LEDGER.md#F-01), [F-10](B5_EVIDENCE_LEDGER.md#F-10) | NOT LOCATED — [G-NL01](B5_EVIDENCE_LEDGER.md#G-NL01) | RELATED BUT DIFFERENT — [H-05](B5_EVIDENCE_LEDGER.md#H-05) | F: per-θ MSEs of PS, FD and scaled-PS estimators. H: MSE of overlap estimators (not gradients). |
+| 30 | Critical copy number (estimator crossover) | EXPLICIT — [F-07](B5_EVIDENCE_LEDGER.md#F-07) | NOT LOCATED — [G-NL01](B5_EVIDENCE_LEDGER.md#G-NL01) | NOT LOCATED — [H-NL01](B5_EVIDENCE_LEDGER.md#H-NL01) | F: numerical FD/PS crossover at N ≈ 50 shots for one circuit (precursor of Teo's N_*). |
+| 31 | Exact SWAP/Loschmidt shot-ratio identity for parameter-shift gradients, R = [2 − F₊² − F₋²]/[F₊(1−F₊) + F₋(1−F₋)] (C5) | RELATED BUT DIFFERENT — [F-02](B5_EVIDENCE_LEDGER.md#F-02) | PARTIAL / IMPLIED — [G-02](B5_EVIDENCE_LEDGER.md#G-02) | PARTIAL / IMPLIED — [H-03](B5_EVIDENCE_LEDGER.md#H-03) | G, H: outcome probabilities (G) or per-copy variances (H) of both readouts imply the identity after the two-shift algebra. F: general per-θ variance with σ₀² unspecified. |
+| 32 | Exponent rule b_SWAP = b_LE + b_S; exponent doubles iff b_r = 0 (C5) | NOT LOCATED — [F-NL27](B5_EVIDENCE_LEDGER.md#F-NL27) | PARTIAL / IMPLIED — [G-02](B5_EVIDENCE_LEDGER.md#G-02) | PARTIAL / IMPLIED — [H-03](B5_EVIDENCE_LEDGER.md#H-03) | G, H: implied as row 31 plus a concentrated ensemble and median log-slopes. Not located in F. |
+| 33 | General conditional Loschmidt sign law P(correct \| ĝ ≠ 0) → (1 + \|r\|)/2, r = (F₋ − F₊)/(F₊ + F₋), any circuit (C2, general form) | NOT LOCATED — [F-NL09](B5_EVIDENCE_LEDGER.md#F-NL09) | NOT LOCATED — [G-NL01](B5_EVIDENCE_LEDGER.md#G-NL01) | NOT LOCATED — [H-NL01](B5_EVIDENCE_LEDGER.md#H-NL01) | Not located in F, G or H. |
+
 
 ## Reading guide by candidate
 
@@ -79,6 +147,8 @@ conditional sign law = 13; gradient MSE = 29; critical copy number = 30; readout
   [`B5_STATISTIC_COMPARISON.md`](B5_STATISTIC_COMPARISON.md); shot conventions in
   [`B5_SHOT_CONVENTIONS.md`](B5_SHOT_CONVENTIONS.md).
 - **Candidate 4** (full-vector / trajectory consequences): rows 8, 19–25.
+- **Candidate 5** (principal track A2: shot-ratio identity and exponent rule): rows 31–32, with the per-shot
+  variances of row 4. The general conditional sign law (C2 general form) is row 33.
 - **Known prior territory** (facts A–H of the brief): rows 1–6, 8, 26.
 
 `NOT LOCATED` means only: not found in the reviewed version after the searches logged in the ledger.

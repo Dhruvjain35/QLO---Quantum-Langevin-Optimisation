@@ -30,6 +30,14 @@ stated.
 | Gentinetta 2024 | R_tot | Total shots (dual: R·M(M+1)/2; Pegasos ≈ T·R); for SPSA, Fig. 10 counts circuit evaluations as 5·2·T | Eqs. (11), (18); Figs. 6, 10 | — | Not a per-component count |
 | Gentinetta 2024 | **M** | **Training-set size**, not shots | Throughout | — | **Notation clash with Stage 7's M** |
 
+### Closure-audit sources
+
+| Paper | Symbol | Meaning in the source | Locator | Stage 7 equivalent | Conversion status |
+|---|---|---|---|---|---|
+| Mari 2021 | N | Shots per expectation value, i.e. per shifted circuit; σ₀² is the single-shot variance | Eq. (25), p. 5; Eqs. (43)–(50), p. 7 | M | Exact: Eq. (45) at s = π/2 with N = M has Stage 7's 4M denominator (Eq. 49 as printed has 2N, a typo) |
+| Miranskyy 2025 | N | Shots (circuit executions) of the inverse or swap test needed to detect a deviation at error probability P_e | Eqs. (8), (11), pp. 6–9 | — | Not a per-component estimation budget; detection statistic |
+| Zhan 2025 | N | Copies of the state (projection) or of the state pair (joint strategies: SCM, swap test) | Eq. (1), p. 2; Table 1, p. 4 | M for one fidelity estimate | Exact at the overlap level; the swap-type strategies consume one copy of each state per shot (Stage 7 counts this as 2 state copies per shot, STAGE7.md §23) |
+
 ## 2. Conversions of the formulas used in this audit
 
 - **Teo, Eq. (13), PS MSE at s = π/2.** d/(N_T(d+1)) becomes **d/(2M(d+1)) ≈ 1/(2M)** in Stage 7 units.

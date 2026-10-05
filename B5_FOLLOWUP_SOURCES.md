@@ -34,7 +34,16 @@ remain unreviewed.
 
 | # | Citation (as printed in the citing source) | Cited by / where | Why it may matter | Candidates |
 |---|---|---|---|---|
-| H4 | A. Mari, T. R. Bromley, and N. Killoran, *Estimating the gradient and higher-order derivatives on quantum hardware*, Phys. Rev. A 103, 012405 (2021). | Teo 2023 (D) ref. [61]: origin of the scaled parameter-shift estimator. Teo says [61]'s expressions are not circuit-averaged (p. 1) and are large-N forms (pp. 6–7). Not cited by A, B, C or E. | May contain fixed-θ finite-shot statistics (variance, MSE) of parameter-shift, finite-difference and scaled estimators, i.e. the per-θ counterpart of Teo's circuit averages. Contents not checked. | C1, C3 |
+| H4 | A. Mari, T. R. Bromley, and N. Killoran, *Estimating the gradient and higher-order derivatives on quantum hardware*, Phys. Rev. A 103, 012405 (2021). | Teo 2023 (D) ref. [61]: origin of the scaled parameter-shift estimator. Teo says [61]'s expressions are not circuit-averaged (p. 1) and are large-N forms (pp. 6–7). Not cited by A, B, C or E. | **Reviewed in the closure audit** (paper F, arXiv v2; B5_MARI_AUDIT.md): per-θ finite-shot PS/FD/SPS MSEs, Eq. (45). | C1, C3, C5 |
+
+### Added by the closure audit (targeted search; B5_CLOSURE_SEARCH.md)
+
+| # | Citation | Found by | Status | Candidates |
+|---|---|---|---|---|
+| H5 | A. Miranskyy, *The Cost of Certainty: Shot Budgets in Quantum Program Testing*, arXiv:2510.22418 (2025). | Principal-track "Other papers" table; arXiv search | **Reviewed** (paper G) | C3, C5 |
+| H6 | H. Zhan et al., *Experimental benchmarking of quantum state overlap estimation strategies with photonic systems*, Light Sci. Appl. 14, 83 (2025). | Search (OpenAlex/arXiv, swap test + variance) | **Reviewed** (paper H) | C3, C5 |
+| H7 | P. Sulimov, C. Lehmann, *Certification cost of quantum models: measurement correlation, not parameter count*, arXiv:2609.14424 (2026). | Search (arXiv, parameter shift + shots) | Screened only; accounting identity for shot-cost exponents (Eq. 2, p. 7); full read recommended | C5 (exponent rule) |
+| M7 | Y. S. Teo, *Robustness of optimized numerical estimation schemes for noisy variational quantum algorithms*, Phys. Rev. A 109, 012620 (2024). | Forward citations of D | Not reviewed (noise; B4 territory) | C3 |
 
 ## MEDIUM priority — relevant to measurement-dependent finite-shot gradients / estimates
 

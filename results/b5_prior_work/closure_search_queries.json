@@ -1,0 +1,200 @@
+{
+  "run_date": "2026-10-05",
+  "databases": {
+    "arXiv API": "export.arxiv.org/api/query, relevance sort, max 50 per query",
+    "OpenAlex": "api.openalex.org/works?search=..., 50 per query; forward citations via filter=cites:<work id>, all pages",
+    "Semantic Scholar": "api.semanticscholar.org/graph/v1/paper/search, 50 per query; rate-limited (HTTP 429) for most queries"
+  },
+  "queries": {
+    "T1a": {
+      "arxiv": 21,
+      "openalex": 50,
+      "s2": 0,
+      "arxiv_query": "abs:\"parameter shift\" AND abs:shot",
+      "text_query": "parameter shift gradient estimator finite shots distribution"
+    },
+    "T1b": {
+      "arxiv": 0,
+      "openalex": 50,
+      "s2": 0,
+      "arxiv_query": "abs:\"parameter-shift\" AND abs:binomial",
+      "text_query": "parameter shift gradient binomial shot noise distribution"
+    },
+    "T1c": {
+      "arxiv": 1,
+      "openalex": 17,
+      "s2": 0,
+      "arxiv_query": "abs:Skellam AND cat:quant-ph",
+      "text_query": "Skellam distribution quantum gradient estimator"
+    },
+    "T1d": {
+      "arxiv": 2,
+      "openalex": 50,
+      "s2": 0,
+      "arxiv_query": "abs:\"finite shot\" AND abs:gradient AND abs:zero",
+      "text_query": "finite shot gradient estimate exactly zero probability"
+    },
+    "T2a": {
+      "arxiv": 1,
+      "openalex": 50,
+      "s2": 1,
+      "arxiv_query": "abs:gradient AND abs:sign AND abs:shots AND cat:quant-ph",
+      "text_query": "sign of gradient estimate finite shots probability correct sign"
+    },
+    "T2b": {
+      "arxiv": 2,
+      "openalex": 50,
+      "s2": 0,
+      "arxiv_query": "abs:\"sign\" AND abs:\"shot noise\" AND abs:variational",
+      "text_query": "gradient sign accuracy shot noise variational quantum algorithm"
+    },
+    "T2c": {
+      "arxiv": 1,
+      "openalex": 50,
+      "s2": 0,
+      "arxiv_query": "abs:signSGD AND cat:quant-ph",
+      "text_query": "sign-based optimizer variational quantum shot noise"
+    },
+    "T3a": {
+      "arxiv": 2,
+      "openalex": 50,
+      "s2": 50,
+      "arxiv_query": "abs:\"swap test\" AND abs:\"inversion test\"",
+      "text_query": "swap test inversion test fidelity estimation shots"
+    },
+    "T3b": {
+      "arxiv": 0,
+      "openalex": 50,
+      "s2": 0,
+      "arxiv_query": "abs:\"swap test\" AND abs:\"compute-uncompute\"",
+      "text_query": "swap test compute-uncompute overlap estimation comparison"
+    },
+    "T3c": {
+      "arxiv": 0,
+      "openalex": 50,
+      "s2": 0,
+      "arxiv_query": "abs:\"swap test\" AND abs:Loschmidt",
+      "text_query": "swap test Loschmidt echo fidelity comparison"
+    },
+    "T3d": {
+      "arxiv": 5,
+      "openalex": 50,
+      "s2": 0,
+      "arxiv_query": "abs:\"swap test\" AND abs:variance",
+      "text_query": "swap test variance fidelity estimation number of measurements"
+    },
+    "T3e": {
+      "arxiv": 7,
+      "openalex": 50,
+      "s2": 0,
+      "arxiv_query": "abs:\"overlap estimation\" AND abs:\"swap test\"",
+      "text_query": "overlap estimation swap test sample complexity comparison"
+    },
+    "T4a": {
+      "arxiv": 2,
+      "openalex": 50,
+      "s2": 0,
+      "arxiv_query": "abs:\"barren plateau\" AND abs:\"swap test\"",
+      "text_query": "barren plateau swap test fidelity cost shots"
+    },
+    "T4b": {
+      "arxiv": 1,
+      "openalex": 50,
+      "s2": 0,
+      "arxiv_query": "abs:\"quantum kernel\" AND abs:\"swap test\" AND abs:shots",
+      "text_query": "quantum kernel swap test inversion test measurement shots"
+    },
+    "T4c": {
+      "arxiv": 1,
+      "openalex": 50,
+      "s2": 0,
+      "arxiv_query": "abs:fidelity AND abs:\"shot noise\" AND abs:exponent",
+      "text_query": "measurement scheme changes shot complexity exponent fidelity"
+    },
+    "T5a": {
+      "arxiv": 3,
+      "openalex": 50,
+      "s2": 0,
+      "arxiv_query": "abs:\"cosine similarity\" AND abs:gradient AND cat:quant-ph",
+      "text_query": "cosine similarity estimated gradient shot noise variational quantum"
+    },
+    "T5b": {
+      "arxiv": 1,
+      "openalex": 50,
+      "s2": 0,
+      "arxiv_query": "abs:\"random walk\" AND abs:\"barren plateau\"",
+      "text_query": "random walk barren plateau shot noise gradient descent"
+    },
+    "cites:thanasilp2024": {
+      "openalex_citers": 131,
+      "openalex_id": "W4399770418"
+    },
+    "cites:aghaeisaem2026": {
+      "openalex_citers": 3,
+      "openalex_id": "W4416437554"
+    },
+    "cites:teo2023": {
+      "openalex_citers": 3,
+      "openalex_id": "W4366086631"
+    },
+    "cites:mari2021": {
+      "openalex_citers": 155,
+      "openalex_id": "W3049070297"
+    }
+  },
+  "supplemental_arxiv_queries": {
+    "S1": {
+      "query": "abs:\"destructive swap test\" AND abs:variance",
+      "n": 0
+    },
+    "S2": {
+      "query": "abs:\"overlap estimation\" AND abs:variance",
+      "n": 4
+    },
+    "S3": {
+      "query": "abs:\"inversion test\" AND abs:shots",
+      "n": 1
+    },
+    "S4": {
+      "query": "abs:\"swap test\" AND abs:\"barren plateau\"",
+      "n": 2
+    },
+    "S5": {
+      "query": "abs:\"parameter shift\" AND abs:fidelity AND abs:shots",
+      "n": 2
+    },
+    "S6": {
+      "query": "abs:\"relative gradient\" AND cat:quant-ph AND abs:shots",
+      "n": 0
+    },
+    "S7": {
+      "query": "abs:\"sign\" AND abs:\"parameter shift\" AND abs:\"shot noise\"",
+      "n": 0
+    },
+    "S8": {
+      "query": "abs:\"Hong-Ou-Mandel\" AND abs:\"overlap estimation\"",
+      "n": 0
+    },
+    "S9": {
+      "query": "abs:\"shot budget\" AND abs:\"swap test\"",
+      "n": 0
+    },
+    "S10": {
+      "query": "abs:\"measurement cost\" AND abs:fidelity AND abs:gradient AND cat:quant-ph",
+      "n": 0
+    }
+  },
+  "web_searches": [
+    "conditional probability correct sign nonzero finite-shot gradient estimate parameter shift barren plateau",
+    "SWAP test versus Loschmidt echo inversion test shot ratio gradient estimation barren plateau",
+    "probability parameter-shift gradient estimate exactly zero finite shots binomial Skellam",
+    "swap test inversion test compute-uncompute variance comparison fidelity estimation number of shots small overlap",
+    "\"swap test\" \"inversion test\" variance \"1-F^2\" \"F(1-F)\" fidelity estimator shots",
+    "measurement choice doubles exponent shot cost fidelity gradient swap test Loschmidt echo concentration"
+  ],
+  "unique_records_screened": 1060,
+  "direct_lookups": [
+    "arXiv id_list batch of 35 shortlisted records (titles/abstracts)",
+    "arXiv id_list of the principal-track \"Other papers\" citations (2104.05868, 2406.09780, 2605.01319, 2607.11095, 2510.22418)"
+  ]
+}

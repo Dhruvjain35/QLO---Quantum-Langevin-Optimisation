@@ -254,6 +254,12 @@ The version of record of paper B was also retrieved, and it matches arXiv v2. Su
 
 §16's second bullet (the published version of paper B) no longer applies.
 
+## 18. Closure audit (2026-10-05)
+
+The closure audit added three papers and a targeted search: Mari et al. 2021 (F), Miranskyy 2025 (G) and Zhan et al.
+2025 (H). It also added matrix rows 31–33 for the principal track's C5 statements and the general form of C2, and a
+line check of the principal track's prior-work pointers. Summary: [`B5_CLOSURE_AUDIT.md`](B5_CLOSURE_AUDIT.md).
+
 *AI assistance:* source acquisition, reading, extraction and cross-checking were done with Claude Code (including an
 independent read-only review pass). Every locator was verified against the local source files listed in
 `results/b5_prior_work/source_manifest.json`. The packet still needs review by the author and the principal

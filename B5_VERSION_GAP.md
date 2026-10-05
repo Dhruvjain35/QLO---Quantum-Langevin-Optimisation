@@ -145,4 +145,12 @@ Quantum publishes the arXiv version, so the reviewed text is the version of reco
   - Before Teo is cited with equation numbers, the PRA version should be checked through legitimate access (for
     example an institutional subscription).
 
+## 4. Closure-audit sources
+
+| Paper | Version reviewed | Version of record | Status |
+|---|---|---|---|
+| Mari, Bromley, Killoran, PRA 103, 012405 (2021) | arXiv:2008.06517v2 (2021-02-26), read in full | APS: DOI → link.aps.org returned HTTP 403 (2026-10-05), not bypassed; not open access. The open-access copy in the University of Camerino repository (IRIS, hdl:11581/475358, labelled post-print) is byte-identical to arXiv v2 (same sha256). | **Not resolved** for the APS version; locators are arXiv v2. v1 vs v2: same statistical-estimation section (Eqs. 43–50) |
+| Miranskyy, arXiv:2510.22418 (2025) | v1 (2025-10-25), the only version | None (arXiv record has no journal reference) | Preprint only |
+| Zhan et al., Light Sci. Appl. 14, 83 (2025) | Published PDF and published SI (MOESM1), via the DOI landing page (open access, CC BY 4.0) | Same | **Resolved**: the version of record was reviewed. Dates: received 2024-04-16, accepted 2025-01-10, published 2025-02-12. arXiv v1 (2024-06-10) already contains the cited statements |
+
 This document records version provenance for A1 and does not make the novelty decision.

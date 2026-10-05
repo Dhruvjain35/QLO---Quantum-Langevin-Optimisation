@@ -36,8 +36,14 @@ PAPERS = {"A": ("thanasilp2024", "Exponential concentration in quantum kernel me
           "B": ("aghaeisaem2026", "Pitfalls when tackling the exponential concentration of parameterized quantum models", 2026),
           "C": ("arrasmith2021", "Effect of barren plateaus on gradient-free optimization", 2021),
           "D": ("teo2023", "Optimized numerical gradient and Hessian estimation for variational quantum algorithms", 2023),
-          "E": ("gentinetta2024", "The complexity of quantum support vector machines", 2024)}
-MATRIX_PAPERS = ("A", "B", "C", "D", "E")      # order of the paper columns in the matrix table
+          "E": ("gentinetta2024", "The complexity of quantum support vector machines", 2024),
+          "F": ("mari2021", "Estimating the gradient and higher-order derivatives on quantum hardware", 2021),
+          "G": ("miranskyy2025", "The Cost of Certainty: Shot Budgets in Quantum Program Testing", 2025),
+          "H": ("zhan2025", "Experimental benchmarking of quantum state overlap estimation strategies with photonic systems",
+                2025)}
+MATRIX_PAPERS = tuple(PAPERS)                  # every paper has a column (part 1: A-E, part 2: F-H)
+HEADER_PAPERS = {"Thanasilp 2024": "A", "Aghaei Saem 2026": "B", "Arrasmith 2021": "C", "Teo 2023": "D",
+                 "Gentinetta 2024": "E", "Mari 2021": "F", "Miranskyy 2025": "G", "Zhan 2025": "H"}
 FIELDS = ("Paper", "Candidate", "Matrix rows", "Claim category", "Classification", "Section", "Subsection", "Equation",
           "Figure", "Appendix", "Page", "Source version", "Source URL", "Short quote", "Source statement (paraphrase)",
           "Mathematical expression", "Assumptions", "Scope", "Relation to Stage 7", "Does NOT establish")
@@ -46,7 +52,7 @@ CSV_COLUMNS = ("evidence_id", "paper_id", "paper_title", "year", "candidate_id",
                "paraphrase", "assumptions", "scope", "relation_to_stage7", "does_not_establish", "source_version",
                "source_url")
 EMPTY = {"", "—", "-"}
-ID_RE = r"[A-E]-[A-Za-z0-9]+"
+ID_RE = r"[A-H]-[A-Za-z0-9]+"
 
 # Local text extractions of the reviewed versions (git-ignored; checks run only where present).
 SOURCE_TEXTS = {
@@ -60,7 +66,15 @@ SOURCE_TEXTS = {
           "research_sources/b5_followup/teo_arxiv_2206.12643v3.txt"),
     "E": ("research_sources/b5_followup/gentinetta2024_quantum_raw.txt",
           "research_sources/b5_followup/gentinetta2024_quantum.txt"),
+    "F": ("research_sources/b5_closure/mari_arxiv_2008.06517v2_raw.txt",
+          "research_sources/b5_closure/mari_arxiv_2008.06517v2.txt",
+          "research_sources/b5_closure/mari_arxiv_2008.06517v2_tex/main.tex"),
+    "G": ("research_sources/b5_closure/miranskyy_arxiv_2510.22418v1_raw.txt",
+          "research_sources/b5_closure/miranskyy_arxiv_2510.22418v1.txt"),
+    "H": ("research_sources/b5_closure/zhan2025_lsa_raw.txt", "research_sources/b5_closure/zhan2025_lsa.txt",
+          "research_sources/b5_closure/zhan2025_lsa_SI_raw.txt", "research_sources/b5_closure/zhan2025_lsa_SI.txt"),
 }
+_PDF_GLYPHS = str.maketrans({"ð": "(", "Þ": ")", "¼": "="})
 _SUP = str.maketrans({"ⁿ": "n", "⁰": "0", "¹": "1", "²": "2", "³": "3", "⁴": "4", "ﬁ": "fi", "ﬂ": "fl", "ﬀ": "ff",
                       "ﬃ": "ffi", "ﬄ": "ffl"})
 
@@ -91,20 +105,34 @@ def candidates_of(rec: dict) -> list[str]:
 
 
 def parse_matrix(path: Path = MATRIX) -> list[dict]:
-    """Rows of the main table: number, claim, and per-paper (label, [linked ids], cell text)."""
-    rows = []
+    """Rows of the matrix tables, merged by row number: claim(s), notes and per-paper (label, [linked ids], cell).
+
+    The matrix is split into several tables (part 1: papers A-E; part 2: papers F-H). Each table starts with a header
+    row "| # | Candidate / claim | <paper column titles> | Notes |"; paper columns are identified by HEADER_PAPERS."""
+    rows: dict[str, dict] = {}
+    order: list[str] = []
+    cols: list | None = None
     for line in path.read_text(encoding="utf-8").splitlines():
-        if not re.match(r"^\|\s*\d+[ab]?\s*\|", line):
+        if re.match(r"^\|\s*#\s*\|", line):
+            header = [c.strip() for c in re.split(r"(?<!\\)\|", line.strip().strip("|"))]
+            cols = [HEADER_PAPERS.get(h, "notes" if h == "Notes" else None) for h in header]
+            continue
+        if cols is None or not re.match(r"^\|\s*\d+[ab]?\s*\|", line):
             continue
         cells = [c.strip() for c in re.split(r"(?<!\\)\|", line.strip().strip("|"))]
-        out = {"row": cells[0], "claim": cells[1], "notes": cells[2 + len(MATRIX_PAPERS)]
-               if len(cells) > 2 + len(MATRIX_PAPERS) else ""}
-        for i, key in enumerate(MATRIX_PAPERS):
-            cell = cells[2 + i] if len(cells) > 2 + i else ""
-            label = next((lab for lab in sorted(ALLOWED, key=len, reverse=True) if cell.startswith(lab)), None)
-            out[key] = (label, re.findall(r"\[(" + ID_RE + r")\]\(B5_EVIDENCE_LEDGER\.md#\1\)", cell), cell)
-        rows.append(out)
-    return rows
+        num = cells[0]
+        if num not in rows:
+            rows[num] = {"row": num, "claim": cells[1], "claims": [], "notes": []}
+            order.append(num)
+        out = rows[num]
+        out["claims"].append(cells[1])
+        for key, cell in zip(cols, cells):
+            if key == "notes":
+                out["notes"].append(cell)
+            elif key in PAPERS:
+                label = next((lab for lab in sorted(ALLOWED, key=len, reverse=True) if cell.startswith(lab)), None)
+                out[key] = (label, re.findall(r"\[(" + ID_RE + r")\]\(B5_EVIDENCE_LEDGER\.md#\1\)", cell), cell)
+    return [rows[k] for k in order]
 
 
 def ledger_to_rows(entries: dict[str, dict]) -> list[dict]:
@@ -147,7 +175,8 @@ def source_text(paper: str, root: Path = ROOT) -> str | None:
     """Concatenated local extractions for a paper, or None if no local copy is present."""
     parts = [(root / p).read_text(encoding="utf-8", errors="replace") for p in SOURCE_TEXTS.get(paper, ())
              if (root / p).exists()]
-    return "\n".join(parts) if parts else None
+    # Springer Nature PDFs extract "(" ")" "=" as "ð" "Þ" "¼"; map them back so equation labels can be matched.
+    return "\n".join(parts).translate(_PDF_GLYPHS) if parts else None
 
 
 def quote_of(rec: dict) -> str | None:
@@ -163,7 +192,7 @@ def equation_tokens(field: str | None) -> list[str]:
     """Equation labels such as 13, C1, B14 in an Equation field (range end points included)."""
     if not field or field.strip() in EMPTY:
         return []
-    return re.findall(r"\(([A-D]?\d{1,3})\)", field)
+    return re.findall(r"\(([A-DS]?\d{1,3})\)", field)
 
 
 def figure_tokens(field: str | None) -> list[str]:
