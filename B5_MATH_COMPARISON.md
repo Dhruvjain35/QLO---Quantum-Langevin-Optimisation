@@ -1,7 +1,8 @@
 # B5 mathematical comparison: Stage 7 formulas vs the two prior papers
 
 Purpose: place every Stage 7 formula beside what Thanasilp et al. 2024 (paper **A**) and Aghaei Saem et al. 2026
-(paper **B**, reviewed as arXiv:2507.22054v2) explicitly contain.
+(paper **B**, reviewed as arXiv:2507.22054v2) explicitly contain. §8, added in the follow-up audit, does the same for
+Teo 2023 (paper **D**, reviewed as arXiv:2206.12643v3; evidence ids D-xx).
 
 **This document does not decide novelty.** For each Stage 7 expression it records one of:
 - **exact prior-work match located**;
@@ -226,5 +227,83 @@ A states the assumption but does not connect it to the choice of readout.
     zero probability for Gram matrices (A).
   - Not located: cosine, norm-ratio, dot-sign and component-sign metrics, and matched-start comparisons with a
     zero-signal control on fidelity endpoints.
+
+## 8. Comparison with Teo 2023
+
+Source: Y. S. Teo, Phys. Rev. A 107, 042421 (2023), **reviewed as arXiv:2206.12643v3**. The APS version was not
+inspected (`B5_VERSION_GAP.md` §3). Full audit: [`B5_TEO_DEEP_AUDIT.md`](B5_TEO_DEEP_AUDIT.md). Teo's N_T is the
+total number of copies per gradient component per Pauli term; in Stage 7 units **N_T = 2M**. Algebra marked *(ours)* is
+not in the source.
+
+### 8.1 Stage 7 quantities beside Teo's estimator and MSE
+
+| Stage 7 quantity | Stage 7 expression | Teo 2023 (arXiv v3) | Status |
+|---|---|---|---|
+| Estimator | ĝ = (Ĉ₊ − Ĉ₋)/2 at shift π/2, independent batches of M shots | PS = [f(θ+s) − f(θ−s)]/(2 sin s) (Eq. 11, p. 5), with N_T/2 copies per shifted function (p. 4) | Same estimator family (s = π/2; f = F, so ĝ = −PS of F) |
+| Var(ĝ_SWAP) | [2 − F₊² − F₋²]/(4M) = [2 − A²(1+s²)/2]/(4M) | Per θ: not written; implied by Eq. (C1) for a ±1 observable: [2 − f₊² − f₋²]/(2N_T) at Teo's shift π/2, which equals the Stage 7 form with f = F± and N_T = 2M *(ours; checked numerically)*. Two-design average: d/(N_T(d+1) sin² s) (Eq. 13) | **PARTIAL / IMPLIED** per θ (D-03b); EXPLICIT as a two-design average (D-02) |
+| Var(ĝ_LE) | [F₊(1−F₊) + F₋(1−F₋)]/(4M) = [A − A²(1+s²)/2]/(4M) | No projector (0/1) readout; Pauli ±1 observables only | **Not located** (D-NL02) |
+| SNR², required M (SNR ≥ ρ) | LE: M = ρ²[1 − A(1+s²)/2]/(As²); SWAP: M = ρ²[2 − A²(1+s²)/2]/(A²s²) | No SNR. D_θ0 = ⟨max Var[f̂(θ±θ0)]/\|f(θ+θ0) − f(θ−θ0)\|²⟩ (Eq. 26) is a circuit-averaged inverse squared SNR of the shifted difference, with an O(1/N) numerator (±1 case) | Related but different (D-07a/b) |
+| P(ĝ = 0) | LE: Σ_r Bin(r;M,F₊)Bin(r;M,F₋); SWAP → C(2M,M)/4^M | None (moments only) | **Not located** (D-NL09) |
+| Exact law of ĝ | Difference of two independent binomials | Multinomial moments up to second order only (Eq. C1) | Related but different (D-03a) |
+| P_correct, P_wrong | Exact difference-of-binomials sums | Qualitative "many wrong update directions" (§VII, p. 11) | Related but different (D-08a) |
+| P(correct \| ĝ_LE ≠ 0) → (1+\|s\|)/2 | Single-count limit | None | **Not located** (D-NL13) |
+| Mean-square estimate vs gradient | SWAP ‖ĝ‖/‖g‖ median ≈ 10^4.5 (n = 12, M = 1024) | ⟨E[(PS)²]⟩ → 1/(2d) + 1/N_T (Eq. 18); ratio to ⟨(∂f)²⟩ = 1 + 2d/N_T *(ours)* | Related but different (D-04) |
+| Required-shot exponent | Median over θ: ≈ 4ⁿ (LE), ≈ 16ⁿ (SWAP) | N_* ≅ 32(d²−1)/(3d) (Eq. 24): an FD/PS crossover, base 2; D_θ0: "exponentially large", base not given | Related but different (D-06, D-07a); 4ⁿ/16ⁿ not located (D-NL17) |
+
+### 8.2 Can Teo plus added assumptions reproduce SWAP's 16ⁿ? Yes, but only with all of the following
+
+Starting point: Teo's Eq. (C1). The five-part write-out is in `B5_TEO_DEEP_AUDIT.md` §11.
+1. **Per-θ use of (C1).** Teo writes only circuit averages (Eq. C2). At fixed θ the ±1 identity gives
+   Var[f̂] = (1 − f²)/N.
+2. **SWAP readout as the ±1 observable.** The SWAP-test ancilla Z has mean F. Its circuit (2n + 1 qubits, parameters
+   still in Pauli rotations) fits Teo's PEPQC form, but not his two-design averages.
+3. **Shot convention.** N = M per shifted circuit, N_T = 2M, independent batches.
+4. **Product-landscape identities** F₊ + F₋ = A and F₊² + F₋² = A²(1+s²)/2 (Stage 5 Prop. 1). This gives Stage 7's
+   Var(ĝ_SWAP) exactly.
+5. **Per-θ criterion plus median over θ with the log-typical A.**
+   - SNR ≥ ρ gives M ≈ 2ρ²/(A²s²).
+   - With A_typ = 4^(−(n−1)) (Stage 5 Prop. 5), the median grows as 16^(n−1) (slope log₁₀16 = 1.204).
+   - Sign targets additionally need exact difference-of-binomial inversion, which no moment formula supplies.
+
+**Without step 5 the base differs** (B5_STATISTIC_COMPARISON.md §2):
+- Teo's own two-design average with a mean-square criterion gives N_T ≥ 2(d²−1)/d, i.e. M ≈ 2ⁿ.
+- Stage 7's landscape with a mean-square criterion gives M = 4(8/3)^(n−1) − 3/2.
+- Teo's average-of-ratio D_θ0 diverges on Stage 7's landscape (E_θ[1/A²] = ∞).
+
+So Teo supplies the SWAP-type per-shot variance structure, and the 16ⁿ comes from Stage 7's landscape and statistic.
+
+### 8.3 Can Teo plus added assumptions reproduce Loschmidt's 4ⁿ? Not from Teo's model
+
+- **The readout is outside the model.** Teo's observables are traceless Pauli strings with ±1 eigenvalues, each sampled
+  independently. Loschmidt's per-shot outcome is the 0/1 projector |0ⁿ⟩⟨0ⁿ| with variance F(1 − F).
+- **Term-by-term sampling gives a SWAP-like estimator.** Under Teo's prescription the projector, a sum of 2ⁿ Z-strings
+  with weight 2^(−n), would be estimated from 2ⁿ − 1 independently sampled settings. *(Ours:)* the resulting
+  per-total-copy variance is O(1), e.g. ≈ 0.92 at n = 6 for a random θ, against F(1 − F) ≈ 1.5×10⁻³ for the
+  single-setting Loschmidt estimate.
+- **Shared samples recover Loschmidt exactly.** Measuring all Z-strings on the same computational-basis shots gives
+  2^(−n) Σ_S Z_S(b) = 1[b = 0ⁿ], i.e. exactly the Loschmidt estimator. That is a different sampling scheme from Teo's
+  (compare Aghaei Saem's measure-first remark, B-12).
+- **The ±1 encoding is outside Teo's averaged results.** O′ = 2Π − 1 reproduces Var = F(1 − F) for F̂, but it is
+  neither a Pauli string nor traceless, so Teo's averaged results (e.g. ⟨f²⟩ = 1/(d+1)) do not apply. Teo does not
+  consider it.
+- **Structural reason (ours).**
+  - Traceless observables concentrate at the centre of their spectrum under two-design averaging, where the ±1 variance
+    is ≈ 1: the SWAP regime.
+  - The projector concentrates at the edge of its spectrum (F ≈ 0), where the variance is ≈ F.
+  - Teo's "numerator approaches O(1/N)" (p. 11) is the former case.
+- **4ⁿ therefore needs the projector variance from another source:** Aghaei Saem's Var^(LE) = F(1 − F) (B-10a) or
+  Gentinetta's Bernoulli kernel variance (E-02). It then needs steps 3–5 of §8.2 with M ≈ ρ²/(As²), so the median
+  grows as 4^(n−1).
+
+### 8.4 What Teo adds to the comparison
+
+- **Located in Teo:**
+  - an analytic, circuit-averaged MSE for finite-copy PS gradients (EXPLICIT; D-02);
+  - the statement that PS errors do not shrink with n at fixed copies (D-04);
+  - an exponential copy requirement for distinguishing shifted values, D_θ0 (D-07a);
+  - a qualitative wrong-direction remark (D-08a).
+- **Implied only:** Stage 7's per-θ SWAP variance and its 16ⁿ median, after steps 1–5 (D-03b).
+- **Not located:** the Loschmidt variance and 4ⁿ, any readout comparison, exact zero/sign probabilities, the conditional
+  sign law and the explicit 4ⁿ/16ⁿ pair (D-NL02, D-NL09, D-NL13, D-NL17).
 
 This document is evidence for the principal novelty audit. It does not make the novelty decision.

@@ -238,6 +238,22 @@ Only works the two sources cite near candidate-relevant claims (B5_FOLLOWUP_SOUR
 - Whether the implied algebra in MATH_COMPARISON §6 would be regarded as an obvious consequence or as a substantive
   step. That judgment belongs to A1.
 
+## 17. Follow-up audit (2026-10-04)
+
+The three HIGH-priority follow-up sources were reviewed in a targeted follow-up audit on this branch:
+- Arrasmith 2021;
+- Teo 2023 (as arXiv v3);
+- Gentinetta 2024.
+
+The version of record of paper B was also retrieved, and it matches arXiv v2. Summary:
+[`B5_FOLLOWUP_AUDIT.md`](B5_FOLLOWUP_AUDIT.md). Detail files:
+- `B5_TEO_DEEP_AUDIT.md`, `B5_ARRASMITH_AUDIT.md`, `B5_GENTINETTA_AUDIT.md`;
+- `B5_STATISTIC_COMPARISON.md`, `B5_SHOT_CONVENTIONS.md`, `B5_VERSION_GAP.md`;
+- ledger entries C-xx, D-xx, E-xx and the row 29–30 entries; matrix columns for the three papers;
+- `B5_MATH_COMPARISON.md` §8; `B5_POTENTIAL_ISSUES.md` PI-4 and PI-5.
+
+§16's second bullet (the published version of paper B) no longer applies.
+
 *AI assistance:* source acquisition, reading, extraction and cross-checking were done with Claude Code (including an
 independent read-only review pass). Every locator was verified against the local source files listed in
 `results/b5_prior_work/source_manifest.json`. The packet still needs review by the author and the principal
