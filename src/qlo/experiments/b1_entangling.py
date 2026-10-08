@@ -347,13 +347,14 @@ def load_cell(work: Path, family: str, regime: str, n: int, seed: int) -> dict:
     return {"positions": pos, **{k: z[k] for k in z.files if k.endswith(("_F_plus", "_F_minus"))}}
 
 
-def entangling_tables(cfg, work: Path) -> tuple[pd.DataFrame, pd.DataFrame]:
-    """(sample_summary rows, identity rows) for every (family, regime, n, seed, position)."""
-    rows, ident = [], []
+def entangling_tables(cfg, work: Path) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
+    """(sample_summary rows per seed, identity rows, pooled-over-seeds diagnostics) for every (family, regime, n, position)."""
+    rows, ident, pooled = [], [], []
     for fam in cfg.families:
         for reg in cfg.regimes:
             for n in cfg.n_grid(reg):
                 depth = CF.depth_of(reg, n)
+                acc = {}
                 for sd in cfg.seeds:
                     cell = load_cell(work, fam, reg, n, sd)
                     for label, p in cell["positions"].items():
@@ -362,7 +363,14 @@ def entangling_tables(cfg, work: Path) -> tuple[pd.DataFrame, pd.DataFrame]:
                                 "gate": f"R{C.AXES[fam][p[2]]}", "n": n, "seed": sd}
                         rows.append({**meta, **Q.cell_diagnostics(q, cfg.audit_zero_tol_r)})
                         ident.append({**meta, **Q.identity_check(q)})
-    return pd.DataFrame(rows), pd.DataFrame(ident)
+                        a = acc.setdefault(label, {"meta": meta, "fp": [], "fm": []})
+                        a["fp"].append(cell[f"{label}_F_plus"])
+                        a["fm"].append(cell[f"{label}_F_minus"])
+                for label, a in acc.items():
+                    q = Q.per_theta(np.concatenate(a["fp"]), np.concatenate(a["fm"]), cfg.rho)
+                    meta = {k: v for k, v in a["meta"].items() if k != "seed"}
+                    pooled.append({**meta, "seeds_pooled": len(a["fp"]), **Q.cell_diagnostics(q, cfg.audit_zero_tol_r)})
+    return pd.DataFrame(rows), pd.DataFrame(ident), pd.DataFrame(pooled)
 
 
 def ranges_for(cfg):
@@ -431,7 +439,8 @@ def position_table(fits: pd.DataFrame, summ: pd.DataFrame, main: pd.DataFrame, c
                          "b_S_mean": m.loc[p, "b_S"], "b_r_over_b_S": sb["mean"] / m.loc[p, "b_S"], "b_r_approximately_zero": bool(approx0),
                          "b_r_minus_EARLY_mean": d["mean"] if d else 0.0, "b_r_minus_EARLY_ci_lo": d["boot_lo"] if d else float("nan"),
                          "b_r_minus_EARLY_ci_hi": d["boot_hi"] if d else float("nan"),
-                         "eps_gap_mean": m.loc[p, "eps_gap"], "eps_gap_ci_contains_0": bool(m.loc[p, "gap_ci_contains_0"]),
+                         "eps_gap_mean": m.loc[p, "eps_gap"], "eps_gap_ci_lo": m.loc[p, "eps_gap_ci_lo"], "eps_gap_ci_hi": m.loc[p, "eps_gap_ci_hi"],
+                         "eps_gap_ci_contains_0": bool(m.loc[p, "gap_ci_contains_0"]),
                          "rule_check": m.loc[p, "rule_check"], "concentration": m.loc[p, "concentration"],
                          "ratio_obs": m.loc[p, "ratio_obs"], "ratio_pred": m.loc[p, "ratio_pred"],
                          "doubling_test_eligible": bool(m.loc[p, "doubling_test_eligible"]), "ratio_consistent_with_2": m.loc[p, "ratio_consistent_with_2"],
@@ -444,7 +453,7 @@ def position_table(fits: pd.DataFrame, summ: pd.DataFrame, main: pd.DataFrame, c
         elif all0:
             outcome = "A (b_r approximately zero at every tested position)"
         else:
-            outcome = "B (b_r > 0 at some position; general rule holds, doubling does not)"
+            outcome = "B (b_r not approximately zero at some position; general rule holds, doubling does not)"
         for r in sub:
             r["section22_outcome"] = outcome
     return pd.DataFrame(rows)
@@ -484,11 +493,38 @@ def theta_bootstrap(cfg, work: Path, seed_fits_df: pd.DataFrame) -> pd.DataFrame
     return pd.DataFrame(rows)
 
 
+def posthoc_gap_decomposition(med: pd.DataFrame, cfg) -> pd.DataFrame:
+    """POST-HOC (added after the results, labelled as such). eps_gap splits exactly into
+        A = slope(median log10 R) - b_S          (O(S) term: median log10 R = log10 2 - median log10 S + O(S), exactly by
+                                                   monotonicity, so A -> 0 as S -> 0)
+        D = slope(median log10 M_SWAP - median log10 M_LE - median log10 R)   (non-additivity of medians)
+    with eps_gap = A + D per seed."""
+    m = med.assign(defect=med.median_log10_M_SWAP - med.median_log10_M_LE - med.median_log10_R)
+    rows = []
+    for (fam, reg, pos), g in m.groupby(["family", "regime", "position"], sort=False):
+        for rname, n_range in ranges_for(cfg)((fam, reg)).items():
+            per = []
+            for _, gs in g.groupby("seed", sort=True):
+                d = gs.set_index("n").loc[list(n_range)]
+                x = d.index.values.astype(float)
+                bS = -FT.linear_fit(x, d.median_log10_S.values)["slope"]
+                A = FT.linear_fit(x, d.median_log10_R.values)["slope"] - bS
+                D = FT.linear_fit(x, d.defect.values)["slope"]
+                per.append((A, D, A + D))
+            per = np.array(per)
+            for k, name in enumerate(("A_medlogR_slope_minus_bS", "D_median_nonadditivity_slope", "A_plus_D_equals_eps_gap")):
+                s = IV.summarize(per[:, k], cfg.n_boot_seed, cfg.boot_seed)
+                rows.append({"family": fam, "regime": reg, "position": pos, "fit_range": rname, "component": name,
+                             **{k2: s[k2] for k2 in ("mean", "sd", "pct_lo", "pct_hi", "boot_lo", "boot_hi")}})
+    return pd.DataFrame(rows)
+
+
 def phase_analyse(cfg, out: Path, work: Path, log: Log) -> None:
     from qlo.b1 import figures as FG
 
     t0 = time.time()
-    ent, ident = entangling_tables(cfg, work)
+    ent, ident, pooled = entangling_tables(cfg, work)
+    pooled.to_csv(out / "cell_diagnostics_pooled.csv", index=False)
     rx_med = pd.read_csv(work / "rx_sample_summary.csv")
     rx_ident = pd.read_csv(work / "rx_identity.csv")
     med = pd.concat([rx_med, ent], ignore_index=True)       # RX-only columns (B3 ceil convention) are empty for entangling rows
@@ -519,6 +555,7 @@ def phase_analyse(cfg, out: Path, work: Path, log: Log) -> None:
     residual_table(summ, main, cfg).to_csv(out / "prediction_residuals.csv", index=False)
     pos = position_table(fits, summ, main, cfg)
     pos.to_csv(out / "parameter_position_summary.csv", index=False)
+    posthoc_gap_decomposition(med, cfg).to_csv(out / "posthoc_gap_decomposition.csv", index=False)
     tb = theta_bootstrap(cfg, work, fits)
     tb.to_csv(out / "theta_bootstrap_subset.csv", index=False)
     log(f"analyse: {len(fits)} seed fits, {len(main)} cells x ranges ({time.time() - t0:.0f}s)")

@@ -30,7 +30,8 @@ import numpy as np
 FAMILIES = ("hea_ring", "rxry_czbrick")
 AXES = {"hea_ring": ("Y", "Z"), "rxry_czbrick": ("X", "Y")}      # rotation axis of theta[l,q,0], theta[l,q,1]
 FAMILY_LABEL = {"hea_ring": "repo HEA (RY,RZ + CNOT ring)", "rxry_czbrick": "RX,RY + CZ brickwork (B1 fallback)"}
-MAX_STATE_ELEMENTS = 1 << 22                                       # rows x 2^n per state array (64 MiB complex128)
+MAX_STATE_ELEMENTS = 1 << 20                                       # rows x 2^n per state array (16 MiB complex128)
+FUSE_QUBITS = 4      # rotations of up to 4 neighbouring qubits are applied as one 16x16 matrix per row (one BLAS pass)
 
 
 def batch_rows(n: int, max_elements: int = MAX_STATE_ELEMENTS) -> int:
@@ -66,6 +67,37 @@ def apply_1q(psi: np.ndarray, n: int, q: int, u: np.ndarray) -> np.ndarray:
     new0 = u[:, 0, 0] * a0 + u[:, 0, 1] * a1
     v[:, :, 1, :] = u[:, 1, 0] * a0 + u[:, 1, 1] * a1
     v[:, :, 0, :] = new0
+    return psi
+
+
+def kron_rows(mats) -> np.ndarray:
+    """Row-wise Kronecker product of per-row 2x2 matrices (first factor = most significant qubit)."""
+    k = mats[0]
+    for m in mats[1:]:
+        rows, a, b = k.shape[0], k.shape[1], m.shape[1]
+        k = np.einsum("rij,rkl->rikjl", k, m).reshape(rows, a * b, a * b)
+    return k
+
+
+def apply_block(psi: np.ndarray, n: int, q0: int, k: np.ndarray) -> np.ndarray:
+    """psi (B, 2^n) <- K psi with K (B, 2^m, 2^m) acting on qubits q0..q0+m-1 (returns a new array)."""
+    rows, dim = psi.shape[0], k.shape[1]
+    rest = psi.shape[1] // ((1 << q0) * dim)
+    if rest == 1:
+        return np.matmul(psi.reshape(rows, 1 << q0, dim), np.swapaxes(k, 1, 2)).reshape(rows, -1)
+    return np.matmul(k[:, None], psi.reshape(rows, 1 << q0, dim, rest)).reshape(rows, -1)
+
+
+def apply_rotations(psi: np.ndarray, n: int, mats, first: int = 0, fuse: int = FUSE_QUBITS) -> np.ndarray:
+    """psi <- (product over q >= first of mats[q] on qubit q) psi, mats[q] of shape (B, 2, 2).
+
+    ``fuse`` > 1 applies blocks of up to ``fuse`` neighbouring qubits as one Kronecker matrix (much less memory
+    traffic); ``fuse`` = 1 is the per-qubit reference path (``apply_1q``), kept for validation."""
+    q = first
+    while q < n:
+        m = min(fuse, n - q)
+        psi = apply_1q(psi, n, q, mats[q]) if m == 1 else apply_block(psi, n, q, kron_rows(mats[q:q + m]))
+        q += m
     return psi
 
 
@@ -134,12 +166,20 @@ def _layer_unitaries(theta: np.ndarray, family: str, layer: int, q: int) -> tupl
     return rotation(ax0, theta[:, layer, q, 0]), rotation(ax1, theta[:, layer, q, 1])
 
 
-def forward(theta: np.ndarray, family: str, n: int, depth: int, save=(), insert=None):
+def _layer_mats(theta: np.ndarray, family: str, layer: int, n: int, dag: bool = False) -> list:
+    out = []
+    for q in range(n):
+        r0, r1 = _layer_unitaries(theta, family, layer, q)
+        out.append(dagger(r1 @ r0) if dag else r1 @ r0)
+    return out
+
+
+def forward(theta: np.ndarray, family: str, n: int, depth: int, save=(), insert=None, fuse: int = FUSE_QUBITS):
     """Final state for theta (B, depth, n, 2), plus {position: state just before that gate} for ``save``.
 
     Positions are (layer, 0, j). ``insert`` = a position after whose gate the generator P is applied (used only for
     the analytic derivative). Within a layer the qubit-0 gates are applied after the other qubits' rotations, which
-    commute with them."""
+    commute with them. ``fuse`` = 1 selects the per-qubit reference path."""
     theta = np.asarray(theta, dtype=np.float64)
     if theta.shape[1:] != (depth, n, 2):
         raise ValueError(f"theta shape {theta.shape[1:]} != {(depth, n, 2)}")
@@ -150,10 +190,9 @@ def forward(theta: np.ndarray, family: str, n: int, depth: int, save=(), insert=
     saved = {}
     axes = AXES[family]
     for layer in range(depth):
-        for q in range(1, n):
-            r0, r1 = _layer_unitaries(theta, family, layer, q)
-            apply_1q(psi, n, q, r1 @ r0)
+        mats = _layer_mats(theta, family, layer, n)
         if layer in special:
+            psi = apply_rotations(psi, n, mats, first=1, fuse=fuse)
             for j in (0, 1):
                 if (layer, 0, j) in save:
                     saved[(layer, 0, j)] = psi.copy()
@@ -161,8 +200,7 @@ def forward(theta: np.ndarray, family: str, n: int, depth: int, save=(), insert=
                 if insert == (layer, 0, j):
                     apply_pauli0(psi, n, axes[j])
         else:
-            r0, r1 = _layer_unitaries(theta, family, layer, 0)
-            apply_1q(psi, n, 0, r1 @ r0)
+            psi = apply_rotations(psi, n, mats, first=0, fuse=fuse)
         psi = entangle(psi, family, n, layer)
     return psi, saved
 
@@ -179,10 +217,10 @@ def _bracket(b: np.ndarray, a: np.ndarray, n: int, axis: str) -> tuple[np.ndarra
     return alpha, beta
 
 
-def brackets(theta: np.ndarray, family: str, n: int, depth: int, positions) -> tuple[np.ndarray, dict]:
+def brackets(theta: np.ndarray, family: str, n: int, depth: int, positions, fuse: int = FUSE_QUBITS) -> tuple[np.ndarray, dict]:
     """(<0^n|U(theta)|0^n>, {position: (alpha, beta)}) from one forward and one backward pass."""
     positions = set(positions)
-    psi, saved = forward(theta, family, n, depth, save=positions)
+    psi, saved = forward(theta, family, n, depth, save=positions, fuse=fuse)
     amp = psi[:, 0].copy()
     del psi
     axes = AXES[family]
@@ -197,13 +235,10 @@ def brackets(theta: np.ndarray, family: str, n: int, depth: int, positions) -> t
                 if (layer, 0, j) in positions:
                     out[(layer, 0, j)] = _bracket(phi, saved.pop((layer, 0, j)), n, axes[j])
                 apply_1q(phi, n, 0, dagger(rotation(axes[j], theta[:, layer, 0, j])))
+            if layer > lmin:
+                phi = apply_rotations(phi, n, _layer_mats(theta, family, layer, n, dag=True), first=1, fuse=fuse)
         else:
-            r0, r1 = _layer_unitaries(theta, family, layer, 0)
-            apply_1q(phi, n, 0, dagger(r1 @ r0))
-        if layer > lmin:
-            for q in range(1, n):
-                r0, r1 = _layer_unitaries(theta, family, layer, q)
-                apply_1q(phi, n, q, dagger(r1 @ r0))
+            phi = apply_rotations(phi, n, _layer_mats(theta, family, layer, n, dag=True), first=0, fuse=fuse)
     return amp, out
 
 
@@ -214,9 +249,9 @@ def fidelity_from_brackets(alpha: np.ndarray, beta: np.ndarray, x) -> np.ndarray
     return amp.real**2 + amp.imag**2
 
 
-def shifted_fidelities(theta: np.ndarray, family: str, n: int, depth: int, positions) -> tuple[np.ndarray, dict]:
+def shifted_fidelities(theta: np.ndarray, family: str, n: int, depth: int, positions, fuse: int = FUSE_QUBITS) -> tuple[np.ndarray, dict]:
     """F(theta) from the forward pass and, per position, (x, F_plus, F_minus, F(theta) rebuilt from the brackets)."""
-    amp, br = brackets(theta, family, n, depth, positions)
+    amp, br = brackets(theta, family, n, depth, positions, fuse=fuse)
     out = {}
     for p, (alpha, beta) in br.items():
         x = theta[:, p[0], p[1], p[2]]
@@ -226,16 +261,16 @@ def shifted_fidelities(theta: np.ndarray, family: str, n: int, depth: int, posit
     return amp.real**2 + amp.imag**2, out
 
 
-def fidelity(theta: np.ndarray, family: str, n: int, depth: int) -> np.ndarray:
+def fidelity(theta: np.ndarray, family: str, n: int, depth: int, fuse: int = FUSE_QUBITS) -> np.ndarray:
     """F(theta) = |<0^n|U(theta)|0^n>|^2 by plain forward simulation (no brackets)."""
-    amp = forward(theta, family, n, depth)[0][:, 0]
+    amp = forward(theta, family, n, depth, fuse=fuse)[0][:, 0]
     return amp.real**2 + amp.imag**2
 
 
-def analytic_cost_gradient(theta: np.ndarray, family: str, n: int, depth: int, position) -> np.ndarray:
+def analytic_cost_gradient(theta: np.ndarray, family: str, n: int, depth: int, position, fuse: int = FUSE_QUBITS) -> np.ndarray:
     """dC/dx = -dF/dx at ``position`` WITHOUT the shift rule: dR/dx = (-i/2) P R(x), so
     d<0|U|0>/dx = (-i/2) <0|U_after P R(x) U_before|0> (generator inserted after the gate)."""
-    amp = forward(theta, family, n, depth)[0][:, 0]
-    amp_p = forward(theta, family, n, depth, insert=tuple(position))[0][:, 0]
+    amp = forward(theta, family, n, depth, fuse=fuse)[0][:, 0]
+    amp_p = forward(theta, family, n, depth, insert=tuple(position), fuse=fuse)[0][:, 0]
     dF = 2.0 * np.real(np.conj(amp) * (-0.5j) * amp_p)
     return -dF

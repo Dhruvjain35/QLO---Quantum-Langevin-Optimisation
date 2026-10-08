@@ -140,6 +140,11 @@ def gap_test(main, fits, path: Path) -> Path:
         xs += list(g.b_S) + list(g.gap_obs)
     lo, hi = min(xs), max(xs)
     ax.plot([lo, hi], [lo, hi], "k-", lw=0.8, label="b_SWAP - b_LE = b_S")
+    for fam, mk in FAM_MARK.items():
+        ax.plot([], [], mk, color="0.3", label=FAM_SHORT[fam])
+    for p, c in POS_COLOR.items():
+        if p != "k=0":
+            ax.plot([], [], "s", color=c, label=p)
     ax.set_xlabel("b_S")
     ax.set_ylabel("b_SWAP - b_LE")
     ax.set_title("Gap rule (primary range; dots = seeds)", fontsize=10)
@@ -178,13 +183,10 @@ def parameter_position_effect(pos: pd.DataFrame, path: Path) -> Path:
     fig, axes = plt.subplots(2, len(groups), figsize=(2.6 * len(groups), 5.6), sharey="row", squeeze=False)
     for j, ((fam, reg), g) in enumerate(groups):
         x = np.arange(len(g))
-        for i, (col, lo, hi, ylab) in enumerate((("b_r_mean", "b_r_ci_lo", "b_r_ci_hi", "b_r"),
-                                                  ("eps_gap_mean", None, None, "eps_gap"))):
+        for i, (col, lo, hi, ylab, c) in enumerate((("b_r_mean", "b_r_ci_lo", "b_r_ci_hi", "b_r", "C0"),
+                                                     ("eps_gap_mean", "eps_gap_ci_lo", "eps_gap_ci_hi", "eps_gap", "C3"))):
             ax = axes[i, j]
-            if lo:
-                ax.errorbar(x, g[col], yerr=[g[col] - g[lo], g[hi] - g[col]], fmt="o", color="C0", capsize=3)
-            else:
-                ax.plot(x, g[col], "o", color="C3")
+            ax.errorbar(x, g[col], yerr=[g[col] - g[lo], g[hi] - g[col]], fmt="o", color=c, capsize=3)
             ax.axhline(0.0, color="0.5", lw=0.8)
             ax.set_xticks(x)
             ax.set_xticklabels(g.position, fontsize=7)
@@ -192,7 +194,7 @@ def parameter_position_effect(pos: pd.DataFrame, path: Path) -> Path:
                 ax.set_ylabel(ylab)
             if i == 0:
                 ax.set_title(f"{FAM_SHORT[fam]} {reg}", fontsize=9)
-    fig.suptitle("Parameter position: b_r (bootstrap 95% CI) and eps_gap seed mean (primary range)", fontsize=10)
+    fig.suptitle("Parameter position: b_r and eps_gap, seed mean with bootstrap 95% CI (primary range)", fontsize=10)
     return _save(fig, path, plt)
 
 
