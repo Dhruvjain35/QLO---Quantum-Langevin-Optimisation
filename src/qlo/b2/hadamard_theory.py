@@ -71,15 +71,22 @@ def s_pmf(q: float, M: int) -> tuple[np.ndarray, np.ndarray]:
     return 2 * k - M, binom.pmf(k, M, (1.0 + q) / 2.0)
 
 
+def _square_pmf(q: float, M: int) -> tuple[np.ndarray, np.ndarray]:
+    """Distinct values of S^2 (S = 2K - M) and their probabilities."""
+    s, p = s_pmf(q, M)
+    sq = s.astype(np.int64) ** 2
+    vals, inv = np.unique(sq, return_inverse=True)
+    return vals, np.bincount(inv, weights=p)
+
+
 def t_pmf(x: float, y: float, M: int) -> tuple[np.ndarray, np.ndarray]:
-    """Exact pmf of T = S_x^2 + S_y^2 (integer lattice); F_hat = (T - 2M) / [M (M - 1)]."""
-    sx, px = s_pmf(x, M)
-    sy, py = s_pmf(y, M)
-    tx = np.bincount(sx**2, weights=px)
-    ty = np.bincount(sy**2, weights=py)
-    t = np.convolve(tx, ty)
-    support = np.nonzero(t > 0)[0]
-    return support, t[support]
+    """Exact pmf of T = S_x^2 + S_y^2 (sparse: only reachable lattice points); F_hat = (T - 2M) / [M (M - 1)]."""
+    vx, px = _square_pmf(x, M)
+    vy, py = _square_pmf(y, M)
+    t = (vx[:, None] + vy[None, :]).ravel()
+    w = (px[:, None] * py[None, :]).ravel()
+    vals, inv = np.unique(t, return_inverse=True)
+    return vals, np.bincount(inv, weights=w)
 
 
 def f_ht_pmf(x: float, y: float, M: int) -> tuple[np.ndarray, np.ndarray]:

@@ -1,0 +1,5 @@
+estimator,measures,state_copies_per_shot,qubits_per_shot,needs,entangling_ops_added,executions_per_gradient,unbiased_for_F,var_F_hat,deep_F_var,relative_depth
+loschmidt,projector |0^n><0^n| after V^dagger U,1,n,target inverse V^dagger,none beyond V^dagger U,2M (M per shift),True,F(1-F)/M,~F/M (vanishes with the signal),U then V^dagger
+swap_ancilla,"ancilla Z after H, CSWAP x n, H",2,2n+1,two copies + ancilla,n controlled-SWAPs (3-qubit gates),2M (M per shift),True,(1-F^2)/M,~1/M (does not vanish),deepest: n Fredkin gates
+swap_destructive,Bell-basis measurement of every copy pair; Z = prod (-1)^(a_i b_i),2,2n,"two copies, no ancilla","n CNOTs (one per pair) + n H, depth 2",2M (M per shift),True,(1-F^2)/M,~1/M (identical to ancilla SWAP),shallow: constant depth 2 after state preparation
+hadamard_u,"ancilla Z after H, controlled-(V^dagger U), [S^dagger], H; real and imaginary quadratures",1,n+1,coherent controlled-(V^dagger U),every gate of V^dagger U controlled by the ancilla,4M (M per quadrature per shift),True,[2(1-x^4)+4(M-2)x^2(1-x^2)]/[M(M-1)] + same in y,~4/M^2 + 4F/M,deepest per circuit: controlled version of every gate
