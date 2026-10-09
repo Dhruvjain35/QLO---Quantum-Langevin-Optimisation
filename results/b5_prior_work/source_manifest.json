@@ -1,0 +1,549 @@
+{
+  "purpose": "B5 prior-work extraction: reproducible record of the sources reviewed. Local copies live under research_sources/b5/, research_sources/b5_followup/ and research_sources/b5_closure/ (git-ignored; copyrighted files are never committed).",
+  "retrieved_utc": "2026-10-04",
+  "papers": [
+    {
+      "paper_id": "thanasilp2024",
+      "evidence_prefix": "A",
+      "title": "Exponential concentration in quantum kernel methods",
+      "authors": [
+        "Supanut Thanasilp",
+        "Samson Wang",
+        "M. Cerezo",
+        "Zoë Holmes"
+      ],
+      "journal": "Nature Communications",
+      "volume": "15",
+      "article_number": "5200",
+      "year": 2024,
+      "doi": "10.1038/s41467-024-49287-w",
+      "arxiv_id": "2208.11060",
+      "license": "CC BY 4.0 (Crossref license metadata)",
+      "publication_date": "2024-06-18",
+      "version_reviewed": "Published version (Nat. Commun. 15, 5200; online 2024-06-18) and the published Supplementary Information (41467_2024_49287_MOESM1_ESM.pdf). arXiv versions were not used.",
+      "published_version_inspected": true,
+      "review_completed": true,
+      "review_scope": "Main text pp. 1-13 and Supplementary Information pp. 1-51 read in full (pages viewed and extracted text searched).",
+      "metadata_sources": [
+        "https://api.crossref.org/works/10.1038/s41467-024-49287-w",
+        "https://api.openalex.org/works/doi:10.1038/s41467-024-49287-w"
+      ],
+      "files": [
+        {
+          "role": "published article PDF",
+          "download_source": "https://www.nature.com/articles/s41467-024-49287-w.pdf",
+          "local_filename": "research_sources/b5/thanasilp2024_natcommun.pdf",
+          "sha256": "56116b3f1004709a7ea330e64f89f50f54dc8d1e513ec1ee15f09e56a70dd61c",
+          "bytes": 1841877
+        },
+        {
+          "role": "published Supplementary Information PDF",
+          "download_source": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-024-49287-w/MediaObjects/41467_2024_49287_MOESM1_ESM.pdf",
+          "local_filename": "research_sources/b5/thanasilp2024_SI.pdf",
+          "sha256": "37692256ed1e8b181bd56eefc08d8f716abd52bb059079fe0bcf2b7e0ebf4183",
+          "bytes": 1964687
+        }
+      ]
+    },
+    {
+      "paper_id": "aghaeisaem2026",
+      "evidence_prefix": "B",
+      "title": "Pitfalls when tackling the exponential concentration of parameterized quantum models",
+      "authors": [
+        "Reyhaneh Aghaei Saem",
+        "Behrang Tafreshi",
+        "Zoë Holmes",
+        "Supanut Thanasilp"
+      ],
+      "journal": "Quantum Science and Technology",
+      "volume": "11",
+      "article_number": "015049",
+      "year": 2026,
+      "doi": "10.1088/2058-9565/ae2202",
+      "arxiv_id": "2507.22054",
+      "license": "CC BY 4.0 (Crossref license metadata)",
+      "publication_date": "2026-01-30 (online; print issue 2026-03-01 per Crossref)",
+      "version_reviewed": "arXiv:2507.22054v2 (dated 2026-06-04), read in full from the PDF and LaTeX source. Compared against arXiv:2507.22054v1 (2025-07-29). The published IOP version of record was NOT inspected.",
+      "published_version_inspected": true,
+      "published_version_access_note_initial_round": "All IOP URLs (article page, /pdf, legacy /2058-9565/11/1/015049/pdf, doi.org redirect) returned a Radware bot-manager captcha page to scripted requests on 2026-10-04; the Chrome extension was not connected; OpenAlex lists no repository copy of the published version; no Wayback snapshot.",
+      "published_version_access_note": "Follow-up audit (2026-10-04): one plain request to https://doi.org/10.1088/2058-9565/ae2202 was served the IOPscience article page with the open-access full text (no challenge was presented or solved), and one plain request to its citation_pdf_url served the version-of-record PDF (CC BY 4.0). The PDF carries a per-download stamp, so its sha256 is specific to this download.",
+      "review_completed": true,
+      "review_scope": "arXiv v2 main text and Appendices A-D (27 pp.) read in full, including the LaTeX source; v1 compared by paragraph-level diff of the LaTeX sources and by numbering in the PDF.",
+      "metadata_sources": [
+        "https://api.crossref.org/works/10.1088/2058-9565/ae2202",
+        "https://api.openalex.org/works/doi:10.1088/2058-9565/ae2202",
+        "https://api.semanticscholar.org/graph/v1/paper/DOI:10.1088/2058-9565/ae2202",
+        "https://arxiv.org/abs/2507.22054",
+        "https://export.arxiv.org/api/query?id_list=2507.22054",
+        "https://infoscience.epfl.ch/search?q=%22Pitfalls%20when%20tackling%20the%20exponential%20concentration%22"
+      ],
+      "files": [
+        {
+          "role": "arXiv v2 PDF (primary reviewed version)",
+          "download_source": "https://arxiv.org/pdf/2507.22054v2",
+          "local_filename": "research_sources/b5/aghaeisaem_arxiv_2507.22054v2.pdf",
+          "sha256": "aaf31f78a0468a4e0badc875d0697231a209d68cb0e92d9b3d04238d379b1d7b",
+          "bytes": 2992929
+        },
+        {
+          "role": "arXiv v2 source tarball",
+          "download_source": "https://arxiv.org/e-print/2507.22054v2",
+          "local_filename": "research_sources/b5/aghaeisaem_arxiv_2507.22054v2_src.tar",
+          "sha256": "340df26dc5a66cf0b06dcc8dc769862047069bd55740ff92354808fda84ec4eb",
+          "bytes": 2151521
+        },
+        {
+          "role": "arXiv v1 PDF (version comparison)",
+          "download_source": "https://arxiv.org/pdf/2507.22054v1",
+          "local_filename": "research_sources/b5/aghaeisaem_arxiv_2507.22054v1.pdf",
+          "sha256": "13f70a7eee465f48a95783ebd7bcc8061f79e433e71b51c7721626c13716d519",
+          "bytes": 2894720
+        },
+        {
+          "role": "arXiv v1 source tarball (version comparison)",
+          "download_source": "https://arxiv.org/e-print/2507.22054v1",
+          "local_filename": "research_sources/b5/aghaeisaem_arxiv_2507.22054v1_src.tar",
+          "sha256": "82ce1592b4121537a42978fef29ec947706ce53ccb9968011b755c12e2c6ea3e",
+          "bytes": 2072047
+        },
+        {
+          "role": "version-of-record PDF (follow-up audit)",
+          "download_source": "https://iopscience.iop.org/article/10.1088/2058-9565/ae2202/pdf",
+          "local_filename": "research_sources/b5_followup/version_gap/aghaeisaem2026_qst_vor.pdf",
+          "sha256": "bd028b3adf0479d1bca5036d56f1d58533db18ff71c26b9c8aeea321870db54e",
+          "bytes": 2799568
+        },
+        {
+          "role": "version-of-record article page with full text (follow-up audit)",
+          "download_source": "https://doi.org/10.1088/2058-9565/ae2202",
+          "local_filename": "research_sources/b5_followup/version_gap/doi_landing.html",
+          "sha256": "9b13238ce5859ff4a753896559c0126563df90124e1ca6174b4759333a4ff322",
+          "bytes": 595974
+        }
+      ],
+      "published_version_inspected_in": "B5 follow-up audit (2026-10-04)",
+      "version_of_record": {
+        "journal_dates": {
+          "received": "2025-08-01",
+          "revised": "2025-10-23",
+          "accepted": "2025-11-20",
+          "published_online": "2026-01-30",
+          "print_issue": "2026-03-01"
+        },
+        "post_publication_change": "Made 07 April 2026: Figure 2 had been replaced by a duplicate of Figure 3 during final file creation and was restored (note on the article page). The retrieved PDF shows the correct Figure 2.",
+        "pages": "24 journal pages (25 PDF pages incl. an IOP cover page); journal page = PDF page - 1",
+        "comparison_with_arxiv_v2": "Paragraph-level 5-word-shingle comparison: 95.6% of version-of-record shingles occur in the v2 LaTeX source and 91.0% of v2 shingles occur in the version of record; the only paragraphs without a counterpart are publisher boilerplate (licence, post-publication-change note, data-availability statement) and author affiliations. Equation, figure, theorem, corollary, lemma and definition numbers are identical; sections use arabic instead of roman numerals.",
+        "comparison_with_arxiv_v1": "78.5% shingle coverage; the v2-only passages V-01 to V-03 are present in the version of record.",
+        "arxiv_v2_relation": "arXiv v2 (2026-06-04) was posted 125 days after online publication (2026-01-30). The arXiv record carries the journal-ref 'Quantum Science and Technology, Volume 11, 015049 (2026)', the DOI and the comment '11+13 pages, 5 figures'; neither field states that v2 is the published or accepted text. A text comparison shows that v2 matches the version of record (see B5_VERSION_GAP.md)."
+      }
+    },
+    {
+      "paper_id": "arrasmith2021",
+      "evidence_prefix": "C",
+      "title": "Effect of barren plateaus on gradient-free optimization",
+      "authors": [
+        "Andrew Arrasmith",
+        "M. Cerezo",
+        "Piotr Czarnik",
+        "Lukasz Cincio",
+        "Patrick J. Coles"
+      ],
+      "journal": "Quantum",
+      "volume": "5",
+      "article_number": "558",
+      "year": 2021,
+      "doi": "10.22331/q-2021-10-05-558",
+      "arxiv_id": "2011.12245",
+      "license": "CC BY 4.0 (Crossref license metadata)",
+      "publication_date": "2021-10-05",
+      "accepted_date": "2021-06-04 (Quantum footer)",
+      "version_reviewed": "Published version (Quantum 5, 558; 12 pp.). The Quantum PDF is the arXiv:2011.12245v2 file (arXiv stamp dated 2021-09-30; arXiv comment: 'Updated to final publication version incorporating referee feedback').",
+      "published_version_inspected": true,
+      "arxiv_versions_cross_checked": "v2 LaTeX source read; v1 (2020-11-24) not compared",
+      "supplement_reviewed": "No supplementary material exists; Appendix A (proof of Proposition 1) read in full.",
+      "review_completed": true,
+      "review_scope": "Main text pp. 1-8, references, Appendix A pp. 11-12 read in full (pages viewed); LaTeX source searched.",
+      "metadata_sources": [
+        "https://api.crossref.org/works/10.22331/q-2021-10-05-558",
+        "https://arxiv.org/abs/2011.12245"
+      ],
+      "files": [
+        {
+          "role": "published PDF",
+          "download_source": "https://quantum-journal.org/papers/q-2021-10-05-558/pdf/",
+          "local_filename": "research_sources/b5_followup/arrasmith2021_quantum.pdf",
+          "sha256": "c6867a686d3a53e7af46142fe257ae7ec47f6c1696e400222a86e3a8b719b568",
+          "bytes": 758181
+        },
+        {
+          "role": "arXiv v2 source tarball",
+          "download_source": "https://arxiv.org/e-print/2011.12245v2",
+          "local_filename": "research_sources/b5_followup/arrasmith_arxiv_2011.12245v2_src.tar",
+          "sha256": "6826727c7ec3ea71b197047e7f51ca3e5c5784e9a6a5a068527393f609b77370",
+          "bytes": 275667
+        },
+        {
+          "role": "Crossref record",
+          "download_source": "https://api.crossref.org/works/10.22331/q-2021-10-05-558",
+          "local_filename": "research_sources/b5_followup/crossref_10_22331_q-2021-10-05-558.json",
+          "sha256": "350da26287504f76382a964bd4ea8fc7a3a915fa64c6ee4d121591074ededd21",
+          "bytes": 17586
+        },
+        {
+          "role": "arXiv abstract page (submission history)",
+          "download_source": "https://arxiv.org/abs/2011.12245",
+          "local_filename": "research_sources/b5_followup/arxiv_2011.12245_abs.html",
+          "sha256": "c2ba1db22511206097def317a09ad7679152251f06e425f660f881da38e8e169",
+          "bytes": 44058
+        }
+      ]
+    },
+    {
+      "paper_id": "teo2023",
+      "evidence_prefix": "D",
+      "title": "Optimized numerical gradient and Hessian estimation for variational quantum algorithms",
+      "authors": [
+        "Y. S. Teo"
+      ],
+      "journal": "Physical Review A",
+      "volume": "107",
+      "article_number": "042421",
+      "year": 2023,
+      "doi": "10.1103/PhysRevA.107.042421",
+      "arxiv_id": "2206.12643",
+      "license": "APS default licence (not open access; Crossref/OpenAlex)",
+      "publication_date": "2023-04-17",
+      "version_reviewed": "arXiv:2206.12643v3 (2022-11-20; 24 pp.; journal-ref Phys. Rev. A 107, 042421 (2023)) read in full from the PDF and LaTeX source. The APS version of record was NOT inspected.",
+      "published_version_inspected": false,
+      "published_version_access_note": "https://doi.org/10.1103/PhysRevA.107.042421 redirects to link.aps.org, which returned an HTTP 403 challenge page (2026-10-04; retried once in the follow-up audit; earlier journals.aps.org abstract and PDF URLs also 403). Not bypassed. OpenAlex and Semantic Scholar list the published version as not open access and the arXiv copy as the open copy.",
+      "arxiv_versions_cross_checked": "v1 (2022-06-25) and v2 (2022-06-28) PDFs compared structurally with v3: v3 adds Secs. IV C (SPS), V C, VII (remarks and potential pitfall), App. C 5, Fig. 6 and an updated Fig. 4 (arXiv comment). The PS MSE (Eq. 13 in v3) and N_* formula are present in v1/v2 under different section numbers.",
+      "supplement_reviewed": "Appendices A-D of arXiv v3 (pp. 12-22) read in full. Whether the APS version has separate Supplemental Material could not be checked.",
+      "review_completed": true,
+      "review_scope": "arXiv v3 pp. 1-24 read in full (pages viewed) including Appendices A-D and Tables I-II; LaTeX source read for Secs. II-VII and Apps. A-C.",
+      "metadata_sources": [
+        "https://api.crossref.org/works/10.1103/PhysRevA.107.042421",
+        "https://api.openalex.org/works/doi:10.1103/PhysRevA.107.042421",
+        "https://arxiv.org/abs/2206.12643",
+        "https://export.arxiv.org/api/query?search_query=ti:%22Optimized%20numerical%20gradient%20and%20Hessian%20estimation%22&max_results=5"
+      ],
+      "files": [
+        {
+          "role": "arXiv v3 PDF (primary reviewed version)",
+          "download_source": "https://arxiv.org/pdf/2206.12643v3",
+          "local_filename": "research_sources/b5_followup/teo_arxiv_2206.12643v3.pdf",
+          "sha256": "83c3f856645053e06be6d4280e00ca3e12681d3ed7d468dfc4be4355b0b3a1f1",
+          "bytes": 1349550
+        },
+        {
+          "role": "arXiv v3 source tarball",
+          "download_source": "https://arxiv.org/e-print/2206.12643v3",
+          "local_filename": "research_sources/b5_followup/teo_arxiv_2206.12643v3_src.tar",
+          "sha256": "25d85663e177f55cc059da89cc4c40992954b1ac73862a69deedf6a3cb52c0b7",
+          "bytes": 1343503
+        },
+        {
+          "role": "arXiv v1 PDF (version comparison)",
+          "download_source": "https://arxiv.org/pdf/2206.12643v1",
+          "local_filename": "research_sources/b5_followup/teo_arxiv_2206.12643v1.pdf",
+          "sha256": "327820128a5a5357a2c8bc5d9624b2420d5f36b4be64df753f5e5735d37a3bb2",
+          "bytes": 1092744
+        },
+        {
+          "role": "arXiv v2 PDF (version comparison)",
+          "download_source": "https://arxiv.org/pdf/2206.12643v2",
+          "local_filename": "research_sources/b5_followup/teo_arxiv_2206.12643v2.pdf",
+          "sha256": "767eac556d71793bc3c4893793356d2836220a34f826b10aeb421b30f4572532",
+          "bytes": 1094850
+        },
+        {
+          "role": "Crossref record",
+          "download_source": "https://api.crossref.org/works/10.1103/PhysRevA.107.042421",
+          "local_filename": "research_sources/b5_followup/crossref_10_1103_PhysRevA_107_042421.json",
+          "sha256": "a9e450bfdc44ff49f3261aa9e54d42dc6993a32027b405c2521633b60c15f805",
+          "bytes": 11542
+        },
+        {
+          "role": "OpenAlex record",
+          "download_source": "https://api.openalex.org/works/doi:10.1103/PhysRevA.107.042421",
+          "local_filename": "research_sources/b5_followup/openalex_teo.json",
+          "sha256": "ac18a30edd28fdae2caa282ae21ab167dbbd9efc43d10434f187b303fb2cb177",
+          "bytes": 18779
+        },
+        {
+          "role": "arXiv abstract page (submission history, journal-ref)",
+          "download_source": "https://arxiv.org/abs/2206.12643",
+          "local_filename": "research_sources/b5_followup/arxiv_2206.12643_abs.html",
+          "sha256": "7c0be3c505e4376c4d3e943d9c91f339e21c57b8e606a8c09165f9a3540b6f7a",
+          "bytes": 44093
+        },
+        {
+          "role": "APS response to the DOI request (HTTP 403 challenge page)",
+          "download_source": "https://doi.org/10.1103/PhysRevA.107.042421",
+          "local_filename": "research_sources/b5_followup/teo_doi_landing_retry.html",
+          "sha256": "4da4d71c7f726c0704ed4cce4e947324a6ccaad5bf6aec0748810c43a246e51c",
+          "bytes": 5559
+        }
+      ]
+    },
+    {
+      "paper_id": "gentinetta2024",
+      "evidence_prefix": "E",
+      "title": "The complexity of quantum support vector machines",
+      "authors": [
+        "Gian Gentinetta",
+        "Arne Thomsen",
+        "David Sutter",
+        "Stefan Woerner"
+      ],
+      "journal": "Quantum",
+      "volume": "8",
+      "article_number": "1225",
+      "year": 2024,
+      "doi": "10.22331/q-2024-01-11-1225",
+      "arxiv_id": "2203.00031",
+      "license": "CC BY 4.0 (Crossref license metadata)",
+      "publication_date": "2024-01-11",
+      "accepted_date": "2023-12-25 (Quantum footer)",
+      "version_reviewed": "Published version (Quantum 8, 1225; 30 pp.). The Quantum PDF is the arXiv:2203.00031v2 file (arXiv stamp dated 2024-01-07; arXiv comment 'v2: published version').",
+      "published_version_inspected": true,
+      "arxiv_versions_cross_checked": "v2 LaTeX source read; v1 (2022-02-28) not compared",
+      "supplement_reviewed": "Appendices A-C read in full; the code/data archive (Zenodo, ref. [29]) was not reviewed.",
+      "review_completed": true,
+      "review_scope": "Main text pp. 1-18, references, Appendices A-C pp. 21-30 read in full (pages viewed); LaTeX source searched.",
+      "metadata_sources": [
+        "https://api.crossref.org/works/10.22331/q-2024-01-11-1225",
+        "https://arxiv.org/abs/2203.00031"
+      ],
+      "files": [
+        {
+          "role": "published PDF",
+          "download_source": "https://quantum-journal.org/papers/q-2024-01-11-1225/pdf/",
+          "local_filename": "research_sources/b5_followup/gentinetta2024_quantum.pdf",
+          "sha256": "13bb61accc4489b9741657abc840eca7a139f94ee86e4006e900c0d16a4fb73c",
+          "bytes": 1834415
+        },
+        {
+          "role": "arXiv v2 source tarball",
+          "download_source": "https://arxiv.org/e-print/2203.00031v2",
+          "local_filename": "research_sources/b5_followup/gentinetta_arxiv_2203.00031v2_src.tar",
+          "sha256": "b0dfea39c66e26972ae39905c1415a51893461f949732954bce15c21a05d47b1",
+          "bytes": 8578058
+        },
+        {
+          "role": "Crossref record",
+          "download_source": "https://api.crossref.org/works/10.22331/q-2024-01-11-1225",
+          "local_filename": "research_sources/b5_followup/crossref_10_22331_q-2024-01-11-1225.json",
+          "sha256": "faa8d262196d54e771a808621a316687f199e74499b830421628b224e3ed92d2",
+          "bytes": 16482
+        },
+        {
+          "role": "arXiv abstract page (submission history)",
+          "download_source": "https://arxiv.org/abs/2203.00031",
+          "local_filename": "research_sources/b5_followup/arxiv_2203.00031_abs.html",
+          "sha256": "ca21089f35236a854a73d170f7675f2ed1aa0aacf9e04bf676a629e7987cebdd",
+          "bytes": 43642
+        }
+      ]
+    },
+    {
+      "paper_id": "mari2021",
+      "evidence_prefix": "F",
+      "title": "Estimating the gradient and higher-order derivatives on quantum hardware",
+      "authors": [
+        "Andrea Mari",
+        "Thomas R. Bromley",
+        "Nathan Killoran"
+      ],
+      "journal": "Physical Review A",
+      "volume": "103",
+      "article_number": "012405",
+      "year": 2021,
+      "doi": "10.1103/PhysRevA.103.012405",
+      "arxiv_id": "2008.06517",
+      "license": "APS default licence (version of record not open access; Crossref/OpenAlex)",
+      "publication_date": "2021-01-11",
+      "version_reviewed": "arXiv:2008.06517v2 (2021-02-26; 17 pp.; journal-ref Phys. Rev. A 103, 012405 (2021)) read in full from the PDF; LaTeX source searched. The APS version of record was NOT inspected.",
+      "published_version_inspected": false,
+      "published_version_access_note": "https://doi.org/10.1103/PhysRevA.103.012405 redirects to link.aps.org, which returned an HTTP 403 challenge page (2026-10-05); not bypassed. The open-access copy listed by OpenAlex in the University of Camerino repository (IRIS, hdl:11581/475358, labelled post-print) is byte-identical to arXiv v2 (same sha256).",
+      "arxiv_versions_cross_checked": "v1 (2020-08-14) compared on the statistical-estimation section: Eqs. (43)-(50) identical, including the Eq. (49) denominator; arXiv comment for v2: updated Fubini-Study metric definition and corrected typo in resulting equations.",
+      "supplement_reviewed": "Appendix A (pp. 15-17) read in full; no separate supplement.",
+      "review_completed": true,
+      "review_scope": "arXiv v2 pp. 1-17 read in full (pages viewed); LaTeX source searched.",
+      "metadata_sources": [
+        "https://api.crossref.org/works/10.1103/PhysRevA.103.012405",
+        "https://api.openalex.org/works/doi:10.1103/PhysRevA.103.012405",
+        "https://arxiv.org/abs/2008.06517",
+        "https://hdl.handle.net/11581/475358"
+      ],
+      "files": [
+        {
+          "role": "arXiv v2 PDF (primary reviewed version)",
+          "download_source": "https://arxiv.org/pdf/2008.06517v2",
+          "local_filename": "research_sources/b5_closure/mari_arxiv_2008.06517v2.pdf",
+          "sha256": "13c610aa861618aa0ab7c472b94cced9ef2fe1426487cc69e427274bf0d544db",
+          "bytes": 1240456
+        },
+        {
+          "role": "arXiv v1 PDF (version comparison)",
+          "download_source": "https://arxiv.org/pdf/2008.06517v1",
+          "local_filename": "research_sources/b5_closure/mari_arxiv_2008.06517v1.pdf",
+          "sha256": "46f9d3eac6f8fe3ba82960e6049381a20ff8c63b482b30a5b58adba9829b129f",
+          "bytes": 1205913
+        },
+        {
+          "role": "arXiv v2 source tarball",
+          "download_source": "https://arxiv.org/e-print/2008.06517v2",
+          "local_filename": "research_sources/b5_closure/mari_arxiv_2008.06517v2_src.tar",
+          "sha256": "04e86f3c2e55f64e8d499108e986979d6badd7aa88f5b182d84df59a32cb4d6f",
+          "bytes": 2009311
+        },
+        {
+          "role": "IRIS (University of Camerino) post-print, byte-identical to arXiv v2",
+          "download_source": "https://pubblicazioni.unicam.it/bitstream/11581/475358/2/2008.06517.pdf",
+          "local_filename": "research_sources/b5_closure/mari_unicam_postprint.pdf",
+          "sha256": "13c610aa861618aa0ab7c472b94cced9ef2fe1426487cc69e427274bf0d544db",
+          "bytes": 1240456
+        },
+        {
+          "role": "Crossref record",
+          "download_source": "https://api.crossref.org/works/10.1103/PhysRevA.103.012405",
+          "local_filename": "research_sources/b5_closure/crossref_10_1103_PhysRevA_103_012405.json",
+          "sha256": "9a47441f015353a86ac57406511eb38d1a24da6489cd41de31d90c2dbf23fa53",
+          "bytes": 7738
+        },
+        {
+          "role": "OpenAlex record",
+          "download_source": "https://api.openalex.org/works/doi:10.1103/PhysRevA.103.012405",
+          "local_filename": "research_sources/b5_closure/openalex_mari.json",
+          "sha256": "57bb3ec1706ac4123a20ce5de09efd4467394cb93faf90079c2d70d3e4cab789",
+          "bytes": 18971
+        },
+        {
+          "role": "APS response to the DOI request (HTTP 403 challenge page)",
+          "download_source": "https://doi.org/10.1103/PhysRevA.103.012405",
+          "local_filename": "research_sources/b5_closure/mari_doi_landing.html",
+          "sha256": "dacf3be241812ddd575dd41cf3b0bc66632728cbd8c74ee577246c66d4071427",
+          "bytes": 5559
+        }
+      ]
+    },
+    {
+      "paper_id": "miranskyy2025",
+      "evidence_prefix": "G",
+      "title": "The Cost of Certainty: Shot Budgets in Quantum Program Testing",
+      "authors": [
+        "Andriy Miranskyy"
+      ],
+      "journal": "arXiv preprint (no journal reference)",
+      "year": 2025,
+      "doi": "10.48550/arXiv.2510.22418",
+      "arxiv_id": "2510.22418",
+      "license": "arXiv non-exclusive distribution licence (preprint)",
+      "publication_date": "2025-10-25 (arXiv v1; single version as of 2026-10-05)",
+      "version_reviewed": "arXiv:2510.22418v1 (2025-10-25; 30 pp.), read in full; LaTeX source downloaded. No published version exists according to the arXiv record (no journal-ref, no DOI other than the arXiv DOI).",
+      "published_version_inspected": false,
+      "published_version_access_note": "Preprint only: the arXiv record (checked 2026-10-05) has no journal reference.",
+      "arxiv_versions_cross_checked": "single version (v1)",
+      "supplement_reviewed": "Appendices A-D (pp. 27-30) read in full; demo code repository not reviewed.",
+      "review_completed": true,
+      "review_scope": "arXiv v1 pp. 1-30 read in full (pages viewed).",
+      "metadata_sources": [
+        "https://export.arxiv.org/api/query?id_list=2510.22418",
+        "https://arxiv.org/abs/2510.22418"
+      ],
+      "files": [
+        {
+          "role": "arXiv v1 PDF (primary reviewed version)",
+          "download_source": "https://arxiv.org/pdf/2510.22418v1",
+          "local_filename": "research_sources/b5_closure/miranskyy_arxiv_2510.22418v1.pdf",
+          "sha256": "ec9ad1992725b75792f99d15ee2c02b207649651b4dd59167b64101ec0485a16",
+          "bytes": 673859
+        },
+        {
+          "role": "arXiv v1 source tarball",
+          "download_source": "https://arxiv.org/e-print/2510.22418v1",
+          "local_filename": "research_sources/b5_closure/miranskyy_arxiv_2510.22418v1_src.tar",
+          "sha256": "1dd185a143e94c46c07b8f035922c1afbef53be0601df61fd364c272c55107a6",
+          "bytes": 112465
+        },
+        {
+          "role": "arXiv API record",
+          "download_source": "https://export.arxiv.org/api/query?id_list=2510.22418",
+          "local_filename": "research_sources/b5_closure/arxiv_2510.22418.xml",
+          "sha256": "3f8f08762fa90ddf751b227dc573b9c5625538996d8b32b7c50b004faf802521",
+          "bytes": 3256
+        }
+      ]
+    },
+    {
+      "paper_id": "zhan2025",
+      "evidence_prefix": "H",
+      "title": "Experimental benchmarking of quantum state overlap estimation strategies with photonic systems",
+      "authors": [
+        "Hao Zhan",
+        "Ben Wang",
+        "Minghao Mi",
+        "Jie Xie",
+        "Liang Xu",
+        "Aonan Zhang",
+        "Lijian Zhang"
+      ],
+      "journal": "Light: Science & Applications",
+      "volume": "14",
+      "article_number": "83",
+      "year": 2025,
+      "doi": "10.1038/s41377-025-01755-8",
+      "arxiv_id": "2406.06810",
+      "license": "CC BY 4.0 (Crossref license metadata)",
+      "publication_date": "2025-02-12 (received 2024-04-16; accepted 2025-01-10)",
+      "version_reviewed": "Published version (Light Sci. Appl. 14, 83; 12 pp.) and the published Supplementary Information (MOESM1, 26 pp.), both read in full. arXiv:2406.06810v1 (2024-06-10) cross-checked for dating; arXiv v4 (2025-02-12, 37 pp. incl. SI) used during screening.",
+      "published_version_inspected": true,
+      "arxiv_versions_cross_checked": "v1 (2024-06-10) contains the projection variance c(1-c)/N, the swap-type variance (1-c^2)/N, the known-state binomial law, the 'lower precision for small c' comparison and c_t = 4/11; v4 (2025-02-12) screened.",
+      "supplement_reviewed": "Published Supplementary Information (MOESM1, 26 pp.) read in full; MOESM2/MOESM3 data archives not reviewed.",
+      "review_completed": true,
+      "review_scope": "Main text pp. 1-12 and SI pp. 1-26 read in full (pages viewed).",
+      "metadata_sources": [
+        "https://api.crossref.org/works/10.1038/s41377-025-01755-8",
+        "https://export.arxiv.org/api/query?id_list=2406.06810",
+        "https://www.nature.com/articles/s41377-025-01755-8"
+      ],
+      "files": [
+        {
+          "role": "published article PDF",
+          "download_source": "https://www.nature.com/articles/s41377-025-01755-8.pdf",
+          "local_filename": "research_sources/b5_closure/zhan2025_lsa.pdf",
+          "sha256": "121d4f442f86f24c0e9a01c6f0bdcf6becc7ef79f6b88756aff7bba1aadf0035",
+          "bytes": 1509747
+        },
+        {
+          "role": "published Supplementary Information PDF (MOESM1)",
+          "download_source": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41377-025-01755-8/MediaObjects/41377_2025_1755_MOESM1_ESM.pdf",
+          "local_filename": "research_sources/b5_closure/zhan2025_lsa_SI.pdf",
+          "sha256": "87f4eb83be8416dcfe7e118b0f1256704ad2b3fca7c779c23de2c3e3cb73fed4",
+          "bytes": 5336171
+        },
+        {
+          "role": "arXiv v1 PDF (dating cross-check)",
+          "download_source": "https://arxiv.org/pdf/2406.06810v1",
+          "local_filename": "research_sources/b5_closure/zhan_arxiv_2406.06810v1.pdf",
+          "sha256": "c6bc059636fde7a3a0fd8826567f1e66d33e790e4c52f4fb888baa07ca636557",
+          "bytes": 4759891
+        },
+        {
+          "role": "Crossref record",
+          "download_source": "https://api.crossref.org/works/10.1038/s41377-025-01755-8",
+          "local_filename": "research_sources/b5_closure/crossref_10_1038_s41377-025-01755-8.json",
+          "sha256": "8ca0faabcd444c84456b4d70c66257a5394f9e6e5279a838abac4a6c3d7cbade",
+          "bytes": 30196
+        }
+      ]
+    }
+  ],
+  "followup_retrieved_utc": "2026-10-04",
+  "closure_retrieved_utc": "2026-10-05",
+  "closure_search": {
+    "description": "Targeted literature search of the closure audit (B5_CLOSURE_SEARCH.md). Raw API responses and full screening tables are in research_sources/b5_closure/search/ (git-ignored); the committed screening summary is results/b5_prior_work/closure_search_screen.csv.",
+    "run_date": "2026-10-05",
+    "script": "tools/b5_closure_search.py"
+  }
+}
