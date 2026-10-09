@@ -1,0 +1,154 @@
+{
+  "seeds": [
+    11000,
+    11001,
+    11002,
+    11003,
+    11004,
+    11005,
+    11006,
+    11007,
+    11008,
+    11009
+  ],
+  "families": [
+    "hea_ring",
+    "rxry_czbrick"
+  ],
+  "regimes": [
+    "d2",
+    "d4",
+    "dn"
+  ],
+  "n_grid_d2": [
+    4,
+    6,
+    8,
+    10,
+    12,
+    14,
+    16
+  ],
+  "n_grid_d4": [
+    4,
+    6,
+    8,
+    10,
+    12,
+    14,
+    16
+  ],
+  "n_grid_dn": [
+    4,
+    6,
+    8,
+    10,
+    12,
+    14
+  ],
+  "samples_per_cell": 4000,
+  "positions": [
+    "EARLY",
+    "MIDDLE",
+    "LATE"
+  ],
+  "rotation_index": 0,
+  "audit_samples": 200,
+  "audit_zero_tol_r": 1e-10,
+  "audit_valid_max_zero_fraction": 0.01,
+  "audit_min_var_r": 1e-20,
+  "audit_agreement_tol": 1e-09,
+  "audit_pennylane": true,
+  "rx_n": [
+    2,
+    4,
+    6,
+    8,
+    10,
+    12,
+    14,
+    16,
+    18,
+    20
+  ],
+  "rx_samples": 25000,
+  "rx_stream": 20,
+  "rx_component": 0,
+  "b3_seeds": [
+    10000,
+    10001,
+    10002,
+    10003,
+    10004,
+    10005,
+    10006,
+    10007,
+    10008,
+    10009,
+    10010,
+    10011,
+    10012,
+    10013,
+    10014,
+    10015,
+    10016,
+    10017,
+    10018,
+    10019
+  ],
+  "b3_regeneration_tol": 1e-12,
+  "rx_sanity_tol_bS_bLE_br": 0.02,
+  "rx_sanity_tol_bSWAP": 0.04,
+  "identity_rel_tol": 1e-10,
+  "rho": 1.0,
+  "secondary_n_min": 8,
+  "n_boot_seed": 10000,
+  "boot_seed": 2026,
+  "equivalence_margin": 0.02,
+  "br_small_fraction": 0.1,
+  "conc_r2_min": 0.99,
+  "conc_curvature_max": 0.25,
+  "conc_median_S_max": 0.1,
+  "theta_boot_regime": "d4",
+  "theta_boot_seed_index": 0,
+  "theta_boot_reps": 2000,
+  "sign_n": 12,
+  "sign_seed_index": 0,
+  "sign_S_quantiles": [
+    0.1,
+    0.25,
+    0.5,
+    0.75,
+    0.9
+  ],
+  "sign_shots": [
+    1,
+    4,
+    16,
+    64,
+    256,
+    1024,
+    4096,
+    16384,
+    65536
+  ],
+  "config_sha256": "2b7306ae18f9f6caf833670faf6ab55d48d11dcbb394d13930ab70bc5d77e497",
+  "work_dir": "/Volumes/SSD Disk  1TB/qlo-b1-work",
+  "frozen_config_document": "B1_CONFIG.md",
+  "git_head_at_run": "735a8dfba93c8cb500a1205a70969395959ef5de",
+  "family_labels": {
+    "hea_ring": "repo HEA (RY,RZ + CNOT ring)",
+    "rxry_czbrick": "RX,RY + CZ brickwork (B1 fallback)"
+  },
+  "rotation_axes": {
+    "hea_ring": [
+      "Y",
+      "Z"
+    ],
+    "rxry_czbrick": [
+      "X",
+      "Y"
+    ]
+  },
+  "position_rule": "qubit 0, rotation theta[l, 0, 0]; EARLY l = 0, MIDDLE l = floor(d/2), LATE l = d - 1"
+}
