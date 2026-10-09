@@ -1,0 +1,106 @@
+{
+  "boot_seed": 2026,
+  "budgets_total_executions": [
+    32,
+    128,
+    512,
+    2048,
+    8192,
+    32768
+  ],
+  "circuit_tol": 1e-12,
+  "estimators": [
+    "loschmidt",
+    "swap_ancilla",
+    "swap_destructive",
+    "hadamard_u"
+  ],
+  "fit_ranges": [
+    [
+      "primary_2_20",
+      2,
+      20
+    ],
+    [
+      "n_ge_8",
+      8,
+      20
+    ]
+  ],
+  "fixed_n": [
+    6,
+    10,
+    14,
+    18
+  ],
+  "fixed_samples": 2000,
+  "fixed_samples_hadamard": 300,
+  "fixed_stream": 30,
+  "hadamard_exact_max_m": 512,
+  "hadamard_exact_validation_max_m": 256,
+  "hadamard_mc_reps": 20000,
+  "hadamard_validation_m": [
+    2,
+    3,
+    4,
+    8,
+    16,
+    64,
+    256
+  ],
+  "mc_seed": 2027,
+  "n_boot_seed": 10000,
+  "replicate_samples": 25000,
+  "replicate_seeds": [
+    12000,
+    12001,
+    12002,
+    12003,
+    12004,
+    12005,
+    12006,
+    12007,
+    12008,
+    12009
+  ],
+  "req_stream": 20,
+  "rho_primary": 1.0,
+  "rho_secondary": 2.0,
+  "rx_n": [
+    2,
+    4,
+    6,
+    8,
+    10,
+    12,
+    14,
+    16,
+    18,
+    20
+  ],
+  "spot_n": [
+    6,
+    8,
+    10,
+    12
+  ],
+  "spot_samples": 2000,
+  "spot_seed": 13000,
+  "stage7_samples": 100000,
+  "stage7_seed": 0,
+  "swap_equality_tol": 1e-12,
+  "validation_mc_reps": 200000,
+  "validation_shots": [
+    64,
+    256,
+    1024
+  ],
+  "variance_tol": 1e-12,
+  "config_sha256": "9dc965c2ede0a00145b75827382fd47333de4b6b11d17f5749cf3e4e0c58cf4a",
+  "executions_per_M": {
+    "loschmidt": 2,
+    "swap_ancilla": 2,
+    "swap_destructive": 2,
+    "hadamard_u": 4
+  }
+}

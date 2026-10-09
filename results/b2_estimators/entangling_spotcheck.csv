@@ -1,0 +1,17 @@
+n,estimator,median_log10_total_executions,median_abs_imag_over_abs_amp,note
+6,loschmidt,2.595496221825574,0.7081823123964313,destructive SWAP uses the ancilla +-1 model here (validated identical); SECONDARY ENTANGLING SPOT CHECK
+6,swap_ancilla,4.543459388312725,0.7081823123964313,destructive SWAP uses the ancilla +-1 model here (validated identical); SECONDARY ENTANGLING SPOT CHECK
+6,swap_destructive,4.543459388312725,0.7081823123964313,destructive SWAP uses the ancilla +-1 model here (validated identical); SECONDARY ENTANGLING SPOT CHECK
+6,hadamard_u,3.5524248457040857,0.7081823123964313,destructive SWAP uses the ancilla +-1 model here (validated identical); SECONDARY ENTANGLING SPOT CHECK
+8,loschmidt,3.200576840536331,0.7257058879375977,destructive SWAP uses the ancilla +-1 model here (validated identical); SECONDARY ENTANGLING SPOT CHECK
+8,swap_ancilla,5.737108317953978,0.7257058879375977,destructive SWAP uses the ancilla +-1 model here (validated identical); SECONDARY ENTANGLING SPOT CHECK
+8,swap_destructive,5.737108317953978,0.7257058879375977,destructive SWAP uses the ancilla +-1 model here (validated identical); SECONDARY ENTANGLING SPOT CHECK
+8,hadamard_u,4.152227167529306,0.7257058879375977,destructive SWAP uses the ancilla +-1 model here (validated identical); SECONDARY ENTANGLING SPOT CHECK
+10,loschmidt,3.773493670415954,0.7305317388087975,destructive SWAP uses the ancilla +-1 model here (validated identical); SECONDARY ENTANGLING SPOT CHECK
+10,swap_ancilla,6.918821562567135,0.7305317388087975,destructive SWAP uses the ancilla +-1 model here (validated identical); SECONDARY ENTANGLING SPOT CHECK
+10,swap_destructive,6.918821562567135,0.7305317388087975,destructive SWAP uses the ancilla +-1 model here (validated identical); SECONDARY ENTANGLING SPOT CHECK
+10,hadamard_u,4.7272153804040435,0.7305317388087975,destructive SWAP uses the ancilla +-1 model here (validated identical); SECONDARY ENTANGLING SPOT CHECK
+12,loschmidt,4.419906198519373,0.698726755773051,destructive SWAP uses the ancilla +-1 model here (validated identical); SECONDARY ENTANGLING SPOT CHECK
+12,swap_ancilla,8.177596467532073,0.698726755773051,destructive SWAP uses the ancilla +-1 model here (validated identical); SECONDARY ENTANGLING SPOT CHECK
+12,swap_destructive,8.177596467532073,0.698726755773051,destructive SWAP uses the ancilla +-1 model here (validated identical); SECONDARY ENTANGLING SPOT CHECK
+12,hadamard_u,5.371765868325635,0.698726755773051,destructive SWAP uses the ancilla +-1 model here (validated identical); SECONDARY ENTANGLING SPOT CHECK
