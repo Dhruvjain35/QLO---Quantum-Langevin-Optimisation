@@ -55,8 +55,10 @@ src/qlo/
   experiments/stage5.py            Stage 5 driver -> results/stage5/
   stage6/                          Stage 6: global parity benchmark, exact difference-of-binomials P_zero/P_correct/P_wrong, required shots, matched-signal
   experiments/stage6.py            Stage 6 driver -> results/stage6/
+  stage7/                          Stage 7: one fidelity landscape, Loschmidt/projector vs SWAP-test gradients (+ PennyLane SWAP circuit)
+  experiments/stage7.py            Stage 7 driver -> results/stage7/
   utils/seeding.py                 make_rng / random_params (explicit RNG, no global state)
-tests/                             166 pytest tests
+tests/                             180 pytest tests
 configs/bp_smoke_tiny.yaml         the smoke configuration, for reference
 results/                           CSV outputs (smoke only)
 STATUS.md                          Stage 1 status report
@@ -65,6 +67,7 @@ STAGE3.md                          Stage 3 report (controlled barren-plateau ben
 STAGE4.md                          Stage 4 report (finite-shot stochastic escape test — negative for shot noise)
 STAGE5.md                          Stage 5 theory note (exact finite-shot gradient dead-zone analysis)
 STAGE6.md                          Stage 6 report (projector vs parity: two finite-shot failure modes)
+STAGE7.md                          Stage 7 report (same landscape, Loschmidt vs SWAP readout: 4^n vs 16^n gradient shots)
 ```
 
 ## Circuit
@@ -125,6 +128,7 @@ uv pip install --python .venv/bin/python -e ".[dev]"
 .venv/bin/python -m qlo.experiments.stage4 all                   # Stage 4, ~15 min on 9 cores
 .venv/bin/python -m qlo.experiments.stage5                       # Stage 5, ~20 min single core (--fast for a smoke run)
 .venv/bin/python -m qlo.experiments.stage6 --workers 5           # Stage 6, ~7 min on 5 cores, ~2.2 GB peak (--fast for a smoke run)
+.venv/bin/python -m qlo.experiments.stage7 --workers 5           # Stage 7, ~15-20 min on 5 cores, <= 2.4 GB peak (--fast for a smoke run)
 ```
 
 The smoke experiment is a pipeline test only. Its numbers are not evidence
@@ -144,3 +148,9 @@ Pauli-parity cost on the same circuit needs the same ≈ `4^n` shots, but its sh
 probabilities sit near ½ instead of near 0. So `P(ĝ=0)` stays at `≈ 1/√(πM)` for every n, and the
 estimator fails by random signs instead of by exact zeros. The difference persists at matched |g|.
 Novelty is unconfirmed (see the Aghaei Saem et al. 2026 note in `STAGE6.md`).
+
+Stage 7 (see `STAGE7.md`) removes Stage 6's landscape confound. The same fidelity, gradient and θ are read
+out two ways: a Loschmidt/projector measurement or a SWAP test. The failure modes survive (exact zeros vs
+random signs), and the readout alone changes the gradient shot exponent: median ≈ `4^n` (Loschmidt) vs
+≈ `16^n` (SWAP). SWAP-driven GD at n ≥ 10 is indistinguishable from a signal-free random walk, which
+replicates known prior work. Novelty is unconfirmed (Thanasilp et al. 2024; Aghaei Saem et al. 2026).
