@@ -1,0 +1,131 @@
+{
+  "seeds": [
+    10000,
+    10001,
+    10002,
+    10003,
+    10004,
+    10005,
+    10006,
+    10007,
+    10008,
+    10009,
+    10010,
+    10011,
+    10012,
+    10013,
+    10014,
+    10015,
+    10016,
+    10017,
+    10018,
+    10019
+  ],
+  "reference_seed": 0,
+  "primary_n": [
+    2,
+    4,
+    6,
+    8,
+    10,
+    12,
+    14,
+    16,
+    18,
+    20
+  ],
+  "extension_n": [
+    22,
+    24
+  ],
+  "seed_samples": 25000,
+  "reference_samples": 100000,
+  "n_ge_8_secondary_fit": true,
+  "n_boot": 2000,
+  "n_boot_hier": 2000,
+  "n_boot_seed": 10000,
+  "boot_seed": 2026,
+  "fixed_n": [
+    2,
+    4,
+    6,
+    8,
+    10,
+    12,
+    14,
+    16,
+    18,
+    20,
+    22,
+    24
+  ],
+  "fixed_shots": [
+    16,
+    64,
+    256,
+    1024,
+    4096,
+    16384,
+    65536
+  ],
+  "fixed_seed_samples": 10000,
+  "fixed_reference_samples": 20000,
+  "fixed_n_boot": 2000,
+  "sign_law_n": [
+    12,
+    14,
+    16,
+    18,
+    20,
+    22,
+    24
+  ],
+  "sign_law_deep_p_zero": 0.99,
+  "mc_n": [
+    8,
+    12,
+    16,
+    20,
+    24
+  ],
+  "mc_shots": [
+    1024,
+    16384,
+    65536
+  ],
+  "mc_reps": 20000,
+  "vector_n": [
+    4,
+    6,
+    8,
+    10,
+    12
+  ],
+  "vector_shots": [
+    16,
+    64,
+    256,
+    1024,
+    4096
+  ],
+  "vector_theta": 400,
+  "vector_replicates": 25,
+  "opt_n": [
+    6,
+    8,
+    10,
+    12
+  ],
+  "opt_starts_per_seed": 50,
+  "opt_iters": 500,
+  "opt_eta": 0.3,
+  "check_rule": "seed_percentile_interval (primary); seed-mean bootstrap CI and theta-bootstrap CI reported separately",
+  "work_dir": "/Volumes/SSD Disk  1TB/qlo-b3-work",
+  "stage7_seed_excluded": 0,
+  "theta_streams": {
+    "required_shots": 20,
+    "fixed_shots": 30
+  },
+  "sign_law_fixed_prediction": 0.8535533905932737,
+  "baseline_commit": "ba51866"
+}
