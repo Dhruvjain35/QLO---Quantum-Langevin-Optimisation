@@ -15,7 +15,7 @@ This file covers the framing decision and items A1 to A4 from the work allocatio
 
 | Item | Determination | What it means for you |
 |---|---|---|
-| Framing (Section 2) | **Recommend: new paper, new title. Retire the Langevin apparatus to its own track.** Keep one paragraph that uses Langevin language to explain the Stage 4 failure. | Your call. Section 1 sets out both options. |
+| Framing (Section 2) | **DECIDED 16 October 2026: new paper, new title. The Langevin apparatus is retired to its own track.** Keep one paragraph that uses Langevin language to explain the Stage 4 failure. | Settled. Section 1 records the decision. |
 | A1, C1 exact zero and sign probabilities | **Refinement.** Mathematically elementary. Not a headline. | Keep as a tool, not a claim. |
 | A1, C2 conditional sign law | **New as far as I can find.** Generalises beyond the product circuit (A2). | One of the two results the paper can stand on. |
 | A1, C3 same landscape 4^n vs 16^n | **Refinement.** The per shot variances that imply it are already printed in Aghaei Saem et al. They do not state the shot ratio or apply it to gradients. | Claim the exact identity and the "exponent doubles" rule, not the discovery that SWAP costs more. |
@@ -30,6 +30,8 @@ This file covers the framing decision and items A1 to A4 from the work allocatio
 ---
 
 ## 1. The framing decision
+
+> **Decision (Satyabrat Sahu, 16 October 2026): Option B.** The paper is a measurement and gradient resolvability paper with a new title. The effective temperature derivation, the Eyring Kramers and narrow escape analysis, the Riemannian metric extension and the temperature matching conjecture move to a separate Langevin track and are not part of this paper. Stage 4 stays in the paper as the falsified hypothesis, explained by the bridge paragraph below. The repository name is unchanged for now.
 
 ### The two options
 
