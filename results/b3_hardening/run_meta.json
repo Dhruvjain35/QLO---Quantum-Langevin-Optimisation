@@ -1,0 +1,17 @@
+{
+  "stage7_reproduction": {
+    "max_abs_diff_median_log10M": 3.552713678800501e-15,
+    "cells": 100,
+    "exact": true
+  },
+  "extension_accepted": {
+    "22": true,
+    "24": true
+  },
+  "fit_ranges": [
+    "primary_2_20",
+    "n_ge_8",
+    "extended_2_24"
+  ],
+  "wall_seconds": 1383.1731100082397
+}
